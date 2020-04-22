@@ -1,0 +1,457 @@
+<?php
+/* ----------------------------------------------------------------------
+ * themes/default/views/bundles/ca_objects_default_html.php : 
+ * ----------------------------------------------------------------------
+ * CollectiveAccess
+ * Open-source collections management software
+ * ----------------------------------------------------------------------
+ *
+ * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
+ * Copyright 2013-2018 Whirl-i-Gig
+ *
+ * For more information visit http://www.CollectiveAccess.org
+ *
+ * This program is free software; you may redistribute it and/or modify it under
+ * the terms of the provided license as published by Whirl-i-Gig
+ *
+ * CollectiveAccess is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+ *
+ * This source code is free and modifiable under the terms of 
+ * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html). See
+ * the "license.txt" file for details, or visit the CollectiveAccess web site at
+ * http://www.CollectiveAccess.org
+ *
+ * ----------------------------------------------------------------------
+ */
+ 
+	$t_object = 			$this->getVar("item");
+	$va_comments = 			$this->getVar("comments");
+	$va_tags = 				$this->getVar("tags_array");
+	$vn_comments_enabled = 	$this->getVar("commentsEnabled");
+	$vn_share_enabled = 	$this->getVar("shareEnabled");
+	$vn_pdf_enabled = 		$this->getVar("pdfEnabled");
+	$vn_id =				$t_object->get('ca_objects.object_id');
+?>
+<!--
+
+		{{{previousLink}}}{{{resultsLink}}}{{{nextLink}}}
+-->
+<h1 class="titre-phonogramme">{{{^ca_objects.preferred_labels.name}}}</h1>
+<div class="columns">
+  <div class="column is-one-third">
+	<div class="card infosprincipales">
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      Description
+	    </p>
+	  </header>
+	  <div class="card-content">
+	    <div class="content">
+	      <b>Année</b> : {{{^ca_objects.date}}}<br/>
+	      <b>Description</b> : {{{^ca_objects.notes}}}
+	    </div>
+	  </div>
+	</div>
+  
+	<div class="card">
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      Liste des pressages de cet album
+	    </p>
+	  </header>
+	  <div class="card-content">
+	    <div class="content">
+		    Pressage 1<br/>
+		    Pressage 2<br/>
+			Pressage 3
+	    </div>
+	  </div>
+	</div>
+
+	<div class="card">
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      Informations sur le pressage
+	    </p>
+	  </header>
+	  <div class="card-content">
+	    <div class="content">
+		    Titre 1<br/>
+		    Titre 2<br/>
+		    Titre 3<br/>
+		    Titre 4
+	    </div>
+	  </div>
+	</div>
+
+	<div class="card">
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      Liste des items phonogrammes de ce pressage
+	    </p>
+	  </header>
+	  <div class="card-content">
+	    <div class="content">
+		    Item 1<br/>
+		    Item 2<br/>
+			Item 3
+	    </div>
+	  </div>
+	</div>		
+  </div>
+    
+  <div class="column is-half">
+    <div class="card">
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      Informations sur l'item phonogramme
+	    </p>
+	  </header>
+	  <div class="card-content">
+	    <div class="content">
+		    Date de dépôt :
+		    Utilisateur ayant fait le dépôt :
+		    Mode d'obtention :
+		    Tags : 
+	    </div>
+	  </div>
+	</div>		
+
+	<div class="card">
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      Player audio
+	    </p>
+	  </header>
+	  <div class="card-content">
+	    <div class="content">
+		    A venir
+	    </div>
+	  </div>
+	</div>		
+	
+	<div class="card">
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      Médias attachés
+	    </p>
+	  </header>
+	  <div class="card-content">
+	    <div class="content">
+		    A venir
+	    </div>
+	  </div>
+	</div>		
+	
+  </div>
+  <div class="column">
+    <div class="card">
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      Tags
+	    </p>
+	  </header>
+	  <div class="card-content">
+	    <div class="content">
+		    <uL>
+			    <li>tag 1</li>
+			    <li>tag 2</li>
+			    <li>tag 3</li>
+		    </uL>
+	    </div>
+	  </div>
+	</div>		
+  </div>
+</div>
+<div class="item-accessoires">
+	<div class="card infosprincipales">
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      10 items les plus vus
+	    </p>
+	  </header>
+	  <div class="card-content">
+	    <div class="content">
+		    <div class="columns">
+			    <div class="column is-one-quarter">
+		    
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+			    </div>
+			    <div class="column is-one-quarter">
+		    
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+			    </div>
+			    <div class="column is-one-quarter">
+		    
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+			    </div>
+			    <div class="column is-one-quarter">
+		    
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+					
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+			    </div>
+		    </div>		    
+		    
+	    </div>
+	  </div>
+	</div>
+</div>
+
+<style>
+	h1.titre-phonogramme {
+		
+	}
+	.card {
+		border:1px solid #e0e0e0;
+		margin-bottom:10px;
+	}
+	.infosprincipales {
+	    max-height: 220px;
+		overflow-y: scroll;
+	}
+	.card-content {
+		padding:0.5rem 1.5rem;
+	}
+	h1.titre-phonogramme {
+		text-align: center;
+		font-weight: 100;
+	    font-size: 1.8em;
+	    padding-top: 1em;
+	    padding-bottom: 0.5em;
+	}
+	.list-items .card {
+		width: 220px;
+		display:inline-block;
+	}
+	.content figure {
+		margin:0;
+	}
+	.card .media:not(:last-child) {
+		margin-bottom:0.5rem;
+	}
+	</style>

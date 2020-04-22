@@ -1,0 +1,33 @@
+{
+  "titre": "Le séga réunionnais inscrit",
+  "sous-titre": "à l'inventaire national du Patrimoine Culturel Immatériel de France",
+  "auteur": "Jonathan Grondin",
+  "date": "30.03.2020",
+  "image principale": "https://phoi.ideesculture.fr/themes/phoi/assets/pawtucket/graphics/image-article_2.jpg",
+  "blocs": [
+    {
+      "type": "lead",
+      "contenu": "Cette année, le séga de l'île de La Réunion a été inclus à l'inventaire national du patrimoine culturel immatériel de France. A ce titre, les pratiquants du séga peuvent utiliser le label « Patrimoine culturel immatériel en France »."
+    },
+    {
+      "type": "paragraphe",
+      "contenu": "<p>Cette inscription est l'occasion d'une double reconnaissance du séga joué, chanté et dansé : </p>"
+    },
+    {
+      "type": "liste-à-puces",
+      "contenu": "<ul><li>en tant qu'expression de l'identité créole réunionnaise, du fait de son ancrage dans la communauté, de sa représentativité de la culture locale et de sa perpétuelle réinvention.</li><li>en tant qu'apport riche, unique et vivant pour la culture française.</li>"
+    },
+    {
+      "type": "paragraphe",
+      "contenu": "<p>En effet, le séga réunionnais est pratiqué depuis plus d'un siècle et son histoire est à l'image de la communauté créole, issue du métissage.</p><p> Devenu extrêmement populaire au début du XXe siècle, le séga a longtemps été omniprésent dans les bals et c'est probablement sur son rythme typique de l'océan Indien et ses paroles imagées que de nombreuses amitiés, amourettes et rencontres musicales sont nées à La Réunion.</p>"
+    },
+    {
+      "type": "paragraphe",
+      "contenu": "<p>Le séga a accompagné la vie des Réunionnais jusque dans leurs foyers avec le succès des radio-crochets et des vinyles. Il est aussi le vecteur d'une ouverture sur le monde et a connu de nombreuses formes métissées : Pop Séga, Séga Disco, Soul Séga, Séga Dance, Rock Séga, Séga Bollywood, Jazz Séga, Electro Séga...</p>"
+    },
+    {
+      "type": "notes",
+      "contenu": "Consultez la notice du séga réunionnais et les nombreux morceaux disponibles sur la PHOI"
+    }
+  ]
+}

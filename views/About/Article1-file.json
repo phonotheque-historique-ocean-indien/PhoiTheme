@@ -1,0 +1,59 @@
+{
+    "titre":"Alain Peters",
+    "sous-titre":"Rest’ la maloya",
+    "auteur": "Jonathan Grondin",
+    "date": "30.03.2020",
+    "image principale": "https://phoi.ideesculture.fr/themes/phoi/assets/pawtucket/graphics/alain-peters-1600.png",
+    "blocs": [
+      {
+        "type": "lead-dropcap",
+        "contenu": "Une musique insulaire à tous points de vue, comme une bouteille de rhum jetée à la mer par un genre de bluesman maudit de l’océan Indien."
+      },
+      {
+        "type": "paragraphe",
+        "contenu":"<p>Depuis une paire de rééditions posthumes<sup><a href='#footnote1'>1</a></sup>, et divers hommages<sup><a href='#footnote2'>2</a></sup> et reprises, on connaît par cœur (brisé) la musique du défunt troubadour du 9.7 Alain Peters.Une musique insulaire à tous points de vue, née à la Réunion dans les années 70-80, qui ne ressemble à aucune autre, et promise à la postérité, comme unebouteille de rhum jetée à la mer par un genre de bluesman maudit de l’océan Indien, longuement confit dans l’alcool et mort d’une crise cardiaque à 43 ans.</p><p>Alain Peters a inventé sa musique, du dark-maloya psychédélique et vénéneux, joué sous la menace de son takamba (une guitare basse traditionnelle du Sahel). Ses meilleures chansons, qui méritent de figurer dans le classement des plus tristes (et envoûtantes) du monde, sonnent comme un voyage initiatique vers les tréfonds, ou le naufrage mystique d’un Robinson qui sait qu’on le retrouvera trop tard.</p>"
+      },
+      {
+        "type": "image-is-fullsize",
+        "image": "https://phoi.ideesculture.fr/themes/phoi/assets/pawtucket/graphics/alain-peters-750.png",
+        "figcaption": "Texte légende de l'image ci-dessus ©loremIpsum"
+      },
+      {
+        "type": "paragraphe",
+        "contenu": "<h2>Les quinze années d'errance</h2><p>Grand poète et mélodiste réunionnais qui a influencé toute une génération actuelle de musiciens de l'île de La Réunion, Alain Péters a aussi été le membre du groupe Carrousel de 1979 au début des années 1980. Cette année même, Alain perdra son père et va s'engouffrer dans un alcoolisme dévastateur. Quelque temps après, son épouse Patricia le quitte pour s'installer en métropole, prenant avec elle leur unique fille Ananda Dévi.</p><p>Les quinze années d'errance et d'alcoolisme qui suivirent figurent pourtant parmi les plus créatives de sa vie. En 1981, dans sa maison de Villèle, Jean-Marie Pirot, enseignant passionné de musique, propose à Alain Peters de l'enregistrer à l'aide d'un magnétophone 4 pistes. Certaines chansons seront éditées en 1984 sur la cassette Mangé pou le cœur et retravaillés en 1998 par Loy Ehrlich pour le CD Parabolèr.</p>"
+      },
+      {
+        "type": "two-images",
+        "image1": "https://phoi.ideesculture.fr/themes/phoi/assets/pawtucket/graphics/Alain-PETERS-Photo-Didier-Soulard-Coll-Takamba-2.png",
+        "figcaption1": "Texte pour la légende de l'image",
+        "image2": "https://phoi.ideesculture.fr/themes/phoi/assets/pawtucket/graphics/image_article_4.png",
+        "figcaption2": "Texte pour la légende de l'image"
+      },
+      {
+        "type": "paragraphe",
+        "contenu":"<p>Alain Peters a inventé sa musique, du dark-maloya psychédélique et vénéneux, joué sous la menace de son takamba. Ses meilleures chansons, qui méritent de\n        figurer dans le classement des plus tristes (et sans doute aussi les plus envoûtantes) du monde, sonnent comme un voyage initiatique vers les tréfonds,\n        ou le naufrage mystique d’un Robinson qui sait qu’on le retrouvera trop tard.\n      </p>"
+      },
+      {
+        "type": "paragraphe",
+        "contenu":"<h2>Le succès posthume</h2>\n      <p>Depuis une paire de rééditions posthumes, et divers hommages et reprises, on connaît par cœur (brisé) la musique du défunt troubadour du 9.7 Alain Peters.\n        Une musique insulaire à tous points de vue, née à la Réunion dans les années 70-80, qui ne ressemble à aucune autre, et promise à la postérité,\n        comme une bouteille de rhum jetée à la mer par un genre de bluesman maudit de l’océan Indien, longuement confit dans l’alcool et mort d’une\n        crise cardiaque à 43 ans.\n      </p>"
+      },
+      {
+        "type": "image-with-text",
+        "image": "https://phoi.ideesculture.fr/themes/phoi/assets/pawtucket/graphics/radio-peters57_ver_1_0.png",
+        "text": "<p class=\"column quote\"> \"Depuis une paire de rééditions posthumes, et divers hommages et reprises, on connaît par cœur (brisé) la musique du défunt troubadour du 9.7 Alain Peters.\n                    Une musique insulaire à tous points de vue, née à la Réunion dans les années 70-80, qui ne ressemble à aucune autre, et promise à la postérité,\n                    comme une bouteille de rhum jetée à la mer par un genre de bluesman maudit de l’océan Indien, longuement confit dans l’alcool et mort d’une\n                    crise cardiaque à 43 ans.\"\n                </p>"
+      },
+      {
+        "type": "paragraphe",
+        "contenu":"      <h2>Une ré-édition comme une résurrection</h2>\n      <p>Tout cela n’est pas joyeux, mais Alain Peters aurait sans doute esquissé un sourire s’il avait eu cette nouvelle compilation entre les mains :\n        c’est un vinyle, et le travail sur le son est si bon qu’on redécouvre cette musique (enregistrée en amateur sur un 4-pistes) comme si on ne l’avait\n        jamais entendue, heureux de se perdre encore une fois dans la jungle enchantée de ses détails.\n      </p>"
+      },
+      {
+        "type": "references",
+        "footnotes": [
+          {"num": 1, "content":"Exemple de référence, consectetur adipiscing elit"},
+          {"num": 2, "content":"Deuxième note de bas de page"},
+          {"num": 3, "content":"Un exemple, quis nostrud exercitation"}
+        ],
+        "notes": "<p>Ceci sont des notes additionnelles relatives à l'article, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
+      }
+    ]
+  }
