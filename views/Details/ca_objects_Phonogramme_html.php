@@ -36,6 +36,12 @@
 	$vn_id =				$t_object->get('ca_objects.object_id');
 ?>
 
+<a href="/index.php/Contribuer/Do/EditForm/table/ca_objects/type/Phonogramme/id/130">
+	<button class="button action-btn add-new is-uppercase has-text-centered">
+    	<span class="icon"><i class="mdi mdi-plus"></i></span>&nbsp; Modifier
+    </button>
+</a>
+
 <!-- ca_objects_Phonogramme_html.php -->
 <h1 class="titre-phonogramme">{{{^ca_objects.preferred_labels.name}}}</h1>
 <div class="columns">
