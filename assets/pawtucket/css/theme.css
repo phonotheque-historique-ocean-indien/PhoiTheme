@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css?family=Lora:400i,700i|Roboto:100,300,300i,400,400i,700&display=swap&subset=latin-ext");
+@import url("https://fonts.googleapis.com/css?family=Lora:400,700,400i,700i|Roboto:100,300,300i,400,400i,700&display=swap&subset=latin-ext");
 /*! bulma.io v0.8.0 | MIT License | github.com/jgthms/bulma */
 @keyframes spinAround {
   from {
@@ -9850,15 +9850,15 @@ textarea.alpaca-control {
 .article-phoi .article-content p:last-child {
   margin-bottom: 0;
 }
-.article-phoi .lead-dropcap {
+.article-phoi .lead-dropcap p {
   font-style: italic !important;
   font-weight: bold !important;
   font-size: 1.5rem;
   color: #232425;
   line-height: 150%;
-  padding: 3rem 1rem 0 0;
+  padding: 3rem 0 2rem 0;
 }
-.article-phoi .lead-dropcap:first-letter {
+.article-phoi .lead-dropcap p:first-letter {
   color: #7DAFCA;
   font-size: 72px;
   line-height: 100%;
@@ -9926,10 +9926,12 @@ textarea.alpaca-control {
   font-size: 80%;
   color: #E4675F;
 }
-.article-phoi .quote {
+.article-phoi blockquote p, .article-phoi .quote {
   border-left-style: outset;
   border-left-color: rgba(0, 0, 0, 0.15);
   border-left-width: 5px;
+  padding-left: 14px;
+  margin-left: 20px;
   font-style: italic !important;
 }
 .article-phoi .footnotes {
