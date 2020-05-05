@@ -89,7 +89,7 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a href="./Article2" class="card-footer-item">Lire l'article</a>
+              <a href="/index.php/Articles/Show/Details/id/2" class="card-footer-item">Lire l'article</a>
           </footer>
         </div>
       </div>
@@ -112,7 +112,7 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a href="/index.php/Articles/Show/Details/id/1" class="card-footer-item">Lire l'article</a>
+              <a href="/index.php/Articles/Show/Details/id/3" class="card-footer-item">Lire l'article</a>
           </footer>
         </div>
         <div class="card">
@@ -133,7 +133,7 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a href="./Article2" class="card-footer-item">Lire l'article</a>
+              <a href="/index.php/Articles/Show/Details/id/4" class="card-footer-item">Lire l'article</a>
           </footer>
         </div>
       </div>
@@ -156,7 +156,7 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a href="/index.php/Articles/Show/Details/id/1" class="card-footer-item">Lire l'article</a>
+              <a href="/index.php/Articles/Show/Details/id/5" class="card-footer-item">Lire l'article</a>
           </footer>
         </div>
         <div class="card">
@@ -177,7 +177,7 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a href="./Article2" class="card-footer-item">Lire l'article</a>
+              <a href="/index.php/Articles/Show/Details/id/6" class="card-footer-item">Lire l'article</a>
           </footer>
         </div>
       </div>
