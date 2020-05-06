@@ -37,8 +37,7 @@
 				<img src="/logo-footer.png">
 			</div>
 			<div class="column">
-				<b>PHOI - Phonothèque Historique de l'Océan Indien</b><br/>
-				<img src="https://lh3.googleusercontent.com/proxy/MthbdmWuAoLzm_-IPxzn6IVQYGAm4TlobMfjLGOOiw5eU8A-DFIGZOkWJgqsnfM7uCYq4KH__gspeTPWTLZG_sQfDrwYQMDfhPeCA7oJkkdwo0hz68lBnf1QlkQ" style="height:80px;" />
+				<img src="<?php print __CA_URL_ROOT__; ?>/themes/phoi/assets/pawtucket/graphics/logo_prma.png" style="height:80px;" /><br/>
                 Pôle Régional de Musiques Actuelles de la Réunion<br/>
 				53 chaussée royale BP 18 <br/>
                 97 861 Saint-Paul CEDEX<br/>
