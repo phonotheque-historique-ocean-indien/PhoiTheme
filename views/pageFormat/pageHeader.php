@@ -185,13 +185,13 @@
 				<div class="navbar-end">
 					<a class="navbar-item"><span class="icon" style="font-size:30px;"><i class="mdi mdi-magnify is-large"></i></span></a>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a href="/index.php/About/Articles" class="navbar-link articles"><?php _p("Articles"); ?></a>
+						<a href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Articles/Show/index" class="navbar-link articles"><?php _p("Articles"); ?></a>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link phonotheque" href="/index.php/About/Expositions">Expositions</a>
+						<a class="navbar-link phonotheque" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/About/Expositions">Expositions</a>
 					</div>					
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link playlists" href="/index.php/About/Playlists"><?php _p("Playlists"); ?></a>
+						<a class="navbar-link playlists" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/About/Playlists"><?php _p("Playlists"); ?></a>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link podcasts"><?php _p("Podcasts"); ?></a>
@@ -205,9 +205,9 @@
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link phonotheque"><?php _p("The Sound Archive"); ?></a>
 						<div class="navbar-dropdown is-boxed">
-							<a class="navbar-item" href="/index.php/Phonotheque/Partenaires">Les partenaires</a>
-							<a class="navbar-item" href="/index.php/Phonotheque/CadreJuridique">Le cadre juridique</a>
-							<a class="navbar-item" href="/index.php/Phonotheque/RevueDePresse">La revue de presse</a>
+							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/Partenaires">Les partenaires</a>
+							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/CadreJuridique">Le cadre juridique</a>
+							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/RevueDePresse">La revue de presse</a>
 						</div>
 					</div>
 					<div class="navbar-item">
