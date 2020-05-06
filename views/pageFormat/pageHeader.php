@@ -188,17 +188,18 @@
 						<a href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Articles/Show/index" class="navbar-link articles"><?php _p("Articles"); ?></a>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link phonotheque" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/About/Expositions">Expositions</a>
+						<a class="navbar-link phonotheque" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Expositions/Show/index">Expositions</a>
 					</div>					
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link playlists" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/About/Playlists"><?php _p("Playlists"); ?></a>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link podcasts"><?php _p("Podcasts"); ?></a>
-						<div class="navbar-dropdown is-boxed">
-							<a class="navbar-item">Connexion</a>
-							<a class="navbar-item">Espace personnel</a>
-						</div>
+						<a class="navbar-link podcasts" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Podcasts/Show/index"><?php _p("Podcasts"); ?></a>
+<!--	Dropdown menu for Podcasts is not needed for the moment
+                            <div class="navbar-dropdown is-boxed">-->
+<!--							<a class="navbar-item">Connexion</a>-->
+<!--							<a class="navbar-item">Espace personnel</a>-->
+<!--						</div>-->
 					</div>
 					
 				
