@@ -9769,12 +9769,12 @@ textarea.alpaca-control {
   cursor: not-allowed;
 }
 
-.article-phoi {
+.article-phoi, .exposition-phoi, .podcast-phoi {
   margin: 0;
   padding: 0;
   @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400;1,700&display=swap");
 }
-.article-phoi .breadcrumb {
+.article-phoi .breadcrumb, .exposition-phoi .breadcrumb, .podcast-phoi .breadcrumb {
   position: relative;
   left: 50%;
   right: 50%;
@@ -9786,43 +9786,45 @@ textarea.alpaca-control {
   color: #232425 !important;
   width: 100vw;
 }
-.article-phoi .breadcrumb a {
+.article-phoi .breadcrumb a, .exposition-phoi .breadcrumb a, .podcast-phoi .breadcrumb a {
   color: #232425 !important;
 }
-.article-phoi .breadcrumb li + li::before {
+.article-phoi .breadcrumb li + li::before, .exposition-phoi .breadcrumb li + li::before, .podcast-phoi .breadcrumb li + li::before {
   color: #232425 !important;
 }
-.article-phoi .ariane {
+.article-phoi .ariane, .exposition-phoi .ariane, .podcast-phoi .ariane {
   padding-left: 0.5rem;
 }
 .article-phoi .level-left,
-.article-phoi .level-right {
+.article-phoi .level-right, .exposition-phoi .level-left,
+.exposition-phoi .level-right, .podcast-phoi .level-left,
+.podcast-phoi .level-right {
   flex-direction: column;
   align-items: baseline;
 }
-.article-phoi h1.title {
+.article-phoi h1.title, .exposition-phoi h1.title, .podcast-phoi h1.title {
   font-size: 2.25rem;
   line-height: 2.6rem;
   color: #232425;
 }
-.article-phoi h1.subtitle {
+.article-phoi h1.subtitle, .exposition-phoi h1.subtitle, .podcast-phoi h1.subtitle {
   font-size: 2.25rem;
   font-weight: 200;
 }
-.article-phoi .published-by {
+.article-phoi .published-by, .exposition-phoi .published-by, .podcast-phoi .published-by {
   font-family: "Lora", serif;
   font-style: italic !important;
   color: #8D9DA0;
 }
-.article-phoi .publisher {
+.article-phoi .publisher, .exposition-phoi .publisher, .podcast-phoi .publisher {
   color: #E4675F;
   font-weight: 600;
 }
-.article-phoi .article-content {
+.article-phoi .article-content, .exposition-phoi .article-content, .podcast-phoi .article-content {
   padding: 0 22% 0 22%;
   font-family: "Lora", serif;
 }
-.article-phoi .article-content h2 {
+.article-phoi .article-content h2, .exposition-phoi .article-content h2, .podcast-phoi .article-content h2 {
   font-family: "Roboto", sans-serif;
   font-size: 1.8rem;
   font-weight: bold;
@@ -9831,7 +9833,7 @@ textarea.alpaca-control {
   margin-top: 0 !important;
   color: #000000;
 }
-.article-phoi .article-content h4 {
+.article-phoi .article-content h4, .exposition-phoi .article-content h4, .podcast-phoi .article-content h4 {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   font-size: 1rem;
@@ -9841,16 +9843,16 @@ textarea.alpaca-control {
   padding-top: 2rem;
   padding-bottom: 0.8rem;
 }
-.article-phoi .article-content p {
+.article-phoi .article-content p, .exposition-phoi .article-content p, .podcast-phoi .article-content p {
   margin-bottom: 2rem;
   text-align: left;
   font-style: normal;
   color: #232425;
 }
-.article-phoi .article-content p:last-child {
+.article-phoi .article-content p:last-child, .exposition-phoi .article-content p:last-child, .podcast-phoi .article-content p:last-child {
   margin-bottom: 0;
 }
-.article-phoi .lead-dropcap p {
+.article-phoi .lead-dropcap p, .exposition-phoi .lead-dropcap p, .podcast-phoi .lead-dropcap p {
   font-style: italic !important;
   font-weight: bold !important;
   font-size: 1.5rem;
@@ -9858,17 +9860,17 @@ textarea.alpaca-control {
   line-height: 150%;
   padding: 3rem 0 2rem 0;
 }
-.article-phoi .lead-dropcap p:first-letter {
+.article-phoi .lead-dropcap p:first-letter, .exposition-phoi .lead-dropcap p:first-letter, .podcast-phoi .lead-dropcap p:first-letter {
   color: #7DAFCA;
   font-size: 72px;
   line-height: 100%;
   float: left;
   padding-right: 0.1em;
 }
-.article-phoi figure {
+.article-phoi figure, .exposition-phoi figure, .podcast-phoi figure {
   margin-top: 1.5rem;
 }
-.article-phoi figcaption {
+.article-phoi figcaption, .exposition-phoi figcaption, .podcast-phoi figcaption {
   font-family: "Lora", serif;
   font-size: 1rem;
   line-height: 21px;
@@ -9876,7 +9878,7 @@ textarea.alpaca-control {
   color: #8D9DA0 !important;
   padding-left: 1rem;
 }
-.article-phoi .image-full {
+.article-phoi .image-full, .exposition-phoi .image-full, .podcast-phoi .image-full {
   width: 100vw;
   position: relative;
   left: 50%;
@@ -9884,13 +9886,13 @@ textarea.alpaca-control {
   margin-left: -50vw;
   margin-right: -50vw;
 }
-.article-phoi .image-full img {
+.article-phoi .image-full img, .exposition-phoi .image-full img, .podcast-phoi .image-full img {
   min-width: 100% !important;
 }
-.article-phoi .image-with-text {
+.article-phoi .image-with-text, .exposition-phoi .image-with-text, .podcast-phoi .image-with-text {
   padding-top: 40px;
 }
-.article-phoi .image-with-text, .article-phoi .image-row {
+.article-phoi .image-with-text, .article-phoi .image-row, .exposition-phoi .image-with-text, .exposition-phoi .image-row, .podcast-phoi .image-with-text, .podcast-phoi .image-row {
   width: 50vw;
   position: relative;
   left: 50%;
@@ -9900,10 +9902,10 @@ textarea.alpaca-control {
   justify-content: center;
   align-items: center;
 }
-.article-phoi .image-with-text img {
+.article-phoi .image-with-text img, .exposition-phoi .image-with-text img, .podcast-phoi .image-with-text img {
   min-width: 100% !important;
 }
-.article-phoi #related-playlist, .article-phoi #now-playing {
+.article-phoi #related-playlist, .article-phoi #now-playing, .exposition-phoi #related-playlist, .exposition-phoi #now-playing, .podcast-phoi #related-playlist, .podcast-phoi #now-playing {
   width: 100vw;
   position: relative;
   left: 50%;
@@ -9911,22 +9913,22 @@ textarea.alpaca-control {
   margin-left: -50vw;
   margin-right: -50vw;
 }
-.article-phoi #related-playlist {
+.article-phoi #related-playlist, .exposition-phoi #related-playlist, .podcast-phoi #related-playlist {
   min-height: 10rem;
   background-color: #F2F2F2;
 }
-.article-phoi #now-playing {
+.article-phoi #now-playing, .exposition-phoi #now-playing, .podcast-phoi #now-playing {
   min-height: 10rem;
   background: #EFEFEF;
   opacity: 0.5;
 }
-.article-phoi sup a {
+.article-phoi sup a, .exposition-phoi sup a, .podcast-phoi sup a {
   vertical-align: super;
   text-decoration: underline;
   font-size: 80%;
   color: #E4675F;
 }
-.article-phoi blockquote p, .article-phoi .quote {
+.article-phoi blockquote p, .article-phoi .quote, .exposition-phoi blockquote p, .exposition-phoi .quote, .podcast-phoi blockquote p, .podcast-phoi .quote {
   border-left-style: outset;
   border-left-color: rgba(0, 0, 0, 0.15);
   border-left-width: 5px;
@@ -9934,20 +9936,20 @@ textarea.alpaca-control {
   margin-left: 20px;
   font-style: italic !important;
 }
-.article-phoi .footnotes {
+.article-phoi .footnotes, .exposition-phoi .footnotes, .podcast-phoi .footnotes {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 150%;
 }
-.article-phoi .footnotes ol {
+.article-phoi .footnotes ol, .exposition-phoi .footnotes ol, .podcast-phoi .footnotes ol {
   list-style: none;
   counter-reset: red-counter;
 }
-.article-phoi ol li {
+.article-phoi ol li, .exposition-phoi ol li, .podcast-phoi ol li {
   counter-increment: red-counter;
 }
-.article-phoi ol li::before {
+.article-phoi ol li::before, .exposition-phoi ol li::before, .podcast-phoi ol li::before {
   content: counter(red-counter) ". ";
   color: #E4675F;
 }
