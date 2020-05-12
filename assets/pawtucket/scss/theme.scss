@@ -364,7 +364,7 @@ textarea.alpaca-control {
 	}
 }
 
-.article-phoi {
+.article-phoi, .exposition-phoi, .podcast-phoi {
   margin:0;
   padding:0;
 
@@ -520,6 +520,10 @@ textarea.alpaca-control {
 
   .image-with-text img {
     min-width: 100% !important;
+  }
+
+  #soundplayertitle {
+    justify-content: space-around;
   }
 
   #related-playlist, #now-playing {
