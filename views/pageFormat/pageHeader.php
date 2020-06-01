@@ -84,7 +84,11 @@
 <body class="<?php print $_SESSION["partie"]; ?>">
 <div id="phoi-logo-top">
 	<div class="container" id="phoi-logo-container">
-        <a href="<?php print __CA_URL_ROOT__; ?>/"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+        <?php if($_SESSION["partie"] == "chaude"): ?>
+        <a href="/"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+        <?php else : ?>
+        <a href="/index.php/Phonotheque/Partenaires?partie=froide"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+        <?php endif; ?>
         <nav class="navbar pull-right user-and-lang">
             <?php if($this->request->isLoggedIn()): ?>
             <a class="navbar-item" href="/index.php/LoginReg/loginForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-circle is-large"></i></span> Mon compte</a>
@@ -158,7 +162,7 @@
 					<div class="navbar-item">
 						<div class="field is-grouped">
 							<p class="control">
-								<a class="button is-danger" href="/?partie=chaude">
+								<a class="button is-danger" href="/index.php/Articles/Front/index?partie=chaude">
                   <span class="icon">
                     <i class="mdi mdi-18px mdi-map-outline"></i>
                   </span>
@@ -214,7 +218,7 @@
 					<div class="navbar-item">
 						<div class="field is-grouped">
 							<p class="control">
-								<a class="button is-link" href="/?partie=froide">
+								<a class="button is-link" href="/index.php/Phonotheque/Partenaires?partie=froide">
                   <span class="icon">
                     <i class="mdi mdi-18px mdi-map-outline"></i>
                   </span>
