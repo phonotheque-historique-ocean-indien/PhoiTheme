@@ -9583,7 +9583,6 @@ nav.user-and-lang-shrinked {
 
 .footer.phoi-gray-footer {
   background-color: #8d9da0;
-  margin-top: 4rem;
   color: white;
   padding-bottom: 3rem;
 }
@@ -10486,6 +10485,32 @@ textarea.alpaca-control {
   .level-item {
     justify-content: flex-start;
   }
+}
+#is-playing {
+  background-color: #efefef;
+}
+
+.card.is-horizontal, .is-horizontal.bResultItemCol {
+  display: flex;
+}
+.card.is-horizontal .card-image, .is-horizontal.bResultItemCol .card-image {
+  width: 100%;
+  height: 100%;
+}
+.card.is-horizontal .card-stacked, .is-horizontal.bResultItemCol .card-stacked {
+  flex-direction: column;
+  flex: 1 1 auto;
+  display: flex;
+  position: relative;
+}
+.card.is-horizontal .card-stacked .card-content, .is-horizontal.bResultItemCol .card-stacked .card-content {
+  flex-grow: 1;
+}
+
+#alecoute,
+#lastplaylists {
+  margin-top: 40px;
+  width: 100%;
 }
 
 /*# sourceMappingURL=theme.css.map */
