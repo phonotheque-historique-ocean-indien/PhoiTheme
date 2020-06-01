@@ -10522,7 +10522,8 @@ textarea.alpaca-control {
   margin-bottom: 30px;
 }
 
-table#alecoute tr {
+table#alecoute tr,
+table#lastplaylists tr {
   background-color: transparent !important;
 }
 
