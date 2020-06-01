@@ -1079,8 +1079,21 @@ textarea.alpaca-control {
   }
 }
 
-#alecoute,
-#lastplaylists {
+#alecoute{
   margin-top:40px;
   width: 100%;
+}
+#alecoute_wrapper {
+  margin-top:50px;
+  margin-bottom:30px;
+}
+#lastplaylists_wrapper{
+  margin-top:0px;
+  margin-bottom:30px;
+}
+
+table#alecoute {
+  tr {
+    background-color: transparent !important;
+  }
 }
