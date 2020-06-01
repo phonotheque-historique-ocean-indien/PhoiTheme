@@ -84,7 +84,7 @@
 <body class="<?php print $_SESSION["partie"]; ?>">
 <div id="phoi-logo-top">
 	<div class="container" id="phoi-logo-container">
-        <a href="<?php print __CA_URL_ROOT__; ?>"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+        <a href="<?php print __CA_URL_ROOT__; ?>/"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
         <nav class="navbar pull-right user-and-lang">
             <?php if($this->request->isLoggedIn()): ?>
             <a class="navbar-item" href="/index.php/LoginReg/loginForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-circle is-large"></i></span> Mon compte</a>
