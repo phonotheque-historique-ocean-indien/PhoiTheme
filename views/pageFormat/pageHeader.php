@@ -137,7 +137,7 @@
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link">Gestion des items</a>
 						<div class="navbar-dropdown is-boxed">
-							<a href="https://phoi.ideesculture.fr/index.php/Detail/objects/130" class="navbar-item">Phonogramme</a>
+							<a href="/index.php/Detail/objects/130" class="navbar-item">Phonogramme</a>
 							<a class="navbar-item">Collectage</a>
 							<a class="navbar-item">Partitions</a>
 							<a class="navbar-item">Création musicale</a>
@@ -147,7 +147,7 @@
 						</div>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a href="https://phoi.ideesculture.fr/index.php/Thesaurus/View/Index" class="navbar-link">
+						<a href="/index.php/Thesaurus/View/Index" class="navbar-link">
 							Gestion du thesaurus</a>
 											</div>
 					<div class="navbar-item has-dropdown is-hoverable">
