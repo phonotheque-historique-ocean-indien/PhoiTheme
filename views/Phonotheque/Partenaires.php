@@ -10,8 +10,12 @@
 //        exit();
 //    }
 ?>
-
+<?php 
+	session_start();
+	if($_SESSION["partie"] == "chaude" && $_GET["partie"] != "froide"): 
+?>
 <h2>Les partenaires</h2>
+<?php endif; ?>
 </div>
 <div style="position:relative;">
 <div id="map" style="height:1000px;"></div>
@@ -65,7 +69,30 @@
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
     });
     Esri_WorldStreetMap.addTo(map);
-
+var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	subdomains: 'abcd',
+	minZoom: 1,
+	maxZoom: 16,
+	ext: 'jpg'
+});
+var Stamen_TonerLabels = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20,
+	ext: 'png'
+});
+//Stamen_Watercolor.addTo(map);
+//Stamen_TonerLabels.addTo(map);
+var Jawg_Streets = L.tileLayer('https://{s}.tile.jawg.io/jawg-streets/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+	attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	minZoom: 0,
+	maxZoom: 22,
+	subdomains: 'abcd',
+	accessToken: 'TmMeVgqbneXwQsHnFYm3PjohZD1XWvkp3v4gqDOqXc7ATIWNrf5mXIkU5AsCoToI'
+});
+//Jawg_Streets.addTo(map);
 
     L.marker([-20.8667, 55.4667]).addTo(map)
         .bindPopup('Ile de la Réunion');
