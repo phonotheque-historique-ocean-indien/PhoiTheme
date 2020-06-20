@@ -85,7 +85,7 @@
 <div id="phoi-logo-top">
 	<div class="container" id="phoi-logo-container">
         <?php if($_SESSION["partie"] == "chaude"): ?>
-        <a href="/"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+        <a href="/index.php"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
         <?php else : ?>
         <a href="/index.php/Phonotheque/Partenaires?partie=froide"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
         <?php endif; ?>
@@ -138,7 +138,7 @@
 						<a class="navbar-link">Gestion des items</a>
 						<div class="navbar-dropdown is-boxed">
 							<a href="/index.php/Detail/objects/130" class="navbar-item">Phonogramme</a>
-							<a class="navbar-item">Collectage</a>
+							<a href="/index.php/Detail/objects/140" class="navbar-item">Collectage</a>
 							<a class="navbar-item">Partitions</a>
 							<a class="navbar-item">Création musicale</a>
 							<a class="navbar-item">Interprétation</a>
@@ -281,6 +281,9 @@ body.froide .navbar-dropdown a.navbar-item:focus, .navbar-dropdown a.navbar-item
 }
 body.froide .navbar-dropdown {
 	background-color:#598da5;
+}
+.froide .navbar-main .navbar-item, .froide .navbar-main .navbar-dropdown {
+	z-index:12001;
 }
 
 	</style>
