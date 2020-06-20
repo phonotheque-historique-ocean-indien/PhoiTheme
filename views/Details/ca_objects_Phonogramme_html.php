@@ -1,6 +1,6 @@
 <?php
 /* ----------------------------------------------------------------------
- * themes/default/views/bundles/ca_objects_default_html.php : 
+ * themes/default/views/bundles/ca_objects_default_html.php :
  * ----------------------------------------------------------------------
  * CollectiveAccess
  * Open-source collections management software
@@ -15,32 +15,27 @@
  * the terms of the provided license as published by Whirl-i-Gig
  *
  * CollectiveAccess is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+ * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * This source code is free and modifiable under the terms of 
+ * This source code is free and modifiable under the terms of
  * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html). See
  * the "license.txt" file for details, or visit the CollectiveAccess web site at
  * http://www.CollectiveAccess.org
  *
  * ----------------------------------------------------------------------
  */
- 
-	//$t_object = 			$this->getVar("item");
-	$t_object = new ca_objects(130);
+
+ 	$t_object = 			$this->getVar("item");
+	//$t_object = new ca_objects(130);
 	$va_comments = 			$this->getVar("comments");
 	$va_tags = 				$this->getVar("tags_array");
 	$vn_comments_enabled = 	$this->getVar("commentsEnabled");
 	$vn_share_enabled = 	$this->getVar("shareEnabled");
 	$vn_pdf_enabled = 		$this->getVar("pdfEnabled");
 	$vn_id =				$t_object->get('ca_objects.object_id');
+    $type =                 $t_object->getTypeCode();
 ?>
-
-<a href="/index.php/Contribuer/Do/EditForm/table/ca_objects/type/Phonogramme/id/130">
-	<button class="button action-btn add-new is-uppercase has-text-centered">
-    	<span class="icon"><i class="mdi mdi-plus"></i></span>&nbsp; Modifier
-    </button>
-</a>
 
 <!-- ca_objects_Phonogramme_html.php -->
 <h1 class="titre-phonogramme">{{{^ca_objects.preferred_labels.name}}}</h1>
@@ -51,11 +46,11 @@
 	    <p class="card-header-title">
 	      Description
 	    </p>
-	    <a href="#" class="card-header-icon" aria-label="edit">
-		    <span class="icon">
-				<i class="mdi mdi-pencil is-large"></i>
-	  		</span>
-	    </a>
+          <a href="<?= __CA_URL_ROOT__ ?>/index.php/Contribuer/Do/EditForm/table/ca_objects/type/<?= $type ?>/id/<?= $vn_id ?>" class="card-header-icon" aria-label="edit" style="/* display: none; */">
+            <span class="icon">
+                <i class="mdi mdi-pencil is-large"></i>
+            </span>
+          </a>
 	  </header>
 	  <div class="card-content">
 	    <div class="content">
@@ -64,7 +59,7 @@
 	    </div>
 	  </div>
 	</div>
-  
+
 	<div class="card">
 	  <header class="card-header">
 	    <p class="card-header-title">
@@ -203,7 +198,7 @@
 						</span>
 				    </a>
 			    </div>
-		    </div>    		    		    
+		    </div>
 	    </div>
 	  </div>
 	</div>
@@ -262,30 +257,31 @@
 			</div>
 	    </div>
 	  </div>
-	</div>		
+	</div>
   </div>
-    
+
   <div class="column is-half">
     <div class="card">
 	  <header class="card-header">
 	    <p class="card-header-title">
 	      Informations sur l'item phonogramme
 	    </p>
-	    <a href="#" class="card-header-icon" aria-label="edit">
-		    <span class="icon">
-				<i class="mdi mdi-pencil is-large"></i>
-	  		</span>
-	    </a>
+          <a href="<?= __CA_URL_ROOT__ ?>/index.php/Contribuer/Do/EditForm/table/ca_objects/type/<?= $type ?>/id/<?= $vn_id ?>" class="card-header-icon" aria-label="edit" style="/* display: none; */">
+            <span class="icon">
+                <i class="mdi mdi-pencil is-large"></i>
+            </span>
+          </a>
+
 	  </header>
 	  <div class="card-content">
 	    <div class="content">
 		    Date de dépôt :<br/>
 		    Utilisateur ayant fait le dépôt :<br/>
 		    Mode d'obtention :<br/>
-		    Tags : 
+		    Tags :
 	    </div>
 	  </div>
-	</div>		
+	</div>
 
 	<div class="card">
 	  	<header class="card-header">
@@ -355,7 +351,7 @@
 				</div>
 			</div>
 	  	</div>
-	</div>		
+	</div>
 	<div class="card medias">
 	  <header class="card-header">
 	    <p class="card-header-title">
@@ -373,8 +369,8 @@
 			?>
 	    </div>
 	  </div>
-	</div>		
-	
+	</div>
+
   </div>
   <div class="column">
     <div class="card">
@@ -441,7 +437,7 @@
 		    </uL>
 	    </div>
 	  </div>
-	</div>		
+	</div>
   </div>
 </div>
 <div class="item-accessoires">
@@ -459,7 +455,7 @@
 	    <div class="content">
 		    <div class="columns">
 			    <div class="column is-one-quarter">
-		    
+
 				    <div class="card">
 					  <div class="card-content">
 					    <div class="media">
@@ -473,7 +469,7 @@
 					        <p class="subtitle is-6">Auteur</p>
 					      </div>
 					    </div>
-					
+
 					    <div class="content">
 					      Début de description
 					    </div>
@@ -492,7 +488,7 @@
 					        <p class="subtitle is-6">Auteur</p>
 					      </div>
 					    </div>
-					
+
 					    <div class="content">
 					      Début de description
 					    </div>
@@ -511,67 +507,7 @@
 					        <p class="subtitle is-6">Auteur</p>
 					      </div>
 					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-			    </div>
-			    <div class="column is-one-quarter">
-		    
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					        <p class="subtitle is-6">Auteur</p>
-					      </div>
-					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					        <p class="subtitle is-6">Auteur</p>
-					      </div>
-					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					        <p class="subtitle is-6">Auteur</p>
-					      </div>
-					    </div>
-					
+
 					    <div class="content">
 					      Début de description
 					    </div>
@@ -579,7 +515,7 @@
 					</div>
 			    </div>
 			    <div class="column is-one-quarter">
-		    
+
 				    <div class="card">
 					  <div class="card-content">
 					    <div class="media">
@@ -593,7 +529,7 @@
 					        <p class="subtitle is-6">Auteur</p>
 					      </div>
 					    </div>
-					
+
 					    <div class="content">
 					      Début de description
 					    </div>
@@ -612,7 +548,7 @@
 					        <p class="subtitle is-6">Auteur</p>
 					      </div>
 					    </div>
-					
+
 					    <div class="content">
 					      Début de description
 					    </div>
@@ -631,7 +567,7 @@
 					        <p class="subtitle is-6">Auteur</p>
 					      </div>
 					    </div>
-					
+
 					    <div class="content">
 					      Début de description
 					    </div>
@@ -639,7 +575,7 @@
 					</div>
 			    </div>
 			    <div class="column is-one-quarter">
-		    
+
 				    <div class="card">
 					  <div class="card-content">
 					    <div class="media">
@@ -653,7 +589,7 @@
 					        <p class="subtitle is-6">Auteur</p>
 					      </div>
 					    </div>
-					
+
 					    <div class="content">
 					      Début de description
 					    </div>
@@ -672,7 +608,7 @@
 					        <p class="subtitle is-6">Auteur</p>
 					      </div>
 					    </div>
-					
+
 					    <div class="content">
 					      Début de description
 					    </div>
@@ -691,15 +627,75 @@
 					        <p class="subtitle is-6">Auteur</p>
 					      </div>
 					    </div>
-					
+
 					    <div class="content">
 					      Début de description
 					    </div>
 					  </div>
 					</div>
 			    </div>
-		    </div>		    
-		    
+			    <div class="column is-one-quarter">
+
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+				    <div class="card">
+					  <div class="card-content">
+					    <div class="media">
+					      <div class="media-left">
+					        <figure class="image is-48x48">
+					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+					        </figure>
+					      </div>
+					      <div class="media-content">
+					        <p class="title is-4">Titre</p>
+					        <p class="subtitle is-6">Auteur</p>
+					      </div>
+					    </div>
+
+					    <div class="content">
+					      Début de description
+					    </div>
+					  </div>
+					</div>
+			    </div>
+		    </div>
+
 	    </div>
 	  </div>
 	</div>
@@ -723,12 +719,12 @@
 	    }).appendTo('body');
 	    //handling ESC
 	    $('body').on('keyup.modal-close', function(e){
-	      if(e.key==='Escape'){ removeModal(); } 
+	      if(e.key==='Escape'){ removeModal(); }
 	    });
 	});
 
     function loadTrack(name,url) {
-        
+
         console.log("\""+url+"\"");
         if(url && url != " ") {
 	        $('#titremorceau').text(name);
@@ -746,7 +742,7 @@
 			var seconds = Math.ceil(Math.floor(this.duration) % 60);
 		    $('span#duration').text(minutes+":"+(seconds<10 ? "0" : "")+seconds);
 		});
-		
+
 		var audio = document.getElementById('soundplayer');
         audio.addEventListener('timeupdate', function () {
             var _currentTime = parseFloat(audio.currentTime);
@@ -756,20 +752,20 @@
             var progression = _currentTime/audio.duration *100;
             $('#soundplayerprogression').attr("value", progression);
         }, false);
-        
+
         var progressBar = document.querySelector("progress");
 		progressBar.addEventListener("click", function seek(e) {
 		    var percent = e.offsetX / this.offsetWidth;
 		    audio.currentTime = percent * audio.duration;
 		    progressBar.value = percent / 100;
 		});
-        
+
     });
 </script>
 
 <style>
 	h1.titre-phonogramme {
-		
+
 	}
 	.card {
 		border:1px solid #e0e0e0;
@@ -811,12 +807,12 @@
 		list-style: none;
 		margin: 0 !important;
 	}
-	
+
 	.content ol {
 		margin: 1.5rem;
 		line-height: 2rem;
 	}
-	
+
 	.player-title {
 		display: flex;
 		justify-content: space-between;
@@ -826,17 +822,17 @@
 		align-items: baseline !important;
 		justify-content: space-between;
 	}
-	
+
 	.card-content-item {
 		display: flex;
 		align-items: stretch;
 		justify-content: space-between;
 	}
-	
+
 	.card-content-item p{
 		margin: 0 !important;
 	}
-	
+
 	.cover {
 		position: relative;
 		max-width: 120px;
@@ -867,7 +863,7 @@
 		color: #EFEFEF;
 		text-transform: uppercase;
 	}
-	
+
 	.tag:link {
 		background-color: #BFD7E3 !important;
 		border-radius: 2px !important;
@@ -902,7 +898,7 @@
     .medias .card-content .content img {
         padding-right:15px;
     }
-    
+
 	/****** FIN MODIFS RACHEL ****/
 	#soundplayertitle {
 		padding-left: 0;
