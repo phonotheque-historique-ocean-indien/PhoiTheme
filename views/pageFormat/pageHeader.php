@@ -1,6 +1,6 @@
 <?php
 /* ----------------------------------------------------------------------
- * views/pageFormat/pageHeader.php : 
+ * views/pageFormat/pageHeader.php :
  * ----------------------------------------------------------------------
  * CollectiveAccess
  * Open-source collections management software
@@ -15,10 +15,10 @@
  * the terms of the provided license as published by Whirl-i-Gig
  *
  * CollectiveAccess is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+ * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * This source code is free and modifiable under the terms of 
+ * This source code is free and modifiable under the terms of
  * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html). See
  * the "license.txt" file for details, or visit the CollectiveAccess web site at
  * http://www.CollectiveAccess.org
@@ -51,12 +51,12 @@
 		}
 		$va_user_links[] = "<li>".caNavLink($this->request, _t('User Profile'), '', '', 'LoginReg', 'profileForm', array())."</li>";
 		$va_user_links[] = "<li>".caNavLink($this->request, _t('Logout'), '', '', 'LoginReg', 'Logout', array())."</li>";
-	} else {	
+	} else {
 		if (!$this->request->config->get(['dontAllowRegistrationAndLogin', 'dont_allow_registration_and_login']) || $this->request->config->get('pawtucket_requires_login')) { $va_user_links[] = "<li><a href='#' onclick='caMediaPanel.showPanel(\"".caNavUrl($this->request, '', 'LoginReg', 'LoginForm', array())."\"); return false;' >"._t("Login")."</a></li>"; }
 		if (!$this->request->config->get(['dontAllowRegistrationAndLogin', 'dont_allow_registration_and_login']) && !$this->request->config->get('dontAllowRegistration')) { $va_user_links[] = "<li><a href='#' onclick='caMediaPanel.showPanel(\"".caNavUrl($this->request, '', 'LoginReg', 'RegisterForm', array())."\"); return false;' >"._t("Register")."</a></li>"; }
 	}
 	$vb_has_user_links = (sizeof($va_user_links) > 0);
-	
+
 	$lang = $this->request->getParameter("lang", pString);
 	if(!$lang) {
 		$lang = Zend_Registry::get('Zend_Locale');
@@ -87,7 +87,7 @@
         <?php if($_SESSION["partie"] == "chaude"): ?>
         <a href="/index.php"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
         <?php else : ?>
-        <a href="/index.php/Phonotheque/Partenaires?partie=froide"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+        <a href="/index.php/Phoi/Partenaires/Carte?partie=froide"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
         <?php endif; ?>
         <nav class="navbar pull-right user-and-lang">
             <?php if($this->request->isLoggedIn()): ?>
@@ -97,7 +97,7 @@
             <?php else : ?>
             <a class="navbar-item" href="/index.php/LoginReg/loginForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-login is-large"></i></span> Connexion</a>
             <a class="navbar-item" href="/index.php/LoginReg/registerForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-plus is-large"></i></span> Inscription</a>
-            <?php endif; 
+            <?php endif;
 	            if($lang=="si"):
             ?>
             <div class="navbar-item has-dropdown is-hoverable">
@@ -133,7 +133,7 @@
 
 			<div id="navbarExampleTransparentExample" class="navbar-menu">
 				<div class="navbar-end">
-					<a class="navbar-item" href="<?php print __CA_URL_ROOT__; ?>/index.php/Search/objects?search=*"><span class="icon" style="font-size:30px;"><i class="mdi mdi-magnify is-large"></i></span></a>
+					<a class="navbar-item" href="<?php print __CA_URL_ROOT__; ?>/index.php/Phoi/Partenaires/Carte?partie=froide"><span class="icon" style="font-size:30px;"><i class="mdi mdi-magnify is-large"></i></span></a>
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link">Gestion des items</a>
 						<div class="navbar-dropdown is-boxed">
@@ -193,7 +193,7 @@
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link phonotheque" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Expositions/Show/index">Expositions</a>
-					</div>					
+					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link playlists" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/About/Playlists"><?php _p("Playlists"); ?></a>
 					</div>
@@ -205,12 +205,12 @@
 <!--							<a class="navbar-item">Espace personnel</a>-->
 <!--						</div>-->
 					</div>
-					
-				
+
+
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link phonotheque"><?php _p("The Sound Archive"); ?></a>
 						<div class="navbar-dropdown is-boxed">
-							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/Partenaires">Les partenaires</a>
+							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phoi/Partenaires/Carte">Les partenaires</a>
 							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/CadreJuridique">Le cadre juridique</a>
 							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/RevueDePresse">La revue de presse</a>
 						</div>
@@ -218,7 +218,7 @@
 					<div class="navbar-item">
 						<div class="field is-grouped">
 							<p class="control">
-								<a class="button is-link" href="/index.php/Phonotheque/Partenaires?partie=froide">
+								<a class="button is-link" href="/index.php/Phoi/Partenaires/Carte?partie=froide">
                   <span class="icon">
                     <i class="mdi mdi-18px mdi-map-outline"></i>
                   </span>
