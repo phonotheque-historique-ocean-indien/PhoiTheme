@@ -101,7 +101,7 @@ map.addControl(new L.Control.Layers(null, {"ESRI":Esri_WorldStreetMap, "Carte g√
 
     L.marker([-20.8667, 55.4667]).addTo(map)
         .bindPopup('Ile de la R√©union');
-    L.marker([-13.176, 45.137]).addTo(map)
+    L.marker([-12.760910340467493, 45.1812744140625]).addTo(map)
         .bindPopup('Mayotte');
     L.marker([-18.9531, 47.5207]).addTo(map)
         .bindPopup('Madagascar');
@@ -109,12 +109,26 @@ map.addControl(new L.Control.Layers(null, {"ESRI":Esri_WorldStreetMap, "Carte g√
         .bindPopup('Zanzibar');
     L.marker([-11.7087, 43.2525]).addTo(map)
         .bindPopup('Comores');
-    L.marker([-20.463, 57.577]).addTo(map)
+    L.marker([-11.63878618292717, 43.37677001953125]).addTo(map)
         .bindPopup('Ile Maurice');
     L.marker([-4.7024, 55.4494]).addTo(map)
         .bindPopup('Seychelles');
-    L.marker([-19.7166638,63.416665]).addTo(map)
+    L.marker([-19.68397023588844,63.33618164062501],{draggable:'true'}).addTo(map)
         .bindPopup('Rodrigues');
+
+function onMapClick(e) {
+  marker = new L.marker(e.latlng, {draggable:'true'});
+  marker.on('dragend', function(event){
+    var marker = event.target;
+    var position = marker.getLatLng();
+    marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
+    map.panTo(new L.LatLng(position.lat, position.lng))
+    console.log(position);
+  });
+  map.addLayer(marker);
+};
+
+map.on('click', onMapClick);
 
 </script>
 
