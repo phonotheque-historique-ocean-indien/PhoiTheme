@@ -10527,4 +10527,43 @@ table#lastplaylists tr {
   background-color: transparent !important;
 }
 
+/* --- BROWSE --- */
+/* --- SEARCH RESULTS --- */
+.list-icon {
+  margin-right: 10px;
+  height: 36px;
+  width: auto;
+  float: left;
+}
+
+#search-results-list th {
+  border-color: #dbdbdb;
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: 0;
+  position: relative;
+}
+#search-results-list th.sorting_asc,
+#search-results-list th.sorting_desc {
+  background-color: #7dafca;
+  border-color: #7dafca;
+  color: #fff;
+}
+
+#search-results-tiles .tile {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 6px;
+}
+#search-results-tiles .tile.is-ancestor,
+#search-results-tiles .tile.is-parent {
+  background-color: transparent;
+  padding: 8px 12px;
+  margin-bottom: 0;
+}
+
+.views-icons .mdi {
+  font-size: 28px;
+}
+
 /*# sourceMappingURL=theme.css.map */
