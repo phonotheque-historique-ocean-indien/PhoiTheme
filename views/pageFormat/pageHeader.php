@@ -151,7 +151,7 @@
 							Gestion du thesaurus</a>
 											</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">
+						<a href="/index.php/Phoi/Users/List" class="navbar-link">
 							Gestion des utilisateurs</a>
 					</div>
 
