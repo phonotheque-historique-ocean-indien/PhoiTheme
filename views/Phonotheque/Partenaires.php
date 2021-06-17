@@ -1,95 +1,163 @@
-<?php
-    // Detecting through Session if we are in "partie froide" or "partie chaude"
-//    session_start();
-//    if(filter_var($_GET["partie"], FILTER_SANITIZE_STRING) == "chaude") {
-//        $_SESSION["partie"] = "chaude";
-//    }
-//    if($_SESSION["partie"] == "chaude") {
-//        // This page should be opened only from partie chaude
-//        header('Location: /');
-//        exit();
-//    }
-?>
+<h2>Partenaires</h2>
 
-<h2>Les partenaires</h2>
-</div>
-<div style="position:relative;">
-<div id="map" style="height:1000px;"></div>
-<div id="notes" style="position:absolute; right:50px;top:50px;height:150px;width:40%;z-index:12000;padding:20px;border-radius: 6px;">
-    <div class="card">
-        <header class="card-header">
-            <p class="card-header-title">
-                Nom sélectionné :
-            </p>
-        </header>
-        <div class="card-content">
-            <div class="content">
-                <ul>
-                    <li>Objets de collectage (72)</li>
-                    <li>Personnes (23)</li>
-                    <li>Oeuvres (61)</li>
-                    <li>Groupes (38)</li>
-                    <li>Livres / Articles / Photos / Autres (47)</li>
-                    <li>Médias (138)</li>
-                </ul>
-            </div>
+<h3 class="title is-4">Les porteurs du projet</h3>
+<p>Le PRMA en partenariat avec 7 structures des îles de l’Océan Indien: <b>C</b>entre de <b>R</b>essources des <b>A</b>rts <b>A</b>ctuels de <b>M</b>adagascar (CRAAM), <b>C</b>onservatoire <b>N</b>ational de <b>M</b>usique <b>F</b>rançois <b>M</b>iterrand de Maurice (CNMFM), Archives départementales de Mayotte, <b>C</b>entre <b>N</b>ational de <bb>D</b>ocumentation et de <b>R</b>echerches <b>S</b>cientifiques des Comores (CNDRS), <b>D</b>how <b>C</b>ountries <b>M</b>usic <b>A</b>cademy de Zanzibar (DCMA), Commission de la Culture des Seychelles, Commission des Arts et de la Culture de Rodrigues</p>
+<div class="columns">
+	<div class="column">
+		<a href="https://craam.mg/">
+			<img src="/phoi-logos/CRAAM.png">
+		</a>
+	</div>
+        <div class="column">
+                <a href="http://conservatoire.govmu.org/English/Pages/default.aspx">
+                        <img src="/phoi-logos/Maurice.png">
+                </a>
         </div>
-    </div>
-    <div class="card">
-        <header class="card-header">
-            <p class="card-header-title">
-                Description:
-            </p>
-        </header>
-        <div class="card-content">
-            <div class="content">
-                (Description du lieu sélectionné)
-            </div>
+        <div class="column">
+                <a target="_top" href="https://www.facebook.com/groups/1910409132388257/">
+                        <img src="/phoi-logos/Rodrigues.png">
+                </a>
         </div>
-    </div>
+       <div class="column">
+                <a target="_top" href="https://cg976.fr/votre-departement/linstitution/les-services-administratifs/pssp/dadds">
+                        <img src="/phoi-logos/Mayotte.png">
+                </a>
+        </div>
+        <div class="column">
+                <a target="_top" href="http://www.culture.gov.sc/">
+                        <img src="/phoi-logos/Seychelles.png">
+                </a>
+        </div>
+        <div class="column">
+                <a target="_top" href="http://www.cndrs-comores.org/">
+                        <img src="/phoi-logos/CNDRS.png"/>
+                </a>
+        </div>
+        <div class="column">
+                <a target="_top" href="http://zanzibarmusic.org/">
+                        <img src="/phoi-logos/DCMA.png"/>
+                </a>
+        </div>
+        <div class="column">
+                <a target="_top" href="http://www.prma-reunion.fr">
+                        <img src="/phoi-logos/PRMA.png"/>
+                </a>
+        </div>
 </div>
+
+
+<h3 class="title is-4">Nos partenaires institutionnels</h3>
+<p>L'Union Européenne à travers le programme Interreg V O.I., La <b>D</b>irection des <b>A</b>ffaires <b>C</b>ulturelles de La Réunion (DAC), La Région Réunion, Le Conseil Départemental de La Réunion, La Sacem et Copie privée</p>
+<div class="columns">
+        <div class="column">
+                <a target="_top" href="https://europa.eu/">
+                        <img src="/phoi-logos/Europe.png">
+                </a>
+        </div>
+        <div class="column">
+                <a target="_top" href="https://www.regionreunion.com/sites/interreg/">
+                        <img src="/phoi-logos/Interreg.png">
+                </a>
+        </div>
+        <div class="column">
+                <a target="_top" href="https://www.culture.gouv.fr/Regions/Dac-de-La-Reunion">
+                        <img src="/phoi-logos/MinistèreCulture.png">
+                </a>
+        </div>
+        <div class="column">
+                <a target="_top" href="https://www.regionreunion.com/">
+                        <img src="/phoi-logos/RegionReunion.png">
+                </a>
+        </div>
+        <div class="column">
+                <a target="_top" href="https://www.cg974.fr/">
+                        <img src="/phoi-logos/DépartementReunion.png">
+                </a>
+        </div>
+        <div class="column">
+                <a target="_top" href="https://www.sacem.fr/">
+                        <img src="/phoi-logos/Sacem.png">
+                </a>
+        </div>
+        <div class="column">
+                <a target="_top" href="https://www.copieprivee.org/">
+	                <img src="/phoi-logos/CopiePrivee.png">
+                </a>
+        </div>
 </div>
-<div class="container">
 
-    <style>
-        @import url("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css");
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.10.1/leaflet-providers.min.js"></script>
+<h3 class="title is-4">Nos partenaires scientifiques</h3>
+<p>L’<b>i</b>conothèque <b>H</b>istorique de l'<b>O</b>céan <b>I</b>ndien (IHOI), Les Archives départementales de La Réunion, Le service Régional de l'Inventaire de La Région Réunion, L’université de La Réunion</p>
+<div class="columns">
+	<div class="column">
+		<a target="_top" href="https://www.ihoi.org/">
+			<img src="/phoi-logos/IHOI-logo.png"/>
+		</a>
+	</div>
+	<div class="column">
+		<a target="_top" href="https://www.departement974.fr/sites-culturels/index.php/Archives/pr%C3%A9sentation-archives/archives-departementales.html">
+			<img src="/phoi-logos/archives.jpg" />
+		</a>
+	</div>
+	<div class="column">
+		<a target="_top" href="https://www.regionreunion.com/actualite/journal/les-dossiers/faire-rayonner-la-culture-reunionnaise/article/le-service-regional-de-l-inventaire-sri">
+			<img src="/phoi-logos/SRI.png" />
+		</a>
+	</div>
+	<div class="column">
+		<a target="_top" href="https://www.univ-reunion.fr/">
+			<img src="/phoi-logos/université_réunion.jpg">
+		</a>
+	</div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column"></div>
+</div>
+
+<h3 class="title is-4">Nos partenaires médias</h3>
+<div class="columns">
+	<div class="column">
+		<a target="_top" href="https://la1ere.francetvinfo.fr/reunion/">
+			<img src="/phoi-logos/Réunion_La_1ère_-_Logo_2018.png"/>
+		</a>
+	</div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column"></div>
+</div>
+
+<h3 class="title is-4">Nos partenaires privés</h3>
+<div class="columns">
+	<div class="column">
+		<a target="_top" href="http://www.ca-fondation.re/">
+			<img src="/phoi-logos/CA.png"/>
+		</a>
+	</div>
+	<div class="column">
+		<a target="_top" href="http://www.orange.re/">
+                        <img src="/phoi-logos/Orange.png"/>
+                </a>
+	</div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column"></div>
+</div>
+<div style="height:120px;">&nbsp;</div>
 
 
 
-<script>
-    var map = L.map('map').setView([-10.8667, 70.4667], 5);
-    var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
-    });
-    Esri_WorldStreetMap.addTo(map);
 
 
-    L.marker([-20.8667, 55.4667]).addTo(map)
-        .bindPopup('Ile de la Réunion');
-    L.marker([-13.176, 45.137]).addTo(map)
-        .bindPopup('Mayotte');
-    L.marker([-18.9531, 47.5207]).addTo(map)
-        .bindPopup('Madagascar');
-    L.marker([-6.1706, 39.3681]).addTo(map)
-        .bindPopup('Zanzibar');
-    L.marker([-11.7087, 43.2525]).addTo(map)
-        .bindPopup('Comores');
-    L.marker([-20.463, 57.577]).addTo(map)
-        .bindPopup('Ile Maurice');
-    L.marker([-4.7024, 55.4494]).addTo(map)
-        .bindPopup('Seychelles');
-    L.marker([-19.7166638,63.416665]).addTo(map)
-        .bindPopup('Rodrigues');
-
-</script>
 
 
-<style>
-	.card {
-		border: 1px solid #e0e0e0;
-		margin-bottom: 10px;
-	}
-</style>
+
+
+
+
