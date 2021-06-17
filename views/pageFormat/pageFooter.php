@@ -1,6 +1,6 @@
 <?php
 /* ----------------------------------------------------------------------
- * views/pageFormat/pageFooter.php : 
+ * views/pageFormat/pageFooter.php :
  * ----------------------------------------------------------------------
  * CollectiveAccess
  * Open-source collections management software
@@ -15,10 +15,10 @@
  * the terms of the provided license as published by Whirl-i-Gig
  *
  * CollectiveAccess is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+ * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * This source code is free and modifiable under the terms of 
+ * This source code is free and modifiable under the terms of
  * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html). See
  * the "license.txt" file for details, or visit the CollectiveAccess web site at
  * http://www.CollectiveAccess.org
@@ -37,26 +37,27 @@
 				<img src="/logo-footer.png">
 			</div>
 			<div class="column">
-				<img src="<?php print __CA_URL_ROOT__; ?>/themes/phoi/assets/pawtucket/graphics/logo_prma.png" style="height:80px;" /><br/>
+				<img src="<?php echo __CA_URL_ROOT__; ?>/themes/phoi/assets/pawtucket/graphics/logo_prma.png" style="height:80px;" /><br/>
                 Pôle Régional de Musiques Actuelles de la Réunion<br/>
 				53 chaussée royale BP 18 <br/>
                 97 861 Saint-Paul CEDEX<br/>
 				<br/>
 				T. 0262 90 94 60<br/>
 				<br/>
-				Mentions légales et crédits<br/>
-				Protections des données personnelles<br/>
-				CGU<br/>
-				Plan du site<br/>
+				<a href=/index.php/Phonotheque/MentionsLegales>Mentions légales et crédits</a><br/>
+				<a href="/index.php/Phonotheque/DonneesPersonnelles">Protections des données personnelles</a><br/>
+				<a href="/index.php/Phonotheque/CGU">CGU</a><br/>
+				<a href="/index.php/Phonotheque/PlanDuSite">Plan du site</a><br/>
 				<div class="phoi-social-bar">
-					<img src="/phoi-socialbar.png"
+					<a href="https://www.facebook.com/phonotheque.phoi" target="_blank"><img src="/facebook.svg" style="height:60px;" /></a>
+					<a href="https://www.youtube.com/channel/UC2kLn1SKC9FHxS7mAKgY72Q" target="_blank" ><img src="/youtube.svg" style="height:60px;" /></a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Second row of the footer -->
 	<div class="container">
-		© 2020 – Tous droits réservés
+		© 2021 – Tous droits réservés
 	</div>
 
 </footer>
@@ -64,67 +65,177 @@
 	<div class="container">
 		<div class="columns is-vcentered">
 			<div class="column">
-				<a href="https://www.regionreunion.com/sites/interreg/">
-					<img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s69c567e4f0ca7728/image/i1eaea9e42e9557d7/version/1540368098/image.jpg">
+				<a target="_top" href="https://europa.eu/">
+					<img src="/phoi-logos/Europe.png">
 				</a>
 			</div>
 			<div class="column">
-				<a href="https://www.culture.gouv.fr/Regions/Dac-de-La-Reunion">
-					<img src="https://echodesmots.info/IMG/siteon419.png?1444478225">
+				<a target="_top" href="https://www.regionreunion.com/sites/interreg/">
+					<img src="/phoi-logos/Interreg.png">
 				</a>
 			</div>
 			<div class="column">
-				<a href="https://www.regionreunion.com/">
-					<img src="https://pbs.twimg.com/profile_images/610387366835056641/OzpmvoAK_400x400.png">
+				<a target="_top" href="https://www.culture.gouv.fr/Regions/Dac-de-La-Reunion">
+					<img src="/phoi-logos/MinistèreCulture.png">
 				</a>
 			</div>
 			<div class="column">
-				<a href="https://www.cg974.fr/">
-					<img src="https://upload.wikimedia.org/wikipedia/fr/thumb/0/03/Logo_Conseil_G%C3%A9n%C3%A9ral_R%C3%A9union.svg/1200px-Logo_Conseil_G%C3%A9n%C3%A9ral_R%C3%A9union.svg.png">
+				<a target="_top" href="https://www.regionreunion.com/">
+					<img src="/phoi-logos/RegionReunion.png">
 				</a>
 			</div>
 			<div class="column">
-				<a href="https://www.sacem.fr/">
-				<img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/b5/SACEM_HD.jpg/1200px-SACEM_HD.jpg">
+				<a target="_top" href="https://www.cg974.fr/">
+					<img src="/phoi-logos/DépartementReunion.png">
 				</a>
 			</div>
 			<div class="column">
-				<a href="https://craam.mg/">
-					<img src="/logo_craam.png">
+				<a target="_top" href="https://www.sacem.fr/">
+				<img src="/phoi-logos/Sacem.png">
 				</a>
 			</div>
 			<div class="column">
-				<img src="/logo_rodrigues_service_culture.png">
+				<a target="_top" href="https://www.copieprivee.org/">
+				<img src="/phoi-logos/CopiePrivee.png">
+				</a>
 			</div>
+		</div>
+		<div class="columns is-vcentered">
 			<div class="column">
-				<a href="http://conservatoire.govmu.org/English/Pages/default.aspx">
-					<img src="/logo_cdm.png">
+				<a target="_top" href="https://craam.mg/">
+					<img src="/phoi-logos/CRAAM.png">
+				</a>
+			</div>
+            <div class="column">
+                    <a href="http://conservatoire.govmu.org/English/Pages/default.aspx">
+                            <img src="/phoi-logos/Maurice.png">
+                    </a>
+            </div>
+			<div class="column">
+				<a target="_top" href="https://www.facebook.com/groups/1910409132388257/">
+					<img src="/phoi-logos/Rodrigues.png">
 				</a>
 			</div>
 			<div class="column">
-				<a href="https://cg976.fr/votre-departement/linstitution/les-services-administratifs/pssp/dadds">
-					<img src="https://cdn.mesplaques.fr/wp-content/uploads/2019/06/mayotte-1.png">
+				<a target="_top" href="https://cg976.fr/votre-departement/linstitution/les-services-administratifs/pssp/dadds">
+					<img src="/phoi-logos/Mayotte.png">
 				</a>
 			</div>
 			<div class="column">
-				<img src="logo-seychelles.png">
+				<a target="_top" href="http://www.culture.gov.sc/">
+					<img src="/phoi-logos/Seychelles.png">
+				</a>
 			</div>
 			<div class="column">
-				<img src="https://www.lalanbik.org/rfm/source/ANNUAIRES/Comores/collec%20Publique/cndrs.jpg"/>
+				<a target="_top" href="http://www.cndrs-comores.org/">
+					<img src="/phoi-logos/CNDRS.png"/>
+				</a>
+			</div>
+			<div class="column">
+				<a target="_top" href="http://zanzibarmusic.org/">
+					<img src="/phoi-logos/DCMA.png"/>
+				</a>
+			</div>
+			<div class="column">
+				<a target="_top" href="http://www.prma-reunion.fr">
+					<img src="/phoi-logos/PRMA.png"/>
+				</a>
 			</div>
 		</div>
 	</div>
 </footer>
+<div id="modal-protocol" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Protocole de numérisation</p>
+        <button class='modal-header-close' onClick="event.stopPropagation();$('#modal-protocol').removeClass('is-active');return false;"></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="content">
+          <p><span id='protocol-filename'></span></p>
+          <p>PNIP : Protocole numérisation iconographique de la PHOI<br/>PNAP : Protocole numérisation audio de la PHOI<br/></p>
+          <p>Les chiffres qui suivent (exemple : PNIP_1.2 => 1.2) désignent la version<br/>
+          du protocole utilisée. Les fichiers numérisés sont convertis en basse<br/>
+          définition pour la publication en ligne.</p>
+          <p id='protocol-link'><a href target='_blank'>Ouvrir le descriptif du protocole (PDF).</a></p>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+      </footer>
+    </div>
+  </div>
+
+  <div id="modal-details" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Détails</p>
+          <button class='modal-header-close'  onClick="$('#modal-details').removeClass('is-active');">x</button>
+        </header>
+        <section class="modal-card-body">
+          <div class="content">
+            <div id='details-content'></div>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+        </footer>
+      </div>
+    </div>
+
+  <div id="modal-abus" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Signaler un abus</p>
+        <button class='modal-header-close'  onClick="$('#modal-abus').removeClass('is-active');">x</button>
+      </header>
+      <section class="modal-card-body">
+        <div class="content">
+          <div id='abus-content'></div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+      </footer>
+    </div>
+  </div>
+
+    <div id="modal-shareable-link" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Lien partageable</p>
+          <button class='modal-header-close'  onClick="$('#modal-shareable-link').removeClass('is-active');">x</button>
+        </header>
+        <section class="modal-card-body">
+          <div class="content">
+            <div class="field has-addons">
+              <div class="control" style='width:80%;'>
+                <input class="input" type="text" id='shareable-link' placeholder="...">
+              </div>
+              <div class="control" style='width:20%;'>
+                <a onClick="copyShareableLink()" class="button is-info">
+                  Copier
+                </a>
+              </div>
+            </div>
+          
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+        </footer>
+      </div>
+    </div>
 <?php
-	//
-	// Output HTML for debug bar
-	//
-	if(Debug::isEnabled()) {
-		print Debug::$bar->getJavascriptRenderer()->render();
-	}
+    //
+    // Output HTML for debug bar
+    //
+    if (Debug::isEnabled()) {
+        echo Debug::$bar->getJavascriptRenderer()->render();
+    }
 ?>
 	
-		<?php print TooltipManager::getLoadHTML(); ?>
+		<?php echo TooltipManager::getLoadHTML(); ?>
 		<div id="caMediaPanel"> 
 			<div id="caMediaPanelContentArea">
 			
@@ -162,15 +273,54 @@
 					$(this).find(".card-header-icon").hide();
 				})
 
-				$(".card-content-item").mouseenter(function() {
-					$(this).find(".card-content-icon").show();
-				})
+                $(".card-content-item").mouseenter(function() {
+                    $(this).find(".card-content-icon").show();
+                })
 
-				$(".card-content-item").mouseleave(function() {
-					$(this).find(".card-content-icon").hide();
-				})
+                $(".card-content-item").mouseleave(function() {
+                    $(this).find(".card-content-icon").hide();
+                })
 
-			});
+                $(".card-header").mouseenter(function() {
+                    $(this).find(".card-content-icon").show();
+                })
+
+                $(".card-header").mouseleave(function() {
+                    $(this).find(".card-content-icon").hide();
+                })
+
+				$("#changeSearch").change(function() {
+					console.log($("#changeSearch").val());
+					switch($("#changeSearch").val()) {
+						case "Albums":
+							window.location = "/index.php/Phoi/Phonogrammes/Search";
+							break;
+						case "Enquêtes":
+							window.location = "/index.php/Phoi/Collectages/Search";
+							break;
+						case "Créations musicales":
+							window.location = "/index.php/Phoi/Creations/Search";
+							break;
+						case "Interprétations":
+							window.location = "/index.php/Phoi/Interpretations/Search";
+							break;
+						case "Partitions":
+							window.location = "/index.php/Phoi/Partitions/Search";
+							break;
+						case "Personnes":
+							window.location = "/index.php/Phoi/Personnes/Search";
+							break;
+						case "Livres":
+							window.location = "/index.php/Phoi/Livres/Search";
+							break;
+					}
+				});
+
+				$.get("/index.php/Phoi/BottomDetail/Index", function( data ) {
+  					$( "#bottomDetail" ).html( data );
+				});
+
+            });
 			/*(function(e,d,b){var a=0;var f=null;var c={x:0,y:0};e("[data-toggle]").closest("li").on("mouseenter",function(g){if(f){f.removeClass("open")}d.clearTimeout(a);f=e(this);a=d.setTimeout(function(){f.addClass("open")},b)}).on("mousemove",function(g){if(Math.abs(c.x-g.ScreenX)>4||Math.abs(c.y-g.ScreenY)>4){c.x=g.ScreenX;c.y=g.ScreenY;return}if(f.hasClass("open")){return}d.clearTimeout(a);a=d.setTimeout(function(){f.addClass("open")},b)}).on("mouseleave",function(g){d.clearTimeout(a);f=e(this);a=d.setTimeout(function(){f.removeClass("open")},b)})})(jQuery,window,200);*/
 		</script>
 
@@ -183,6 +333,19 @@
 
     gtag('config', 'UA-165049450-1');
 </script>
-
+<style>
+	.phoi-gray-footer a {
+		color:white;
+	}
+	.phoi-gray-footer a:hover {
+		text-decoration: underline;
+		color:white;
+	}
+	.anonymous .card-header-icon,
+	.anonymous i.mdi-pencil,
+	.anonymous i.mdi-delete {
+		display:none !important;
+	}
+	</style>
 	</body>
 </html>

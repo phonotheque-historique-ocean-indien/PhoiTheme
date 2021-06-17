@@ -1,6 +1,6 @@
-<?php
+	<?php
 /* ----------------------------------------------------------------------
- * views/pageFormat/pageHeader.php : 
+ * views/pageFormat/pageHeader.php :
  * ----------------------------------------------------------------------
  * CollectiveAccess
  * Open-source collections management software
@@ -15,10 +15,10 @@
  * the terms of the provided license as published by Whirl-i-Gig
  *
  * CollectiveAccess is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+ * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * This source code is free and modifiable under the terms of 
+ * This source code is free and modifiable under the terms of
  * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html). See
  * the "license.txt" file for details, or visit the CollectiveAccess web site at
  * http://www.CollectiveAccess.org
@@ -38,6 +38,12 @@
 	$va_classroomDisplayName = caGetClassroomDisplayName();
 	$vs_classroom_sectionHeading = ucFirst($va_classroomDisplayName["section_heading"]);
 
+	$is_admin = false;$is_logged_in = false;
+	if(isset($this->request) && isset($this->request->user)) {
+	    $is_admin = $this->request->user->hasRole('admin');
+	    $is_logged_in = $this->request->isLoggedIn();
+	} 
+
 	# Collect the user links: they are output twice, once for toggle menu and once for nav
 	$va_user_links = array();
 	if($this->request->isLoggedIn()){
@@ -51,12 +57,16 @@
 		}
 		$va_user_links[] = "<li>".caNavLink($this->request, _t('User Profile'), '', '', 'LoginReg', 'profileForm', array())."</li>";
 		$va_user_links[] = "<li>".caNavLink($this->request, _t('Logout'), '', '', 'LoginReg', 'Logout', array())."</li>";
-	} else {	
+	} else {
 		if (!$this->request->config->get(['dontAllowRegistrationAndLogin', 'dont_allow_registration_and_login']) || $this->request->config->get('pawtucket_requires_login')) { $va_user_links[] = "<li><a href='#' onclick='caMediaPanel.showPanel(\"".caNavUrl($this->request, '', 'LoginReg', 'LoginForm', array())."\"); return false;' >"._t("Login")."</a></li>"; }
 		if (!$this->request->config->get(['dontAllowRegistrationAndLogin', 'dont_allow_registration_and_login']) && !$this->request->config->get('dontAllowRegistration')) { $va_user_links[] = "<li><a href='#' onclick='caMediaPanel.showPanel(\"".caNavUrl($this->request, '', 'LoginReg', 'RegisterForm', array())."\"); return false;' >"._t("Register")."</a></li>"; }
 	}
 	$vb_has_user_links = (sizeof($va_user_links) > 0);
 
+	$lang = $this->request->getParameter("lang", pString);
+	if(!$lang) {
+		$lang = Zend_Registry::get('Zend_Locale');
+	}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,67 +86,112 @@
 	</script>
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.7.95/css/materialdesignicons.min.css">
 	<script src="https://kit.fontawesome.com/03715dce34.js" crossorigin="anonymous"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">	
 </head>
 <body class="<?php print $_SESSION["partie"]; ?>">
 <div id="phoi-logo-top">
 	<div class="container" id="phoi-logo-container">
-		<a href="/"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? "/logo-white.png" : "/logo.png" ); ?>" /></a>
+        <?php if($_SESSION["partie"] == "chaude"): ?>
+        <a href="/index.php"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+        <?php else : ?>
+        <a href="/index.php/Phoi/Partenaires/Carte?partie=froide"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+        <?php endif; ?>
         <nav class="navbar pull-right user-and-lang">
             <?php if($this->request->isLoggedIn()): ?>
-            <a class="navbar-item" href="/index.php/LoginReg/loginForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-circle is-large"></i></span> Mon compte</a>
-            <a class="navbar-item" href="/index.php/LoginReg/loginForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-box-outline is-large"></i></span> Mon espace</a>
-            <a class="navbar-item" href="/index.php/LoginReg/logout"><span class="icon" style="font-size:30px;"><i class="mdi mdi-logout is-large"></i></span> Déconnexion</a>
+            <a class="navbar-item" href="/index.php/Phoi/MonEspace/Index"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-box-outline is-large"></i></span> My space</a>
+            <a class="navbar-item" href="/index.php/LoginReg/logout"><span class="icon" style="font-size:30px;"><i class="mdi mdi-logout is-large"></i></span> Log out</a>
             <?php else : ?>
-            <a class="navbar-item" href="/index.php/LoginReg/loginForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-login is-large"></i></span> Connexion</a>
-            <a class="navbar-item" href="/index.php/LoginReg/registerForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-plus is-large"></i></span> Inscription</a>
-            <?php endif; ?>
+            <a class="navbar-item" href="/index.php/LoginReg/loginForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-login is-large"></i></span> Log in</a>
+            <a class="navbar-item" href="/index.php/LoginReg/registerForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-plus is-large"></i></span> Subscribe</a>
+            <?php endif;
+	            if($lang=="si"):
+            ?>
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    FR</a>
+                    <a class="navbar-link" href="?lang=si">SHIBUSHI</a>
                 <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-item" href="/index.php">EN</a>
+                    <a class="navbar-item" href="?lang=fr_FR">FRANÇAIS</a>
+                    <a class="navbar-item" href="?lang=en_US">ENGLISH</a>
+					<a class="navbar-item" href="?lang=my">MALAGASY</a>
                 </div>
             </div>
+	        <?php elseif($lang=="en_US"): ?>
+            <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="?lang=en_US">ENGLISH</a>
+                <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item" href="?lang=fr_FR">FRANÇAIS</a>
+                    <a class="navbar-item" href="?lang=si">SHIBUSHI</a>
+					<a class="navbar-item" href="?lang=my">MALAGASY</a>
+                </div>
+            </div>
+	        <?php elseif($lang=="my"): ?>
+            <div class="navbar-item has-dropdown is-hoverable">
+					<a class="navbar-link" href="?lang=my">MALAGASY</a>
+                <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item" href="?lang=fr_FR">FRANÇAIS</a>
+                    <a class="navbar-item" href="?lang=en_US">ENGLISH</a>
+                    <a class="navbar-item" href="?lang=si">SHIBUSHI</a>
+                </div>
+            </div>
+	        <?php else: ?>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link" href="?lang=fr_FR">FRANÇAIS</a>
+                <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item" href="?lang=si">SHIBUSHI</a>
+                    <a class="navbar-item" href="?lang=en_US">ENGLISH</a>
+					<a class="navbar-item" href="?lang=my">MALAGASY</a>
+                </div>
+            </div>
+	        <?php endif; ?>
         </nav>
 	</div>
 </div>
 <?php if($_SESSION["partie"] == "froide"): ?>
-	<nav class="navbar navbar-froide">
+	<nav class="navbar navbar-froide navbar-main" style="z-index:50 !important;">
 		<div class="container">
 
 			<div id="navbarExampleTransparentExample" class="navbar-menu">
 				<div class="navbar-end">
-					<a href="/index.php/Search/objects?search=*" class="navbar-item"><span class="icon" style="font-size:30px;"><i class="mdi mdi-magnify is-large"></i></span></a>
+					<a class="navbar-item" href="<?php print __CA_URL_ROOT__; ?>/index.php/Phoi/Phonogrammes/Search"><span class="icon" style="font-size:30px;"><i class="mdi mdi-magnify is-large"></i></span></a>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">Gestion des items</a>
+						<a class="navbar-link">Item management</a>
 						<div class="navbar-dropdown is-boxed">
-							<a href="/index.php/Detail/objects/130" class="navbar-item">Phonogramme</a>
-							<a class="navbar-item">Collectage</a>
-							<a class="navbar-item">Partitions</a>
-							<a class="navbar-item">Création musicale</a>
-							<a class="navbar-item">Interprétation</a>
+							<a href="/index.php/Phoi/Phonogrammes/Search" class="navbar-item">Phonogram</a>
+							<a href="/index.php/Phoi/Collectages/Search" class="navbar-item">Collecting</a>
+							<a class="navbar-item">Sheet music</a>
+							<a class="navbar-item">Musical creation</a>
+							<a class="navbar-item">Interpretation</a>
+							<a class="navbar-item">Individual</a>
 						</div>
 					</div>
+<?php if($is_admin): ?>					
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a href="/index.php/Thesaurus/View/Index" class="navbar-link">
-							Gestion du thesaurus</a>
-					</div>
+							Thesaurus management</a>
+											</div>
+<?php endif; ?>											
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">
-							Gestion des utilisateurs</a>
+						<a href="/index.php/Phoi/Users/List" class="navbar-link">
+							User management</a>
 					</div>
 
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">Blockchain</a>
+						<a href="/index.php/Phoi/Moderation/List" class="navbar-link">Blockchain</a>
+
 					</div>
 					<div class="navbar-item">
 						<div class="field is-grouped">
 							<p class="control">
-								<a class="button is-danger" href="/?partie=chaude">
+								<a class="button is-danger" href="/index.php/Articles/Front/index?partie=chaude">
                   <span class="icon">
                     <i class="mdi mdi-18px mdi-map-outline"></i>
                   </span>
-									<span>Visite</span></a>
+									<span>Discover</span></a>
 							</p>
 						</div>
 					</div>
@@ -152,40 +207,47 @@
 
 	</nav>
 <?php else: ?>
-	<nav class="navbar navbar-chaude">
+	<nav class="navbar navbar-chaude navbar-main" style="z-index:50 !important;">
 		<div class="container">
 
 			<div id="navbarExampleTransparentExample" class="navbar-menu">
 				<div class="navbar-end">
-					<a class="navbar-item"><span class="icon" style="font-size:30px;"><i class="mdi mdi-magnify is-large"></i></span></a>
+					<!-- <a class="navbar-item"><span class="icon" style="font-size:30px;"><i class="mdi mdi-magnify is-large"></i></span></a> -->
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link articles" href="/index.php/About/Articles">Articles</a>
+						<a href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Articles/Show/index" class="navbar-link articles"><?php _p("Articles"); ?></a>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link phonotheque" href="/index.php/About/Expositions">Expositions</a>
+						<a class="navbar-link phonotheque" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Expositions/Show/index"><?php _p("Exhibitions"); ?></a>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link playlists" href="/index.php/About/Playlists">Playlists</a>
+						<a class="navbar-link playlists" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Playlists/Show/index"><?php _p("Playlists"); ?></a>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link podcasts">Podcasts</a>
+						<a class="navbar-link podcasts" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Podcasts/Show/index"><?php _p("Podcasts"); ?></a>
+<!--	Dropdown menu for Podcasts is not needed for the moment
+                            <div class="navbar-dropdown is-boxed">-->
+<!--							<a class="navbar-item">Connexion</a>-->
+<!--							<a class="navbar-item">Espace personnel</a>-->
+<!--						</div>-->
 					</div>
+
+
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link phonotheque">La phonothèque</a>
+						<a class="navbar-link phonotheque"><?php _p("The Sound Archive"); ?></a>
 						<div class="navbar-dropdown is-boxed">
-							<a class="navbar-item" href="/index.php/Phonotheque/Partenaires">Les partenaires</a>
-							<a class="navbar-item" href="/index.php/Phonotheque/CadreJuridique">Le cadre juridique</a>
-							<a class="navbar-item" href="/index.php/Phonotheque/RevueDePresse">La revue de presse</a>
+							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phoi/Partenaires/Carte">Partners</a>
+							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/CadreJuridique">Legal Framework</a>
+							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/RevueDePresse">Press review</a>
 						</div>
 					</div>
 					<div class="navbar-item">
 						<div class="field is-grouped">
 							<p class="control">
-								<a class="button is-link" href="/?partie=froide">
+								<a class="button is-link" href="/index.php/Phoi/Partenaires/Carte?partie=froide">
                   <span class="icon">
                     <i class="mdi mdi-18px mdi-map-outline"></i>
                   </span>
-									<span>Archives</span></a>
+									<span><?php _p("Archives"); ?></span></a>
 							</p>
 						</div>
 					</div>
@@ -237,5 +299,17 @@
 
 	});
 </script>
+<style>
+body.froide	a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active,
+body.froide .navbar-dropdown a.navbar-item:focus, .navbar-dropdown a.navbar-item:hover {
+	background-color:#436a7b;
+}
+body.froide .navbar-dropdown {
+	background-color:#598da5;
+}
+.froide .navbar-main .navbar-item, .froide .navbar-main .navbar-dropdown {
+	z-index:12001;
+}
 
+	</style>
 <div class="container">
