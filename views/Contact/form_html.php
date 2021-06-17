@@ -22,7 +22,6 @@
 	}
 ?>
 <div class="row"><div class="col-sm-12">
-	<H1><?php print $vs_page_title; ?></H1>
 <?php
 	if(is_array($va_errors["display_errors"]) && sizeof($va_errors["display_errors"])){
 		print "<div class='alert alert-danger'>".implode("<br/>", $va_errors["display_errors"])."</div>";
@@ -35,16 +34,15 @@
 ?>
 		<div class="row">
 			<div class="col-sm-12">
-				<p><b>Title: </b><?php print $vs_name; ?>
-				<br/><b>Regarding this URL: </b><a href="<?php print $vs_url; ?>" class="purpleLink"><?php print $vs_url; ?></a>
+				<p><b>Titre: </b><?php print $vs_name; ?>
+				<br/><b>A propos de cette URL : </b><a href="<?php print $vs_url; ?>" class="purpleLink"><?php print $vs_url; ?></a>
 				</p>
 				<input type="hidden" name="itemId" value="<?php print $vs_idno; ?>">
 				<input type="hidden" name="itemTitle" value="<?php print $vs_name; ?>">
 				<input type="hidden" name="itemURL" value="<?php print $vs_url; ?>">
 				<input type="hidden" name="id" value="<?php print $pn_id; ?>">
 				<input type="hidden" name="table" value="<?php print $ps_table; ?>">
-				<hr/><br/><br/>
-	
+				<hr/>
 			</div>
 		</div>
 <?php
@@ -55,25 +53,25 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="form-group<?php print (($va_errors["name"]) ? " has-error" : ""); ?>">
-							<label for="name">Name</label>
-							<input type="text" class="form-control input-sm" id="email" placeholder="Enter name" name="name" value="{{{name}}}">
+							<label for="name">Nom</label>
+							<input type="text" class="input" id="email" placeholder="Saisir votre nom" name="name" value="{{{name}}}">
 						</div>
 					</div><!-- end col -->
 					<div class="col-sm-4">
 						<div class="form-group<?php print (($va_errors["email"]) ? " has-error" : ""); ?>">
-							<label for="email">Email address</label>
-							<input type="text" class="form-control input-sm" id="email" placeholder="Enter email" name="email" value="{{{email}}}">
+							<label for="email">Email</label>
+							<input type="text" class="input" id="email" placeholder="Saisir votre adresse email" name="email" value="{{{email}}}">
 						</div>
 					</div><!-- end col -->
 					<div class="col-sm-4">
 						<div class="form-group<?php print (($va_errors["security"]) ? " has-error" : ""); ?>">
-							<label for="security">Security Question</label>
-							<div class='row'>
-								<div class='col-sm-6'>
-									<p class="form-control-static"><?php print $vn_num1; ?> + <?php print $vn_num2; ?> = </p>
+							<label for="security">Question de sécurité (pour limiter les spams)</label>
+							<div class='columns'>
+								<div class='column'>
+									<p style="text-align:right;padding-top:6px;"><?php print $vn_num1; ?> + <?php print $vn_num2; ?> = </p>
 								</div>
-								<div class='col-sm-6'>
-									<input name="security" value="" id="security" type="text" class="form-control input-sm" />
+								<div class='column'>
+									<input name="security" value="" id="security" type="text" class="input" />
 								</div>
 							</div><!--end row-->	
 						</div><!-- end form-group -->
@@ -85,12 +83,12 @@
 			<div class="col-md-9">
 				<div class="form-group<?php print (($va_errors["message"]) ? " has-error" : ""); ?>">
 					<label for="message">Message</label>
-					<textarea class="form-control input-sm" id="message" name="message" rows="5">{{{message}}}</textarea>
+					<textarea class="textarea" id="message" name="message" rows="5">{{{message}}}</textarea>
 				</div>
 			</div><!-- end col -->
 		</div><!-- end row -->
 		<div class="form-group">
-			<button type="submit" class="btn btn-default">Send</button>
+			<button type="submit" class="button is-primary">Envoyer</button>
 		</div><!-- end form-group -->
 		<input type="hidden" name="sum" value="<?php print $vn_sum; ?>">
 	</form>

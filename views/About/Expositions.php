@@ -1,13 +1,13 @@
 <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
   <div class="container">
     <ul class="ariane">
-      <li><a href="/">Accueil</a></li>
+      <li><a href="/"><?php _p("Accueil"); ?></a></li>
       <li class="is-active"><a href="#" aria-current="page">Exposition</a></li>
     </ul>
   </div>
 </nav>
 
-<h1 class="page-title">Expositions</h1>
+<h1 class="page-title"><?php _p("Expositions"); ?></h1>
 <div class="display-options level is-flex-desktop">
   <div class="level-left">
     <button class="button action-btn add-new is-uppercase has-text-centered">

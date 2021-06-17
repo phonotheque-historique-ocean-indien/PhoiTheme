@@ -1,25 +1,25 @@
 <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
   <div class="container">
     <ul class="ariane">
-      <li><a href="/">Accueil</a></li>
-      <li class="is-active"><a href="#" aria-current="page">Playlists</a></li>
+      <li><a href="/"><?php _p("Accueil"); ?></a></li>
+      <li class="is-active"><a href="#" aria-current="page"><?php _p("Playlists"); ?></a></li>
     </ul>
   </div>
 </nav>
 
-<h1 class="page-title">Playlists</h1>
+<h1 class="page-title"><?php _p("Playlists"); ?></h1>
 <div class="display-options level is-flex-desktop">
   <div class="level-left">
     <button class="button action-btn add-new is-uppercase has-text-centered">
       <span class="icon">
         <i class="mdi mdi-plus"></i>
       </span>
-      &nbsp Nouveau
+      &nbsp <?php _p("Nouveau"); ?>
     </button>
   </div>
   <div class="level-right">
-    <p class="level-item">trier par &nbsp
-      <em class="has-text-weight-semibold">le plus récent</em>
+    <p class="level-item"><?php _p("trier par"); ?> &nbsp
+      <em class="has-text-weight-semibold"><?php _p("le plus récent"); ?></em>
       <span class="icon red">
         <i class="fa fa-caret-down"></i>
       </span>
@@ -28,8 +28,8 @@
       <div class="dropdown-trigger">
         <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
           <span>
-            <p class="level-item">présentation par &nbsp
-              <em class="has-text-weight-semibold">vignettes</em>
+            <p class="level-item"><?php _p("présentation par"); ?> &nbsp
+              <em class="has-text-weight-semibold"><?php _p("vignettes"); ?></em>
           </span>
           <span class="icon red">
             <i class="fa fa-caret-down"></i>
@@ -39,7 +39,7 @@
       <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">
           <a href="./Playlists_list" class="dropdown-item">
-            liste
+            <?php _p("liste"); ?>
           </a>
         </div>
       </div>
@@ -58,7 +58,7 @@
       <div class="card-content">
         <div class="content">
           <div class="card-details">
-            <p class="date pull-right">genre</p>
+            <p class="date pull-right"><?php _p("genre"); ?></p>
           </div>
           <h2 class="card-title">Playlist 1</h2>
           <h3 class="card-subtitle">sous-titre</h3>
@@ -66,7 +66,7 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">En savoir plus</a>
+        <a href="#" class="card-footer-item"><?php _p("En savoir plus"); ?></a>
       </footer>
     </div>
     <div class="card">
@@ -78,7 +78,7 @@
       <div class="card-content">
         <div class="content">
           <div class="card-details">
-            <p class="date pull-right">genre</p>
+            <p class="date pull-right"><?php _p("genre"); ?></p>
           </div>
           <h2 class="card-title">Playlist 2</h2>
           <h3 class="card-subtitle">du gro pilé au moderne.</h3>
@@ -86,7 +86,7 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">En savoir plus</a>
+        <a href="#" class="card-footer-item"><?php _p("En savoir plus"); ?></a>
       </footer>
     </div>
   </div>
@@ -100,7 +100,7 @@
       <div class="card-content">
         <div class="content">
           <div class="card-details">
-            <p class="date pull-right">genre</p>
+            <p class="date pull-right"><?php _p("genre"); ?></p>
           </div>
           <h2 class="card-title">Playlist 3</h2>
           <h3 class="card-subtitle">sous-titre</h3>
@@ -108,7 +108,7 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">En savoir plus</a>
+        <a href="#" class="card-footer-item"><?php _p("En savoir plus"); ?></a>
       </footer>
     </div>
     <div class="card">
@@ -120,7 +120,7 @@
       <div class="card-content">
         <div class="content">
           <div class="card-details">
-            <p class="date pull-right">genre</p>
+            <p class="date pull-right"><?php _p("genre"); ?></p>
           </div>
           <h2 class="card-title">Playlist 4</h2>
           <h3 class="card-subtitle">sous-titre</h3>
@@ -128,7 +128,7 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">En savoir plus</a>
+        <a href="#" class="card-footer-item"><?php _p("En savoir plus"); ?></a>
       </footer>
     </div>
   </div>
@@ -142,7 +142,7 @@
       <div class="card-content">
         <div class="content">
           <div class="card-details">
-            <p class="date pull-right">genre</p>
+            <p class="date pull-right"><?php _p("genre"); ?></p>
           </div>
           <h2 class="card-title">Playlist 5</h2>
           <h3 class="card-subtitle">sous-titre</h3>
@@ -150,7 +150,7 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">En savoir plus</a>
+        <a href="#" class="card-footer-item"><?php _p("En savoir plus"); ?></a>
       </footer>
     </div>
     <div class="card">
@@ -162,7 +162,7 @@
       <div class="card-content">
         <div class="content">
           <div class="card-details">
-            <p class="date pull-right">genre</p>
+            <p class="date pull-right"><?php _p("genre"); ?></p>
           </div>
           <h2 class="card-title">Playlist 6</h2>
           <h3 class="card-subtitle">sous-titre</h3>
@@ -170,14 +170,14 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">En savoir plus</a>
+        <a href="#" class="card-footer-item"><?php _p("En savoir plus"); ?></a>
       </footer>
     </div>
   </div>
 </div>
 <div class="level">
   <div class="level-item has-text-centered">
-    <button class="button action-btn more is-medium has-text-weight-bold">Charger plus de playlists</button>
+    <button class="button action-btn more is-medium has-text-weight-bold"><?php _p("Charger plus de playlists"); ?></button>
   </div>
 </div>
 

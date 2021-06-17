@@ -1,2 +1,3 @@
-<H1><?php print _t("Contact"); ?></H1>
-<h2><?php print _t("Your message has been sent."); ?></H2>
+<H2>Contact</H2>
+<p>Votre message de contact/de signalement a bien été envoyé.</p>
+<div style="height:120px;"></div>

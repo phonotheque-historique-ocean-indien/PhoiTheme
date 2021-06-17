@@ -1,20 +1,20 @@
 <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
   <div class="container">
     <ul class="ariane">
-      <li><a href="/">Accueil</a></li>
-      <li class="is-active"><a href="#" aria-current="page">Playlists</a></li>
+      <li><a href="/"><?php _p("Accueil"); ?></a></li>
+      <li class="is-active"><a href="#" aria-current="page"><?php _p("Playlists"); ?></a></li>
     </ul>
   </div>
 </nav>
 
-<h1 class="page-title">Playlists</h1>
+<h1 class="page-title"><?php _p("Playlists"); ?></h1>
 <div class="display-options level is-flex-desktop">
   <div class="level-left">
     <button class="button action-btn add-new is-uppercase has-text-centered">
       <span class="icon">
         <i class="mdi mdi-plus"></i>
       </span>
-      &nbsp Nouveau
+      &nbsp <?php _p("Nouveau"); ?>
     </button>
   </div>
   <div class="level-right">
@@ -22,8 +22,8 @@
       <div class="dropdown-trigger">
         <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
           <span>
-            <p class="level-item">présentation par &nbsp
-              <em class="has-text-weight-semibold">liste</em>
+            <p class="level-item"><?php _p("présentation par"); ?> &nbsp
+              <em class="has-text-weight-semibold"><?php _p("liste"); ?></em>
           </span>
           <span class="icon red">
             <i class="fa fa-caret-down"></i>
@@ -33,7 +33,7 @@
       <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">
           <a href="./Playlists" class="dropdown-item">
-            vignettes
+            <?php _p("vignettes"); ?>
           </a>
         </div>
       </div>
@@ -50,13 +50,13 @@
         <tr>
           <th>
             <abbr title="Title">
-              Titre
+              <?php _p("Titre"); ?>
               <span class="icon red">
                 <i class="fa fa-caret-down"></i>
               </span>
             </abbr></th>
           <th>
-            <abbr title="Date">Date
+            <abbr title="Date"><?php _p("Date"); ?>
             <span class="icon red">
                 <i class="fa fa-caret-down"></i>
               </span>
@@ -64,7 +64,7 @@
           </th>
           <th>
             <abbr title="Author">
-              Auteur
+              <?php _p("Auteur"); ?>
             <span class="icon red">
               <i class="fa fa-caret-down"></i>
             </span>
@@ -143,7 +143,7 @@
     <div class="dropdown-trigger">
       <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
         <span>
-          <p class="level-item">résultats par page &nbsp
+          <p class="level-item"><?php _p("résultats par page"); ?> &nbsp
             <em class="has-text-weight-semibold">12</em>
         </span>
         <span class="icon red">
