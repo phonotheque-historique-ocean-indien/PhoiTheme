@@ -44,7 +44,7 @@ $vn_id =                $t_object->get('ca_objects.object_id');
     <div class="column is-one-third">
         <div class="card infosprincipales">
             <header class="card-header">
-                <p class="card-header-title">Description</p>
+                <p class="card-header-title"><?php _p("Description"); ?></p>
                 <a href="#" class="card-header-icon" aria-label="edit">
                     <span class="icon">
                         <i class="mdi mdi-pencil is-large"></i>
@@ -53,15 +53,15 @@ $vn_id =                $t_object->get('ca_objects.object_id');
             </header>
             <div class="card-content">
                 <div class="content">
-                    <b>Début le :</b> {{{ }}}<br /><!-- à compléter pour l'appel de la donnée-->
-                    <b>Fin le :</b> {{{ }}})<br /><!-- à compléter pour l'appel de la donnée-->
-                    <b>Biographie :</b>
+                    <b><?php _p("Début le"); ?> :</b> {{{ }}}<br /><!-- à compléter pour l'appel de la donnée-->
+                    <b><?php _p("Fin le"); ?> :</b> {{{ }}})<br /><!-- à compléter pour l'appel de la donnée-->
+                    <b><?php _p("Biographie"); ?> :</b>
                 </div>
             </div>
         </div>
         <div class="card">
             <header class="card-header">
-                <p class="card-header-title">Liste des interprétations :</p>
+                <p class="card-header-title"><?php _p("Liste des interprétations"); ?> :</p>
             </header>
             <div class="card-content">
                 <div class="content">
@@ -121,7 +121,7 @@ $vn_id =                $t_object->get('ca_objects.object_id');
         </div>
         <div class="card">
             <header class="card-header">
-                <p class="card-header-title">Liste des interprétations</p>
+                <p class="card-header-title"><?php _p("Liste des interprétations"); ?></p>
             </header>
             <div class="card-content">
                 <div class="content">
@@ -175,7 +175,7 @@ $vn_id =                $t_object->get('ca_objects.object_id');
         </div>
         <div class="card">
             <header class="card-header">
-                <p class="card-header-title">Liste des albums du groupe :</p>
+                <p class="card-header-title"><?php _p("Liste des albums du groupe :"); ?></p>
             </header>
             <div class="card-content">
                 <div class="content">
@@ -232,7 +232,7 @@ $vn_id =                $t_object->get('ca_objects.object_id');
         </div>
         <div class="card">
             <header class="card-header">
-                <p class="card-header-title">Liste des événéments du groupe : </p>
+                <p class="card-header-title"><?php _p("Liste des événéments du groupe : "); ?></p>
             </header>
             <div class="card-content">
                 <div class="content">
@@ -291,7 +291,7 @@ $vn_id =                $t_object->get('ca_objects.object_id');
 	<div class="column is-3 is-offset-5">
 		<div class="card">
 			<header class="card-header">
-				<p class="card-header-title">Tags</p>
+				<p class="card-header-title"><?php _p("Tags"); ?></p>
 			</header>
 			<div class="card-content">
 				<div class="content">
@@ -359,9 +359,9 @@ $vn_id =                $t_object->get('ca_objects.object_id');
 	  <header class="card-header">
 	    <div class="card-header-title">
 		    <div class="tags are-medium">
-			  <span class="tab is-active">10 items les plus vus</span>
-			  <span class="tab">10 items au hasard</span>
-			  <span class="tab">Voir tous</span>
+			  <span class="tab is-active"><?php _p("10 items les plus vus"); ?></span>
+			  <span class="tab"><?php _p("10 items au hasard"); ?></span>
+			  <span class="tab"><?php _p("Voir tous"); ?></span>
 			</div>
 	    </div>
 	  </header>
@@ -378,11 +378,11 @@ $vn_id =                $t_object->get('ca_objects.object_id');
 					        </figure>
 					      </div>
 					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
+					        <p class="title is-4"><?php _p("Titre"); ?></p>
 					      </div>
 					    </div>
 					    <div class="content">
-					      Début de description
+					      <?php _p("Début de description"); ?>
 					    </div>
 					  </div>
 					</div>

@@ -285,7 +285,7 @@ $vn_id =                $t_object->get('ca_objects.object_id');
         </div>
     </div><!-- first column ends here-->
     <div class="column">
-        Second column
+        {{{<a href="^ca_entities.url"> ^ca_entities.url </a>}}}
     </div><!-- second column ends here-->
 </div><!-- all columns end here-->
 

@@ -27,7 +27,7 @@
  */
  
 	$t_object = 			$this->getVar("item");
-	//$t_object = new ca_objects();
+	$t_object = new ca_objects();
 	$va_comments = 			$this->getVar("comments");
 	$va_tags = 				$this->getVar("tags_array");
 	$vn_comments_enabled = 	$this->getVar("commentsEnabled");
@@ -35,9 +35,7 @@
 	$vn_pdf_enabled = 		$this->getVar("pdfEnabled");
 	$vn_id =				$t_object->get('ca_objects.object_id');
 ?>
-
 <!-- ca_objects_default_html.php -->
-<?php print "<!-- ".$t_object->getWithTemplate("^ca_objects.type_id")." -->"; ?>
 <h1 class="titre-phonogramme">{{{^ca_objects.preferred_labels.name}}}</h1>
 <div class="columns">
   <div class="column is-one-third">

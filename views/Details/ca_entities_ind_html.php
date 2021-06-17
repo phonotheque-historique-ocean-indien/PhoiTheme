@@ -41,6 +41,17 @@
 
 <div class="columns">
 	<div class="column is-one-third">
+		<div class="card infosprincipales" style="max-height: none;">
+			<header class="card-header">
+				<p class="card-header-title">Description</p>
+			</header>
+			<div class="card-content">
+				<div class="content">
+					<img src="{{{^ca_object_representations.media.original.url}}}" style="width:100%;height:auto;"/>
+				</div>
+			</div>
+		</div>
+
 		<div class="card infosprincipales">
 			<header class="card-header">
 				<p class="card-header-title">Description</p>
@@ -61,575 +72,76 @@
 		</div>
 		<div class="card">
 			<header class="card-header">
-				<p class="card-header-title">Liste des œuvres composées :</p>
+				<p class="card-header-title">Liste des œuvres composées</p>
 			</header> 
-			<div class="card-content">
-				<div class="content">
-					<div class="tabs is-toggle is-fullwidth">
-						<uL class="sortby">
-							<li>
-								<a>
-									<span class="icon is-small">
-										<i class="fa fa-caret-down" aria-hidden="true">
-										</i>
-									</span>
-									<span>Titre</span>
-								</a>
-							</li>
-							<li>
-							<a>
-								<span class="icon is-small">
-									<i class="fa fa-caret-down" aria-hidden="true"></i>
-								</span>
-								<span>Titre</span>
-							</a>
-							</li>
-						</uL>
-					</div>
-				    <div class="card-content-item">
-						<p>Œuvre 1 iswc</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Œuvre 2 iswc</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-					<div class="card-content-item">
-						<p>Œuvre 3 iswc</p>
-						<div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-				</div>
-			</div>
 		</div>
 		<div class="card">
 			<header class="card-header">
-				<p class="card-header-title">Liste des œuvres arrangées :</p>
+				<p class="card-header-title">Liste des œuvres arrangées</p>
 			</header>
-			<div class="card-content">
-				<div class="content">
-				    <div class="card-content-item">
-						<p>Œuvre 1</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Œuvre 2</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-					<div class="card-content-item">
-						<p>Œuvre 3</p>
-						<div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-				</div>
-			</div>
 		</div>
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Liste des interprétations :</p>
 			</header>
-			<div class="card-content">
-				<div class="content">
-				    <div class="card-content-item">
-						<p>Œuvre 1</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Œuvre 2</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-					<div class="card-content-item">
-						<p>Œuvre 3</p>
-						<div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-				</div>
-			</div>
 		</div>
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Liste des groupes :</p>
 			</header>
-			<div class="card-content">
-				<div class="content">
-				    <div class="card-content-item">
-						<p>Groupe 1</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Groupe 2</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Liste des instruments :</p>
 			</header>
-			<div class="card-content">
-				<div class="content">
-				    <div class="card-content-item">
-						<p>Tag 1</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Tag 2</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>		
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Liste des citations :</p>
 			</header>
-			<div class="card-content">
-				<div class="content">
-				    <div class="card-content-item">
-						<p>Citation 1</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Citation 2</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>	
 	</div><!-- first column ends here-->
 	<div class="column is-half">
 		<div class="card">
 			<header class="card-header">
+				<p class="card-header-title">Relations</p>
+			</header> <!-- menu déroulant à ajouter pour titre et iswc-->
+			<div style="padding:20px;">
+				<p><b>Relations</b> : {{{<unit relativeTo="ca_objects" restrictToTypes="Phonogramme"><l>^ca_objects.preferred_labels (^ca_objects.type_id)</l></unit>}}}</p>
+			</div>
+		</div>
+		<div class="card">
+			<header class="card-header">
+				<p class="card-header-title">Biographie</p>
+			</header> <!-- menu déroulant à ajouter pour titre et iswc-->
+			<div style="padding:20px;">
+				{{{^ca_entities.biography}}}
+			</div>
+		</div>
+		<div class="card">
+			<header class="card-header">
 				<p class="card-header-title">Liste des alias de "personnes" :</p>
 			</header> <!-- menu déroulant à ajouter pour titre et iswc-->
-			<div class="card-content">
-				<div class="content">
-				    <div class="card-content-item">
-						<p>Alias 1</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Alias 2</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-					<div class="card-content-item">
-						<p>Alias 3</p>
-						<div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-				</div>
-			</div>
 		</div>
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Liste des enquêtes :</p>
 			</header>
-			<div class="card-content">
-				<div class="content">
-				    <div class="card-content-item">
-						<p>Enquête 1 Rôle</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Enquête 2 Rôle</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-					<div class="card-content-item">
-						<p>Enquête 3 Rôle</p>
-						<div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-				</div>
-			</div>
 		</div>
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Liste des albums en tant que musicien :</p>
 			</header>
-			<div class="card-content">
-				<div class="content">
-				    <div class="card-content-item">
-						<p>Album 1</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Album 2</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-					<div class="card-content-item">
-						<p>Album 3</p>
-						<div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-				</div>
-			</div>
 		</div>
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Liste des enregistrements produits :</p>
 			</header>
-			<div class="card-content">
-				<div class="content">
-				    <div class="card-content-item">
-						<p>Enregistrement 1</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Enregistrement 2</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-					<div class="card-content-item">
-						<p>Enregistrement 3</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Structure représentées :</p>
 			</header>
-			<div class="card-content">
-				<div class="content">
-				    <div class="card-content-item">
-						<p>Structure 1</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-					<div class="card-content-item">
-						<p>Structure 2</p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
-					</div>
-					<div class="card-content-item">
-						<p>Structure 3</p>
-					    <div class="icon-group">
-						    <a href="#" class="card-content-icon" aria-label="delete">
-							    <span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-						    </a>
-						    <a href="#" class="card-content-icon" aria-label="edit">
-							    <span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-						    </a>
-					    </div>
-				    </div>
-				</div>
-			</div>
 		</div>		
 	</div><!-- second column column ends here-->
 	<div class="column">
@@ -637,309 +149,12 @@
 			<header class="card-header">
 				<p class="card-header-title">Tags</p>
 			</header>
-			<div class="card-content">
-				<div class="content">
-					<uL>
-						<li>
-							<div class="card-content-item">
-							<p class="tag">tag 1</p>
-								<div class="icon-group">
-									<a href="#" class="card-content-icon" aria-label="delete">
-										<span class="icon">
-											<i class="mdi mdi-close is-large"></i>
-										</span>
-									</a>
-									<a href="#" class="card-content-icon" aria-label="edit">
-										<span class="icon">
-											<i class="mdi mdi-pencil is-large"></i>
-										</span>
-									</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="card-content-item">
-							<p class="tag">tag 2</p>
-								<div class="icon-group">
-									<a href="#" class="card-content-icon" aria-label="delete">
-										<span class="icon">
-											<i class="mdi mdi-close is-large"></i>
-										</span>
-									</a>
-									<a href="#" class="card-content-icon" aria-label="edit">
-										<span class="icon">
-											<i class="mdi mdi-pencil is-large"></i>
-										</span>
-									</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="card-content-item">
-							<p class="tag">tag 3</p>
-								<div class="icon-group">
-									<a href="#" class="card-content-icon" aria-label="delete">
-										<span class="icon">
-											<i class="mdi mdi-close is-large"></i>
-										</span>
-									</a>
-									<a href="#" class="card-content-icon" aria-label="edit">
-										<span class="icon">
-											<i class="mdi mdi-pencil is-large"></i>
-										</span>
-									</a>
-								</div>
-							</div>
-						</li>
-					</uL>
-				</div>
-			</div>
 		</div>
 	</div><!-- third column column ends here-->
 </div>
 
-<div class="item-accessoires is-full">
-	<div class="card infosprincipales">
-	  <header class="card-header">
-	    <div class="card-header-title">
-		    <div class="tags are-medium">
-			  <span class="tab is-active">10 items les plus vus</span>
-			  <span class="tab">10 items au hasard</span>
-			  <span class="tab">Voir tous</span>
-			</div>
-	    </div>
-	  </header>
-	  <div class="card-content">
-	    <div class="content">
-		    <div class="columns">
-			    <div class="column is-one-quarter">
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-			    </div>
-			    <div class="column is-one-quarter">
-		    
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-			    </div>
-			    <div class="column is-one-quarter">
-		    
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-			    </div>
-			    <div class="column is-one-quarter">
-		    
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-				    <div class="card">
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
-					        <figure class="image is-48x48">
-					          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-					        </figure>
-					      </div>
-					      <div class="media-content">
-					        <p class="title is-4">Titre</p>
-					      </div>
-					    </div>
-					    <div class="content">
-					      Début de description
-					    </div>
-					  </div>
-					</div>
-			    </div>
-		    </div>		    
-	    </div>
-	  </div>
-	</div>
-</div>
+<div id="bottomDetail"></div>
+
 
 <style>
 	.card {
