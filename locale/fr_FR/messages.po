@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CollectiveAccess Pawtucket2 Default Theme\n"
 "POT-Creation-Date: 2016-10-10 22:50-0400\n"
-"PO-Revision-Date: 2016-10-10 23:09-0400\n"
+"PO-Revision-Date: 2020-08-20 10:00+0200\n"
 "Last-Translator: Seth <Seth@collectiveacess.org>\n"
 "Language-Team: CollectiveAccess <info@collectiveaccess.org>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 2.4\n"
 "X-Poedit-Basepath: ../../views\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: _t\n"
@@ -203,8 +203,7 @@ msgstr ""
 
 #: Classroom/list_html.php:203 Classroom/set_detail_html.php:433
 #: Lightbox/set_list_html.php:204
-msgid ""
-"Really delete <strong><em>%1</em></strong>? This action cannot be undone."
+msgid "Really delete <strong><em>%1</em></strong>? This action cannot be undone."
 msgstr ""
 
 #: Classroom/set_access_html.php:40 Lightbox/set_access_html.php:39
@@ -274,8 +273,7 @@ msgstr ""
 
 #: Classroom/set_detail_html.php:229 Lightbox/set_detail_html.php:213
 msgid ""
-"Displaying %1 view because required data is not available to generate a %1 "
-"view"
+"Displaying %1 view because required data is not available to generate a %1 view"
 msgstr ""
 
 #: Classroom/set_detail_html.php:313 Lightbox/set_detail_html.php:295
@@ -391,18 +389,17 @@ msgstr ""
 msgid ""
 "Click and drag with the mouse to pan across the image. You can use the "
 "mousewheel or trackpad to zoom in or out of the image. \n"
-"\tThe <code>+</code> and <code>-</code> buttons and zoom slider bar at the "
-"top of viewer may also be used. The viewer displays the image at full "
-"resolution, loading \n"
+"\tThe <code>+</code> and <code>-</code> buttons and zoom slider bar at the top "
+"of viewer may also be used. The viewer displays the image at full resolution, "
+"loading \n"
 "\tdetail as you zoom. The more you zoom the more detail will be visible.\n"
 "\t"
 msgstr ""
 
 #: Details/viewer_help_html.php:12
 msgid ""
-"You may add text annotations to the image. Each annotation is associated "
-"with a point, rectangular or polygon area on the image. To create an "
-"annotation\n"
+"You may add text annotations to the image. Each annotation is associated with "
+"a point, rectangular or polygon area on the image. To create an annotation\n"
 "\tselect the point (line icon), rectangle or polygon tool from the tool bar, "
 "then click on the location you wish to annotate. "
 msgstr ""
@@ -410,26 +407,26 @@ msgstr ""
 #: Details/viewer_help_html.php:16
 msgid ""
 "For point annotations a line will appear connecting the location with a text "
-"box. The location will also be highlighted with a red translucent circle. "
-"You may drag both the point of the line and the text box to adjust position."
+"box. The location will also be highlighted with a red translucent circle. You "
+"may drag both the point of the line and the text box to adjust position."
 msgstr ""
 
 #: Details/viewer_help_html.php:19
 msgid ""
-"For rectangular annotations a rectangle will appear with a text box below "
-"and adjacent. Drag on the edges at the highlighted locations to resize the "
+"For rectangular annotations a rectangle will appear with a text box below and "
+"adjacent. Drag on the edges at the highlighted locations to resize the "
 "rectangle. Drag the rectangle on its interior to reposition it."
 msgstr ""
 
 #: Details/viewer_help_html.php:22
 msgid ""
 "For polygon annotations click \n"
-"\trepeatedly on the image to establish line segments at various locations "
-"for the polygon shape. The shape may have any number of points, and "
-"consequently sides. To complete the shape double-click\n"
-"\twhen placing the final point or click on the pan, rectangle or point "
-"tools. You can adjust the shape by clicking and dragging on any point. To "
-"move the shape, click and drag on the outline,\n"
+"\trepeatedly on the image to establish line segments at various locations for "
+"the polygon shape. The shape may have any number of points, and consequently "
+"sides. To complete the shape double-click\n"
+"\twhen placing the final point or click on the pan, rectangle or point tools. "
+"You can adjust the shape by clicking and dragging on any point. To move the "
+"shape, click and drag on the outline,\n"
 "\taway from any point. To remove a point click on it while holding down the "
 "option key. To add a point click on the outline, away from any point, while "
 "holding down the option key.\n"
@@ -742,8 +739,8 @@ msgstr ""
 
 #: LoginReg/form_reset_html.php:20
 msgid ""
-"You should receive the instructions within the hour. If you do not, contact "
-"us for assistance at "
+"You should receive the instructions within the hour. If you do not, contact us "
+"for assistance at "
 msgstr ""
 
 #: LoginReg/form_reset_html.php:29
@@ -760,8 +757,8 @@ msgstr ""
 
 #: LoginReg/form_reset_html.php:40
 msgid ""
-"Please confirm you have copied the provided link properly.  If you continue "
-"to have difficulty, contact us for assistance,"
+"Please confirm you have copied the provided link properly.  If you continue to "
+"have difficulty, contact us for assistance,"
 msgstr ""
 
 #: LoginReg/form_reset_html.php:48
@@ -778,8 +775,8 @@ msgstr ""
 
 #: LoginReg/form_reset_html.php:78
 msgid ""
-"To reset your password enter the e-mail address you used to register below. "
-"A message will be sent to the address with instructions on how to reset your "
+"To reset your password enter the e-mail address you used to register below. A "
+"message will be sent to the address with instructions on how to reset your "
 "password."
 msgstr ""
 
@@ -869,6 +866,309 @@ msgid ""
 "\t    General installation instructions can be found\n"
 "\t    <a href='http://wiki.collectiveaccess.org/index.php?"
 "title=Installation_(Pawtucket)' target='_blank'>here</a>.\n"
-"\t    For more specific hints on the existing issues please have a look at "
-"the messages below."
+"\t    For more specific hints on the existing issues please have a look at the "
+"messages below."
+msgstr ""
+
+msgid "Connexion"
+msgstr ""
+
+msgid "Identifiant ou e-mail"
+msgstr ""
+
+msgid "Mot de passe"
+msgstr ""
+
+msgid "Pas encore de compte ? S'inscrire"
+msgstr ""
+
+msgid "Mot de passe oublié ? Cliquer ici"
+msgstr ""
+
+msgid "Année"
+msgstr ""
+
+msgid "Liste des pressages de cet album"
+msgstr ""
+
+msgid "Informations sur le pressage"
+msgstr ""
+
+msgid "Liste des items phonogrammes de ce pressage"
+msgstr ""
+
+msgid "Informations sur l'item phonogramme"
+msgstr ""
+
+msgid "Médias attachés"
+msgstr ""
+
+msgid "10 items les plus vus"
+msgstr ""
+
+msgid "10 items au hasard"
+msgstr ""
+
+msgid "Voir tous"
+msgstr ""
+
+msgid "Photos"
+msgstr ""
+
+msgid "Sorry, your browser doesn't support embedded videos"
+msgstr "Désolé, votre navigateur ne prend pas en charge les vidéos intégrées"
+
+msgid "Enquêtes"
+msgstr ""
+
+msgid "Plage de temps"
+msgstr ""
+
+msgid "de"
+msgstr ""
+
+msgid "à"
+msgstr ""
+
+msgid "Mots-clés"
+msgstr ""
+
+msgid "Rechercher"
+msgstr ""
+
+msgid "Chercher"
+msgstr ""
+
+msgid "Type de collectage"
+msgstr ""
+
+msgid "Nature"
+msgstr ""
+
+msgid "Type de support"
+msgstr ""
+
+msgid "genre"
+msgstr ""
+
+msgid "Fonds"
+msgstr ""
+
+msgid "Corpus"
+msgstr ""
+
+msgid "Collectages"
+msgstr "Collections"
+
+msgid "Inscription"
+msgstr ""
+
+msgid "Sur cette image, un seul cercle n'est pas fermé. Veuillez cliquer dessus."
+msgstr ""
+
+msgid "Impossible de trouver le cercle ouvert?"
+msgstr ""
+
+msgid "Générer un autre captcha."
+msgstr ""
+
+msgid "Enregistrement"
+msgstr ""
+
+msgid "Début le"
+msgstr ""
+
+msgid "Fin le"
+msgstr ""
+
+msgid "Identifiant"
+msgstr ""
+
+msgid "Ajouter un fonds"
+msgstr ""
+
+msgid "Ajouter un corpus"
+msgstr ""
+
+msgid "Ajouter une enquête"
+msgstr ""
+
+msgid "Ajouter un collectage"
+msgstr ""
+
+msgid "audio"
+msgstr ""
+
+msgid "photo"
+msgstr ""
+
+msgid "video"
+msgstr ""
+
+msgid "documents"
+msgstr ""
+
+msgid "Albums"
+msgstr ""
+
+msgid "Pays"
+msgstr ""
+
+msgid "Avec item"
+msgstr ""
+
+msgid "Producteur"
+msgstr ""
+
+msgid "Groupes"
+msgstr ""
+
+msgid "Titre"
+msgstr ""
+
+msgid "Labels"
+msgstr ""
+
+msgid "N° catalogue"
+msgstr ""
+
+msgid "Résultats albums"
+msgstr ""
+
+msgid "Ajouter"
+msgstr ""
+
+msgid "Accueil"
+msgstr ""
+
+msgid "Articles"
+msgstr ""
+
+msgid "publié par"
+msgstr ""
+
+msgid "Historique des modifications validées"
+msgstr ""
+
+msgid "Concerne"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Proposée par"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Nouveau"
+msgstr ""
+
+msgid "trier par"
+msgstr ""
+
+msgid "le plus récent"
+msgstr ""
+
+msgid "présentation par"
+msgstr ""
+
+msgid "vignettes"
+msgstr ""
+
+msgid "En savoir plus"
+msgstr ""
+
+msgid "Charger plus de playlists"
+msgstr ""
+
+msgid "Expositions"
+msgstr ""
+
+msgid "Modifier"
+msgstr ""
+
+msgid "Playlists associées"
+msgstr ""
+
+msgid "Voir l'exposition"
+msgstr ""
+
+msgid "Lire l'article"
+msgstr ""
+
+msgid "Auteur"
+msgstr ""
+
+msgid "liste"
+msgstr ""
+
+msgid "résultats par page"
+msgstr ""
+
+msgid "Ecouter le podcast"
+msgstr ""
+
+msgid "A l'écoute"
+msgstr ""
+
+msgid "Album"
+msgstr ""
+
+msgid "Artiste"
+msgstr ""
+
+msgid "Les partenaires"
+msgstr ""
+
+msgid "Utilisateurs"
+msgstr ""
+
+msgid "Prénom"
+msgstr ""
+
+msgid "Nom"
+msgstr ""
+
+msgid "Droits"
+msgstr ""
+
+msgid "Confiance"
+msgstr ""
+
+msgid "Précédent"
+msgstr ""
+
+msgid "Suivant"
+msgstr ""
+
+msgid "Biographie"
+msgstr ""
+
+msgid "Liste des interprétations"
+msgstr ""
+
+msgid "Liste des albums du groupe"
+msgstr ""
+
+msgid "Liste des événements du groupe"
+msgstr ""
+
+msgid "Début de description"
+msgstr ""
+
+msgid "ENREGISTRER"
+msgstr ""
+
+msgid "Modifications en attente de validation"
+msgstr ""
+
+msgid "Statut"
+msgstr ""
+
+msgid "Dernières modifications validées"
+msgstr ""
+
+msgid "Non démarré"
 msgstr ""

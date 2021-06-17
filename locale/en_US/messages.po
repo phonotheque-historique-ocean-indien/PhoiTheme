@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CollectiveAccess Pawtucket2 Default Theme\n"
 "POT-Creation-Date: 2016-10-10 22:50-0400\n"
-"PO-Revision-Date: 2016-10-10 23:08-0400\n"
+"PO-Revision-Date: 2020-08-17 10:01+0200\n"
 "Last-Translator: Seth <Seth@collectiveacess.org>\n"
 "Language-Team: CollectiveAccess <info@collectiveaccess.org>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 2.4\n"
 "X-Poedit-Basepath: ../../views\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: _t\n"
@@ -154,7 +154,7 @@ msgstr ""
 #: Lightbox/form_add_set_item_html.php:60 Lightbox/form_set_info_html.php:56
 #: Lightbox/form_user_group_html.php:51 Lightbox/user_group_list_html.php:45
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: Classroom/form_set_info_html.php:62 Classroom/set_detail_html.php:383
 #: Lightbox/form_set_info_html.php:60 Lightbox/set_detail_html.php:328
@@ -203,8 +203,7 @@ msgstr ""
 
 #: Classroom/list_html.php:203 Classroom/set_detail_html.php:433
 #: Lightbox/set_list_html.php:204
-msgid ""
-"Really delete <strong><em>%1</em></strong>? This action cannot be undone."
+msgid "Really delete <strong><em>%1</em></strong>? This action cannot be undone."
 msgstr ""
 
 #: Classroom/set_access_html.php:40 Lightbox/set_access_html.php:39
@@ -274,8 +273,7 @@ msgstr ""
 
 #: Classroom/set_detail_html.php:229 Lightbox/set_detail_html.php:213
 msgid ""
-"Displaying %1 view because required data is not available to generate a %1 "
-"view"
+"Displaying %1 view because required data is not available to generate a %1 view"
 msgstr ""
 
 #: Classroom/set_detail_html.php:313 Lightbox/set_detail_html.php:295
@@ -341,7 +339,7 @@ msgstr ""
 
 #: Details/form_comments_html.php:13
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: Details/form_comments_html.php:13
 msgid "tags separated by commas"
@@ -391,18 +389,17 @@ msgstr ""
 msgid ""
 "Click and drag with the mouse to pan across the image. You can use the "
 "mousewheel or trackpad to zoom in or out of the image. \n"
-"\tThe <code>+</code> and <code>-</code> buttons and zoom slider bar at the "
-"top of viewer may also be used. The viewer displays the image at full "
-"resolution, loading \n"
+"\tThe <code>+</code> and <code>-</code> buttons and zoom slider bar at the top "
+"of viewer may also be used. The viewer displays the image at full resolution, "
+"loading \n"
 "\tdetail as you zoom. The more you zoom the more detail will be visible.\n"
 "\t"
 msgstr ""
 
 #: Details/viewer_help_html.php:12
 msgid ""
-"You may add text annotations to the image. Each annotation is associated "
-"with a point, rectangular or polygon area on the image. To create an "
-"annotation\n"
+"You may add text annotations to the image. Each annotation is associated with "
+"a point, rectangular or polygon area on the image. To create an annotation\n"
 "\tselect the point (line icon), rectangle or polygon tool from the tool bar, "
 "then click on the location you wish to annotate. "
 msgstr ""
@@ -410,26 +407,26 @@ msgstr ""
 #: Details/viewer_help_html.php:16
 msgid ""
 "For point annotations a line will appear connecting the location with a text "
-"box. The location will also be highlighted with a red translucent circle. "
-"You may drag both the point of the line and the text box to adjust position."
+"box. The location will also be highlighted with a red translucent circle. You "
+"may drag both the point of the line and the text box to adjust position."
 msgstr ""
 
 #: Details/viewer_help_html.php:19
 msgid ""
-"For rectangular annotations a rectangle will appear with a text box below "
-"and adjacent. Drag on the edges at the highlighted locations to resize the "
+"For rectangular annotations a rectangle will appear with a text box below and "
+"adjacent. Drag on the edges at the highlighted locations to resize the "
 "rectangle. Drag the rectangle on its interior to reposition it."
 msgstr ""
 
 #: Details/viewer_help_html.php:22
 msgid ""
 "For polygon annotations click \n"
-"\trepeatedly on the image to establish line segments at various locations "
-"for the polygon shape. The shape may have any number of points, and "
-"consequently sides. To complete the shape double-click\n"
-"\twhen placing the final point or click on the pan, rectangle or point "
-"tools. You can adjust the shape by clicking and dragging on any point. To "
-"move the shape, click and drag on the outline,\n"
+"\trepeatedly on the image to establish line segments at various locations for "
+"the polygon shape. The shape may have any number of points, and consequently "
+"sides. To complete the shape double-click\n"
+"\twhen placing the final point or click on the pan, rectangle or point tools. "
+"You can adjust the shape by clicking and dragging on any point. To move the "
+"shape, click and drag on the outline,\n"
 "\taway from any point. To remove a point click on it while holding down the "
 "option key. To add a point click on the outline, away from any point, while "
 "holding down the option key.\n"
@@ -742,8 +739,8 @@ msgstr ""
 
 #: LoginReg/form_reset_html.php:20
 msgid ""
-"You should receive the instructions within the hour. If you do not, contact "
-"us for assistance at "
+"You should receive the instructions within the hour. If you do not, contact us "
+"for assistance at "
 msgstr ""
 
 #: LoginReg/form_reset_html.php:29
@@ -760,8 +757,8 @@ msgstr ""
 
 #: LoginReg/form_reset_html.php:40
 msgid ""
-"Please confirm you have copied the provided link properly.  If you continue "
-"to have difficulty, contact us for assistance,"
+"Please confirm you have copied the provided link properly.  If you continue to "
+"have difficulty, contact us for assistance,"
 msgstr ""
 
 #: LoginReg/form_reset_html.php:48
@@ -778,8 +775,8 @@ msgstr ""
 
 #: LoginReg/form_reset_html.php:78
 msgid ""
-"To reset your password enter the e-mail address you used to register below. "
-"A message will be sent to the address with instructions on how to reset your "
+"To reset your password enter the e-mail address you used to register below. A "
+"message will be sent to the address with instructions on how to reset your "
 "password."
 msgstr ""
 
@@ -848,19 +845,19 @@ msgstr ""
 
 #: pageFormat/pageHeader.php:44
 msgid "User Profile"
-msgstr ""
+msgstr "Profil de l'utilisateur"
 
 #: pageFormat/pageHeader.php:45
 msgid "Logout"
-msgstr ""
+msgstr "Déconnexion"
 
 #: pageFormat/pageHeader.php:141
 msgid "Advanced Search"
-msgstr ""
+msgstr "Recherche avancée"
 
 #: pageFormat/pageHeader.php:142
 msgid "Gallery"
-msgstr ""
+msgstr "Galerie"
 
 #: system/configuration_error_install_html.php:36
 msgid ""
@@ -869,6 +866,309 @@ msgid ""
 "\t    General installation instructions can be found\n"
 "\t    <a href='http://wiki.collectiveaccess.org/index.php?"
 "title=Installation_(Pawtucket)' target='_blank'>here</a>.\n"
-"\t    For more specific hints on the existing issues please have a look at "
-"the messages below."
+"\t    For more specific hints on the existing issues please have a look at the "
+"messages below."
 msgstr ""
+
+msgid "Connexion"
+msgstr "Log in"
+
+msgid "Identifiant ou e-mail"
+msgstr "Username or email"
+
+msgid "Mot de passe"
+msgstr "Password"
+
+msgid "Pas encore de compte ? S'inscrire"
+msgstr "No Account Yet ? Create one"
+
+msgid "Mot de passe oublié ? Cliquer ici"
+msgstr "Forgot Your Password ? Click here"
+
+msgid "Année"
+msgstr "Year"
+
+msgid "Liste des pressages de cet album"
+msgstr "List of pressings for this album"
+
+msgid "Informations sur le pressage"
+msgstr "Pressing Info"
+
+msgid "Liste des items phonogrammes de ce pressage"
+msgstr "List of phonogram items for this pressing"
+
+msgid "Informations sur l'item phonogramme"
+msgstr "Phonogram Item Info"
+
+msgid "Médias attachés"
+msgstr "Attached Media"
+
+msgid "10 items les plus vus"
+msgstr "10 Most Viewed Items"
+
+msgid "10 items au hasard"
+msgstr "10 Random Items"
+
+msgid "Voir tous"
+msgstr "View All"
+
+msgid "Photos"
+msgstr "Photos"
+
+msgid "Sorry, your browser doesn't support embedded videos"
+msgstr "Désolé, votre navigateur ne prend pas en charge les vidéos intégrées"
+
+msgid "Enquêtes"
+msgstr "Surveys"
+
+msgid "Plage de temps"
+msgstr "Time Range"
+
+msgid "de"
+msgstr "from"
+
+msgid "à"
+msgstr "to"
+
+msgid "Mots-clés"
+msgstr "Keywords"
+
+msgid "Rechercher"
+msgstr "Search"
+
+msgid "Chercher"
+msgstr "Search"
+
+msgid "Type de collectage"
+msgstr "Type of collecting"
+
+msgid "Nature"
+msgstr "Nature"
+
+msgid "Type de support"
+msgstr "Type of support"
+
+msgid "genre"
+msgstr "genre"
+
+msgid "Fonds"
+msgstr "Fund"
+
+msgid "Corpus"
+msgstr "Corpus"
+
+msgid "Collectages"
+msgstr "Collections"
+
+msgid "Inscription"
+msgstr "Subscribe"
+
+msgid "Sur cette image, un seul cercle n'est pas fermé. Veuillez cliquer dessus."
+msgstr "On this picture only one circle is not closed. Please click on it."
+
+msgid "Impossible de trouver le cercle ouvert?"
+msgstr "Can't find the open circle?"
+
+msgid "Générer un autre captcha."
+msgstr "Generate another captcha."
+
+msgid "Enregistrement"
+msgstr "Recording"
+
+msgid "Début le"
+msgstr "Started"
+
+msgid "Fin le"
+msgstr "Ended"
+
+msgid "Identifiant"
+msgstr "Username"
+
+msgid "Ajouter un fonds"
+msgstr "Add a fund"
+
+msgid "Ajouter un corpus"
+msgstr "Add a corpus"
+
+msgid "Ajouter une enquête"
+msgstr "Add a survey"
+
+msgid "Ajouter un collectage"
+msgstr "Add a collection"
+
+msgid "audio"
+msgstr "audio"
+
+msgid "photo"
+msgstr "photo"
+
+msgid "video"
+msgstr "video"
+
+msgid "documents"
+msgstr "documents"
+
+msgid "Albums"
+msgstr "Albums"
+
+msgid "Pays"
+msgstr "Countries"
+
+msgid "Avec item"
+msgstr "With item"
+
+msgid "Producteur"
+msgstr "Producer"
+
+msgid "Groupes"
+msgstr "Groups"
+
+msgid "Titre"
+msgstr "Title"
+
+msgid "Labels"
+msgstr "Labels"
+
+msgid "N° catalogue"
+msgstr "Catalog #"
+
+msgid "Résultats albums"
+msgstr "Albums Results"
+
+msgid "Ajouter"
+msgstr "Add"
+
+msgid "Accueil"
+msgstr "Homepage"
+
+msgid "Articles"
+msgstr "Articles"
+
+msgid "publié par"
+msgstr "published by"
+
+msgid "Historique des modifications validées"
+msgstr "History of validated modifications"
+
+msgid "Concerne"
+msgstr "Concerns"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Proposée par"
+msgstr "Proposed by"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Nouveau"
+msgstr "New"
+
+msgid "trier par"
+msgstr "sort by"
+
+msgid "le plus récent"
+msgstr "the most recent"
+
+msgid "présentation par"
+msgstr "presentation by"
+
+msgid "vignettes"
+msgstr "thumbnails"
+
+msgid "En savoir plus"
+msgstr "Find out more"
+
+msgid "Charger plus de playlists"
+msgstr "Load more playlists"
+
+msgid "Expositions"
+msgstr "Exhibitions"
+
+msgid "Modifier"
+msgstr "Edit"
+
+msgid "Playlists associées"
+msgstr "Associated playlists"
+
+msgid "Voir l'exposition"
+msgstr "See the exhibition"
+
+msgid "Lire l'article"
+msgstr "Read the article"
+
+msgid "Auteur"
+msgstr "Author"
+
+msgid "liste"
+msgstr "list"
+
+msgid "résultats par page"
+msgstr "results per page"
+
+msgid "Ecouter le podcast"
+msgstr "Listen to the podcast"
+
+msgid "A l'écoute"
+msgstr "Listening"
+
+msgid "Album"
+msgstr "Album"
+
+msgid "Artiste"
+msgstr "Artist"
+
+msgid "Les partenaires"
+msgstr "Partners"
+
+msgid "Utilisateurs"
+msgstr "Users"
+
+msgid "Prénom"
+msgstr "Firstname"
+
+msgid "Nom"
+msgstr "Lastname"
+
+msgid "Droits"
+msgstr "Rights"
+
+msgid "Confiance"
+msgstr "Trust"
+
+msgid "Précédent"
+msgstr "Previous"
+
+msgid "Suivant"
+msgstr "Next"
+
+msgid "Biographie"
+msgstr "Biography"
+
+msgid "Liste des interprétations"
+msgstr "List of interpretations"
+
+msgid "Liste des albums du groupe"
+msgstr "List of the group's albums"
+
+msgid "Liste des événements du groupe"
+msgstr "List of the group's events"
+
+msgid "Début de description"
+msgstr "Beginning of the description"
+
+msgid "ENREGISTRER"
+msgstr "SAVE"
+
+msgid "Modifications en attente de validation"
+msgstr "Modifications awaiting validation"
+
+msgid "Statut"
+msgstr "Status"
+
+msgid "Dernières modifications validées"
+msgstr "Last modifications validated"
+
+msgid "Non démarré"
+msgstr "Not started"
