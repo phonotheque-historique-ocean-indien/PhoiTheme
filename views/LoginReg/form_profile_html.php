@@ -34,7 +34,6 @@
 	caUI.initUtils();
 
 </script>
-<h2>Profil</h2>
 <?php
 	if($va_errors["general"]){
 		print "<div class='alert alert-danger'>".$va_errors["general"]."</div>";
@@ -52,6 +51,9 @@
 		$va_profile_settings = $this->getVar("profile_settings");
 		if(is_array($va_profile_settings) and sizeof($va_profile_settings)){
 			foreach($va_profile_settings as $vs_field => $va_profile_element){
+				print $vs_field;
+				if($vs_field == "user_profile_confiance") continue;
+				if($vs_field == "user_profile_image") continue;
 				if($va_errors[$vs_field]){
 					print "<div class='alert alert-danger'>".$va_errors[$vs_field]."</div>";
 				}
@@ -64,14 +66,16 @@
 			print "<div class='alert alert-danger'>".$va_errors["password"]."</div>";
 		}		
 ?>
+<!--
 		<div class="form-group<?php print (($va_errors["password"]) ? " has-error" : ""); ?>">
 			<label for='password' class='col-sm-4 control-label'><?php print _t('Reset Password'); ?></label>
-			<div class="col-sm-7"><p class="help-block"><?php print _t("Only enter if you would like to change your current password"); ?></p><input type="password" name="password" size="40" class="form-control"  autocomplete="off" /></div><!-- end col-sm-7 -->
-		</div><!-- end form-group -->
+			<div class="col-sm-7"><p class="help-block"><?php print _t("Only enter if you would like to change your current password"); ?></p><input type="password" name="password" size="40" class="form-control"  autocomplete="off" /></div>
+		</div>
 		<div class="form-group<?php print (($va_errors["password"]) ? " has-error" : ""); ?>">
 			<label for='password2' class='col-sm-4 control-label'><?php print _t('Re-Type password'); ?></label>
-			<div class="col-sm-7"><input type="password" name="password2" size="40" class="form-control" /></div><!-- end col-sm-7 -->
-		</div><!-- end form-group -->
+			<div class="col-sm-7"><input type="password" name="password2" size="40" class="form-control" /></div>
+		</div>
+-->		
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-7">
 				<button type="submit" class="btn btn-default">Save</button>
@@ -93,6 +97,9 @@
 			e.preventDefault();
 			return false;
 		});
+    $("#ProfileForm button").on("click", function() {
+        location.reload();
+    });
 	});
 </script>
 <?php

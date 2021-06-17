@@ -53,7 +53,7 @@
 <?php
 	}
 ?>
-<h2>Inscription</h2>
+<h2><?php _p("Inscription"); ?></h2>
 	<form id="RegForm" action="<?php print caNavUrl($this->request, "", "LoginReg", "register"); ?>" class="form-horizontal" role="form" method="POST">
 	    <input type="hidden" name="crsfToken" value="<?php print caGenerateCSRFToken($this->request); ?>"/>
 
@@ -91,11 +91,11 @@
 		<input type="hidden" name="sum" value="<?php print $vn_sum; ?>">
 
 		<div class="elem-group">
-			<label for="captcha">Sur cette image, un seul cercle n'est pas fermé. Veuillez cliquer dessus.</label>
+			<label for="captcha"><?php _p("Sur cette image, un seul cercle n'est pas fermé. Veuillez cliquer dessus."); ?></label>
 			<img src="/captcha.php" alt="CAPTCHA" class="captcha-image">
 			<div>
 				<span class="refresh-captcha" style="line-height:20px;">
-					<p><img style="margin-bottom:-4px;border:none;" src="/reload.svg">Impossible de trouver le cercle ouvert ? Générer un autre captcha.
+					<p><img style="margin-bottom:-4px;border:none;" src="/reload.svg"><?php _p("Impossible de trouver le cercle ouvert ?"); ?><?php _p("Générer un autre captcha."); ?>
 				</span>
 			</div>
 
@@ -104,19 +104,19 @@
 			<input type="hidden" id="captcha-x" name="captcha_challenge_x">
 			<input type="hidden" id="captcha-y" name="captcha_challenge_y">
 		</div>
-		<button type="submit" class="button is-primary  is-fullwidth">Enregistrement</button>
+		<button type="submit" class="button is-primary  is-fullwidth"><?php _p("Enregistrement"); ?></button>
 
 	</form>
 </div><!-- end caFormOverlay -->
 <script type='text/javascript'>
 	jQuery(document).ready(function() {
 		jQuery('#RegForm').on('submit', function(e){		
-			jQuery('#caMediaPanelContentArea').load(
+			/*jQuery('#caMediaPanelContentArea').load(
 				'<?php print caNavUrl($this->request, '', 'LoginReg', 'register', null); ?>',
 				jQuery('#RegForm').serializeObject()
 			);
 			e.preventDefault();
-			return false;
+			return false;*/
 		});
 		$("img.captcha-image").on("click", function(event) {
 			var x = event.pageX - this.offsetLeft;
@@ -127,6 +127,9 @@
 			$("#submit").removeClass("disabled");
 			$("#submit").removeAttr("disabled");
 		});
+		$("input[name='pref_user_profile_confiance']").parent().parent().hide();
+		$("textarea[name='pref_user_profile_image']").parent().parent().hide();
+		$("input[name='pref_user_profile_date_creation']").parent().parent().hide();
 	});
 
 	var refreshButton = document.querySelector(".refresh-captcha");

@@ -35,7 +35,7 @@
 	}
 ?>
 			<div class="container">
-				<H2>Connexion</H2>
+				<H2><?php _p("Connexion"); ?></H2>
 			<form id="LoginForm" action="<?php print caNavUrl($this->request, "", "LoginReg", "login"); ?>" class="phoi-form-login" role="form" method="POST">
 				<?php
 				if($this->getVar("message")){
@@ -44,7 +44,7 @@
 				?>
 				<input type="hidden" name="crsfToken" value="<?php print caGenerateCSRFToken($this->request); ?>"/>
 				<div>
-				<label>Identifiant ou e-mail</label><br/>
+				<label><?php _p("Identifiant ou e-mail"); ?></label><br/>
 					<p class="control has-icons-left">
 						<input class="input" type="text" placeholder="identifiant" id="username" name="username" autocomplete="off" >
 						<span class="icon is-small is-left"><i class="fas fa-user"></i></span>
@@ -52,31 +52,31 @@
 				</div>
 
 				<div>
-				<label>Mot de passe</label>
+				<label><?php _p("Mot de passe"); ?></label>
 					<p class="control has-icons-left">
 						<input class="input" type="password" name="password" placeholder="Password">
 						<span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
 					</p>
 				</div>
 
-				<button class="button  is-primary is-fullwidth" type="submit">Connexion</button>
+				<button class="button  is-primary is-fullwidth" type="submit"><?php _p("Connexion"); ?></button>
 <?php
 				if($this->request->isAjax()){
 				
 					if (!$this->request->config->get(['dontAllowRegistrationAndLogin', 'dont_allow_registration_and_login']) && !$this->request->config->get('dontAllowRegistration')) {
 ?>
-					<a href="#" onClick="jQuery('#caMediaPanelContentArea').load('<?php print caNavUrl($this->request, '', 'LoginReg', 'registerForm', null); ?>');">Pas encore de compte ? S'inscrire</a>
+					<a href="#" onClick="jQuery('#caMediaPanelContentArea').load('<?php print caNavUrl($this->request, '', 'LoginReg', 'registerForm', null); ?>');"><?php _p("Pas encore de compte ? S'inscrire"); ?></a>
 					<br/>
 <?php
 					}
 ?>
-					<a href="#" onClick="jQuery('#caMediaPanelContentArea').load('<?php print caNavUrl($this->request, '', 'LoginReg', 'resetForm', null); ?>');">Mot de passe oublié ? Cliquer ici</a>
+					<a href="#" onClick="jQuery('#caMediaPanelContentArea').load('<?php print caNavUrl($this->request, '', 'LoginReg', 'resetForm', null); ?>');"><?php _p("Mot de passe oublié ? Cliquer ici"); ?></a>
 <?php
 				}else{
 					if (!$this->request->config->get(['dontAllowRegistrationAndLogin', 'dont_allow_registration_and_login']) && !$this->request->config->get('dontAllowRegistration')) {
-						print "<div>".caNavLink($this->request, "Pas encore de compte ? S'inscrire", "", "", "LoginReg", "registerForm", array())."</div>";
+						print "<div>".caNavLink($this->request, _t("Pas encore de compte ? S'inscrire"), "", "", "LoginReg", "registerForm", array())."</div>";
 					}
-					print "<div>".caNavLink($this->request, "Mot de passe oublié ? Cliquer ici", "", "", "LoginReg", "resetForm", array())."</div>";
+					print "<div>".caNavLink($this->request, _t("Mot de passe oublié ? Cliquer ici"), "", "", "LoginReg", "resetForm", array())."</div>";
 				}
 ?>
 					</div>
