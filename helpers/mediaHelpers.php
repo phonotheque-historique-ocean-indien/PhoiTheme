@@ -1,11 +1,11 @@
 <?php
 
-function RenderDropzone($vt_object) {
+function RenderDropzone($vt_object, $vb_isadmin=0) {
     global $g_request;
 
     $vt_user = $g_request->getUser();
     $vn_id = $vt_object->getPrimaryKey();
-    $vb_isadmin = $vt_user->hasGroupRole("admin");
+    $vb_isadmin = $vt_user->hasRole("admin");
 
     print "
 
@@ -29,7 +29,7 @@ Dropzone.options.myDropzone = {
           $.each(data, function(index, val) {
             var mockFile = { name: val.label, size: val.size };
             thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-            thisDropzone.options.thumbnail.call(thisDropzone, mockFile, val.path + \"/\" + val.name);
+            thisDropzone.options.thumbnail.call(thisDropzone, mockFile, val.path + \"/\" + val.name + '#' + index);
             thisDropzone.emit(\"complete\", mockFile);
             if(val.primary == '1') {
               window.primary_media = val.label;
@@ -95,6 +95,7 @@ $(document).ready(function() {
             callback: function(key, options) {
                 let filename = $(this).find('.dz-filename span').text();
                 let path = $(this).find('.dz-image img').attr('src');
+                let index = path.substring(path.indexOf('#')+1);
                 let repr = path.split(/[\\/]/).pop();
                 repr = repr.replace(/_pagewatermark\.jpg/,'');
                 repr_id = repr.split(/_/).pop();
@@ -103,7 +104,7 @@ $(document).ready(function() {
                 if(key == \"quit\") {
 		              return;
 	              } else if(key == \"apercu\") {
-                  $(this).find('.dz-image').toggleClass('fullscreen');
+                  gallery.view(index);
 	              } else if(key == \"protocole\") {
                   $('#protocol-filename').html(filename.replace(/(PNIP_[0-9](\.[0-9])?)/,\"<b>$1</b>\"));
                   let protocol = filename.replace(/.*(PNIP_[0-9](\.[0-9])?).*/,\"$1\");
@@ -154,7 +155,7 @@ print "
                 
                 print "
                 \"signaler un abus\": {name: \"Signaler un abus\", icon: \"fas fa-angry\"},
-                \"Supprimer\": {name: \"Supprimer\", icon: \"fas fa-trash\"},
+                ".($vb_isadmin ? "\"Supprimer\": {name: \"Supprimer\", icon: \"fas fa-trash\"}," : "")."
                 \"sep1\": \"---------\",
                 \"quit\": {name: \"Fermer\", icon: \"fas fa-times\"}
             }

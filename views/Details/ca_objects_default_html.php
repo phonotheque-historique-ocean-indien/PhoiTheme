@@ -34,6 +34,7 @@
 	$vn_share_enabled = 	$this->getVar("shareEnabled");
 	$vn_pdf_enabled = 		$this->getVar("pdfEnabled");
 	$vn_id =				$t_object->get('ca_objects.object_id');
+
 ?>
 
 <!-- ca_objects_default_html.php -->

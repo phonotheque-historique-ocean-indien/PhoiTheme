@@ -51,6 +51,8 @@
 			return 'https://www.youtube.com/embed/' . $youtube_id ;
 		}
 	}
+
+
 ?>
 
 <!-- ca_objects_Interpretation_html.php -->

@@ -25,18 +25,13 @@
  *
  * ----------------------------------------------------------------------
  */
-if($this->request->config->get("dont_approve_logins_on_registration")){
-	$vs_active_message = _t("<p>Your account will be activated after review.</p>");
-}
 
-print _t("<p>Thank you for registering for \"%1\". ".$vs_active_message."</p>
+print _t("Merci de vous être enregistré sur la PHOI")."<br/>".$vs_active_message."<br/><br/>";
 
-<p>As a member you can comment and tag items on the site.  You can also create your own sets from the collection and share your slide-shows with friends and colleagues.</p>
-
-<p>Regards,<br/>
-the Staff</p>
-
-", $this->request->config->get("app_display_name"));
-
-	print "<p>".$this->request->config->get("site_host")."</p>";
-?>
+print _t("Veuillez cliquer sur ce lien pour activer votre compte :<br/>");
+print "<a href='https://www.phoi.io/index.php/Phoi/Users/ValidateEmail/token/!!TOKEN!!/user_id/!!USER_ID!!' style='color:blue;text-decoration:underline'>Activer mon compte</a><br/>";
+print "<br/><br/>";
+print "Merci,<br/>
+L'équipe de la PHOI";
+print "<br/><br/>";
+print "<a href='https://www.phoi.io'>www.phoi.io</a>";

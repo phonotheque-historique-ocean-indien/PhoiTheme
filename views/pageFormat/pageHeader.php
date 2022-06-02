@@ -36,9 +36,15 @@
 	$url = $this->request->getRequestUrl();
 	$urlPart = explode("/", $url)[1];
 	switch($urlPart) {
+		case "Articles":
+			$partie = "chaude";
+			break;
 		case "Phoi" :
 		case "Thesaurus" :
 		case "Detail" :
+			$partie = "froide";
+			break;
+		case "Contribuer":
 			$partie = "froide";
 			break;
 		default :
@@ -48,10 +54,6 @@
 
 	$is_admin = false;
 	$is_logged_in = false;
-	if(!$this->request->user) {
-		header('Location: /');
-		exit();
-	}
 	
 	$roles= $this->request->user->get("ca_user_roles.code");
 	if(strpos($roles, "admin") !== false) {
@@ -90,7 +92,6 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Phonothèque Historique de l'Océan Indien</title>
 	<?php print MetaTagManager::getHTML(); ?>
 	<?php print AssetLoadManager::getLoadHTML($this->request); ?>
 
@@ -101,7 +102,7 @@
 			jQuery('#browse-menu').on('click mouseover mouseout mousemove mouseenter',function(e) { e.stopPropagation(); });
 		});
 	</script>
-	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.7.95/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.4.95/css/materialdesignicons.min.css">
 	<script src="https://kit.fontawesome.com/03715dce34.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.8.0/viewer.min.js" integrity="sha512-0Wn9X6EqYvivEQ+TqPycd7e2Py2FTP6ke9/v6CWFwg0+5G9lgRV4SyR7BApYriLL8dLB1OscA+8LrYA/X6wm3w==" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.8.0/viewer.min.css" integrity="sha512-i7JFM7eCKzhlragtp4wNwz36fgRWH/Zsm3GAIqqO2sjiSlx7nQhx9HB3nmQcxDHLrJzEBQJWZYQQ2TPfexAjgQ==" crossorigin="anonymous" />
@@ -109,11 +110,13 @@
 	<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.css" />
+
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">	
 </head>
@@ -121,49 +124,101 @@
 <div id="phoi-logo-top">
 	<div class="container" id="phoi-logo-container">
         <?php if($partie == "chaude"): ?>
-        <a href="/index.php"><img class="logo" src="<?php print ($partie == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+        <a href="/index.php"><img class="logo" src="<?= __CA_URL_ROOT__."/logo.png" ?>" /></a>
         <?php else : ?>
         <a href="/index.php/Phoi/Partenaires/Carte?partie=froide"><img class="logo" src="<?php print ($partie == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
         <?php endif; ?>
         <nav class="navbar pull-right user-and-lang">
-			<a class="navbar-item au-hasard" ><span class="icon" style="font-size:30px;"><i class="mdi mdi-play-circle-outline is-large"></i></span> Au hasard</a>
+		<a class="navbar-item au-hasard" ><span class="icon" style="font-size:30px;"><i class="mdi mdi-play-circle-outline is-large"></i></span> Au hasard</a>
             <?php if($this->request->isLoggedIn()): ?>
             <a class="navbar-item" href="/index.php/Phoi/MonEspace/Index"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-box-outline is-large"></i></span> Mon espace</a>
             <a class="navbar-item" href="/index.php/LoginReg/logout"><span class="icon" style="font-size:30px;"><i class="mdi mdi-logout is-large"></i></span> Déconnexion</a>
             <?php else : ?>
             <a class="navbar-item" href="/index.php/LoginReg/loginForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-login is-large"></i></span> Connexion</a>
             <a class="navbar-item" href="/index.php/LoginReg/registerForm"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-plus is-large"></i></span> Inscription</a>
-            <?php endif;
-	            if($lang=="si"):
-            ?>
-            <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href="?lang=si">SHIBUSHI</a>
-                <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-item" href="?lang=fr_FR">FRANÇAIS</a>
-                    <a class="navbar-item" href="?lang=en_US">ENGLISH</a>
-					<a class="navbar-item" href="?lang=my">MALAGASY</a>
-                </div>
-            </div>
-	        <?php elseif($lang=="en_US"): ?>
-            <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link" href="?lang=en_US">ENGLISH</a>
-                <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-item" href="?lang=fr_FR">FRANÇAIS</a>
-                    <a class="navbar-item" href="?lang=si">SHIBUSHI</a>
-					<a class="navbar-item" href="?lang=my">MALAGASY</a>
-                </div>
-            </div>
-	        <?php elseif($lang=="my"): ?>
-            <div class="navbar-item has-dropdown is-hoverable">
-					<a class="navbar-link" href="?lang=my">MALAGASY</a>
-                <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-item" href="?lang=fr_FR">FRANÇAIS</a>
-                    <a class="navbar-item" href="?lang=en_US">ENGLISH</a>
-                    <a class="navbar-item" href="?lang=si">SHIBUSHI</a>
-                </div>
-            </div>
-	        <?php else: ?>
-            <div class="navbar-item has-dropdown is-hoverable">
+            <?php endif; ?>
+
+			<?php if($partie == "chaude"): ?>
+			<div class="navbar-main-items" style="">
+					<!-- <a class="navbar-item"><span class="icon" style="font-size:30px;"><i class="mdi mdi-magnify is-large"></i></span></a> -->
+					<div class="navbar-item has-dropdown is-hoverable articles">
+						<a href="/index.php/Articles/Show/index" class="navbar-link articles">Articles</a>
+					</div>
+					<div class="navbar-item has-dropdown is-hoverable expositions">
+						<a class="navbar-link phonotheque" href="/index.php/Expositions/Show/index">Expositions</a>
+					</div>
+					<div class="navbar-item has-dropdown is-hoverable playlists">
+						<a class="navbar-link playlists" href="/index.php/Playlists/Show/index">Playlists</a>
+					</div>
+					<div class="navbar-item has-dropdown is-hoverable podcasts">
+						<a class="navbar-link podcasts" href="/index.php/Podcasts/Show/index">Podcasts</a>
+					</div>
+					<div class="navbar-item has-dropdown is-hoverable phonotheque">
+						<a class="navbar-link phonotheque">La Phonothèque</a>
+						<div class="navbar-dropdown is-boxed">
+							<a class="navbar-item" href="/index.php/Phonotheque/Partenaires">Les partenaires</a>
+							<a class="navbar-item" href="/index.php/Phonotheque/CGU">Le cadre juridique</a>
+							<a class="navbar-item" href="/index.php/Phonotheque/RevueDePresse">La revue de presse</a>
+							<a class="navbar-item" href="/index.php/Contact/Form">Contact</a>
+						</div>
+					</div>
+					<div class="navbar-item">
+						<div class="field is-grouped">
+							<p class="control bouton-archives">
+								<a class="button is-link" href="/index.php/Phoi/Partenaires/Carte?partie=froide">
+									<span class="icon">
+										<i class="mdi mdi-18px mdi-map-outline"></i>
+									</span>
+									<span>Archives</span></a>
+							</p>
+						</div>
+					</div>
+			</div>
+			<?php else : ?>
+				<div class="navbar-main-items" style="">
+				<a class="navbar-item" style="margin-right:30px" href="https://www.phoi.io/index.php/Phoi/Partenaires/Carte?partie=froide"><span class="icon" style="font-size:30px;"><i class="mdi mdi-map-search-outline is-large"></i></span></a>
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-link">Items</a>
+						<div class="navbar-dropdown is-boxed">
+							<a href="/index.php/Phoi/Phonogrammes/Search" class="navbar-item"><i class="mdi mdi-album is-large"></i> Phonogrammes</a>
+							<a href="/index.php/Phoi/Collectages/Search" class="navbar-item">Collectages</a>
+							<a href="/index.php/Phoi/Partitions/Search" class="navbar-item">Partitions</a>
+							<a href="/index.php/Phoi/Creations/Search" class="navbar-item">Créations musicales</a>
+							<a href="/index.php/Phoi/Interpretations/Search" class="navbar-item">Interprétations</a>
+							<a href="/index.php/Phoi/Personnes/Search" class="navbar-item">Personnes</a>
+							<a href="/index.php/Phoi/Groupes/Search" class="navbar-item">Groupes</a>
+							<a href="/index.php/Phoi/Livres/Search" class="navbar-item">Livres</a>
+						</div>
+					</div>
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a href="/index.php/Thesaurus/View/Index" class="navbar-link">
+							Thésaurus</a>
+											</div>
+<?php if($is_admin): ?>
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a href="/index.php/Phoi/Users/List" class="navbar-link">
+							Utilisateurs</a>
+					</div>
+<?php endif; ?>
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a href="/index.php/Phoi/Moderation/List" class="navbar-link">Contributions</a>
+
+					</div>
+					<div class="navbar-item">
+						<div class="field is-grouped">
+							<p class="control bouton-visite">
+								<a class="button is-danger" href="/index.php/Articles/Front/index?partie=chaude">
+                  <span class="icon">
+                    <i class="mdi mdi-18px mdi-calendar-text-outline"></i>
+                  </span>
+									<span>Visite</span></a>
+							</p>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
+
+            <div class="navbar-item navbar-lang has-dropdown is-hoverable">
                 <a class="navbar-link" href="?lang=fr_FR">FRANÇAIS</a>
                 <div class="navbar-dropdown is-boxed">
                     <a class="navbar-item" href="?lang=si">SHIBUSHI</a>
@@ -171,7 +226,6 @@
 					<a class="navbar-item" href="?lang=my">MALAGASY</a>
                 </div>
             </div>
-	        <?php endif; ?>
         </nav>
 	</div>
 </div>
@@ -181,27 +235,28 @@
 
 			<div id="navbarExampleTransparentExample" class="navbar-menu">
 				<div class="navbar-end">
-					<a class="navbar-item" href="https://dev.phoi.io/index.php/Phoi/Partenaires/Carte?partie=froide"><span class="icon" style="font-size:30px;"><i class="mdi mdi-map-search-outline is-large"></i></span></a>
+					<a class="navbar-item" style="margin-right:30px" href="https://www.phoi.io/index.php/Phoi/Partenaires/Carte?partie=froide"><span class="icon" style="font-size:30px;"><i class="mdi mdi-map-search-outline is-large"></i></span></a>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">Gestion des items</a>
+						<a class="navbar-link">Items</a>
 						<div class="navbar-dropdown is-boxed">
-							<a href="/index.php/Phoi/Phonogrammes/Search" class="navbar-item">Phonogrammes</a>
-							<a href="/index.php/Phoi/Collectages/Search" class="navbar-item">Collectages</a>
-							<a href="/index.php/Phoi/Partitions/Search" class="navbar-item">Partitions</a>
-							<a href="/index.php/Phoi/Creations/Search" class="navbar-item">Créations musicales</a>
-							<a href="/index.php/Phoi/Interpretations/Search" class="navbar-item">Interprétations</a>
-							<a href="/index.php/Phoi/Personnes/Search" class="navbar-item">Personnes/Groupes</a>
-							<a href="/index.php/Phoi/Livres/Search" class="navbar-item">Livres</a>
+							<a href="/index.php/Phoi/Phonogrammes/Search" class="navbar-item"><i class="mdi mdi-disc-player is-large"></i> Phonogrammes</a>
+							<a href="/index.php/Phoi/Collectages/Search" class="navbar-item"><i class="mdi mdi-microphone-variant is-large"></i>Collectages</a>
+							<a href="/index.php/Phoi/Partitions/Search" class="navbar-item"><i class="mdi mdi-playlist-music is-large"></i> Partitions</a>
+							<a href="/index.php/Phoi/Creations/Search" class="navbar-item"><i class="mdi mdi-music-box-multiple-outline is-large"></i> Créations musicales</a>
+							<a href="/index.php/Phoi/Interpretations/Search" class="navbar-item"><i class="mdi mdi-account-music is-large"></i> Interprétations</a>
+							<a href="/index.php/Phoi/Personnes/Search" class="navbar-item"><i class="mdi mdi-account is-large"></i> Personnes</a>
+							<a href="/index.php/Phoi/Groupes/Search" class="navbar-item"><i class="mdi mdi-account-group is-large"></i> Groupes</a>
+							<a href="/index.php/Phoi/Livres/Search" class="navbar-item"><i class="mdi mdi-book-open-variant is-large"></i>Livres</a>
 						</div>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a href="/index.php/Thesaurus/View/Index" class="navbar-link">
-							Gestion du thesaurus</a>
+							Thésaurus</a>
 											</div>
 <?php if($is_admin): ?>
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a href="/index.php/Phoi/Users/List" class="navbar-link">
-							Gestion des utilisateurs</a>
+							Utilisateurs</a>
 					</div>
 <?php endif; ?>
 					<div class="navbar-item has-dropdown is-hoverable">
@@ -222,6 +277,7 @@
 				</div>
 
 			</div>
+			<a id="logo-responsive" href="/index.php"><img src="/logo-white2.png"></a>
 			<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
@@ -233,7 +289,6 @@
 <?php else: ?>
 	<nav class="navbar navbar-chaude navbar-main" style="z-index:50 !important;">
 		<div class="container">
-
 			<div id="navbarExampleTransparentExample" class="navbar-menu">
 				<div class="navbar-end">
 					<!-- <a class="navbar-item"><span class="icon" style="font-size:30px;"><i class="mdi mdi-magnify is-large"></i></span></a> -->
@@ -248,11 +303,6 @@
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable podcasts">
 						<a class="navbar-link podcasts" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Podcasts/Show/index"><?php _p("Podcasts"); ?></a>
-<!--	Dropdown menu for Podcasts is not needed for the moment
-                            <div class="navbar-dropdown is-boxed">-->
-<!--							<a class="navbar-item">Connexion</a>-->
-<!--							<a class="navbar-item">Espace personnel</a>-->
-<!--						</div>-->
 					</div>
 
 
@@ -262,6 +312,7 @@
 							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/Partenaires">Les partenaires</a>
 							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/CGU">Le cadre juridique</a>
 							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/RevueDePresse">La revue de presse</a>
+							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Contact/Form">Contact</a>
 						</div>
 					</div>
 					<div class="navbar-item">
@@ -278,6 +329,7 @@
 				</div>
 
 			</div>
+			<a id="logo-responsive" href="/index.php"><img src="/logo.png"></a>
 			<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
@@ -291,28 +343,38 @@
 	var menuShrinked = false;
 	var menuShrinking = false;
 	$(window).scroll(function () {
-		var elem = $('#phoi-logo-container');
-        var elem2 = $('nav.user-and-lang');
-		$(window).scroll(function() {
-			if(!menuShrinked && (window.scrollY > 0) && (!menuShrinking)) {
-				elem.addClass("phoi-logo-shrinked");
-				elem2.addClass("user-and-lang-shrinked");
-				menuShrinking=true;
-				elem.animate({"height":"50px"}, 1000, function() {
-					menuShrinking=false;
-				});
-				menuShrinked=true;
-			};
-			if(menuShrinked && (window.scrollY == 0) && (!menuShrinking)) {
-				menuShrinked=false;
-				elem.removeClass("phoi-logo-shrinked");
-                elem2.removeClass("user-and-lang-shrinked");
-				menuShrinking=true;
-				elem.animate({"height":"157px"}, 1000, function() {
-					menuShrinking=false;
-				});
-			}
-		});
+		if($(window).width()>1024) {
+			console.log("$(window).scroll", $(window).width());
+			var elem = $('#phoi-logo-container');
+			var elem2 = $('nav.user-and-lang');
+			$(window).scroll(function() {
+				if(!menuShrinked && (window.scrollY > 0) && (!menuShrinking)) {
+					elem.addClass("phoi-logo-shrinked");
+					elem2.addClass("user-and-lang-shrinked");
+					menuShrinking=true;
+					elem.animate({"height":"50px"}, 1000, function() {
+						menuShrinking=false;
+					});
+					menuShrinked=true;
+				};
+				if(menuShrinked && (window.scrollY == 0) && (!menuShrinking)) {
+					menuShrinked=false;
+					elem.removeClass("phoi-logo-shrinked");
+					elem2.removeClass("user-and-lang-shrinked");
+					menuShrinking=true;
+					elem.animate({"height":"157px"}, 1000, function() {
+						menuShrinking=false;
+					});
+				}
+			});
+		}
+	});
+
+	$(document).ready(function() {
+		if($(window).width()<1024) {
+			$('#phoi-logo-container').addClass("phoi-logo-shrinked");
+			$('nav.user-and-lang').addClass("user-and-lang-shrinked");
+		}
 	});
 
 	$(".navbar-burger").click(function() {
@@ -320,15 +382,15 @@
 		// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
 		$(".navbar-burger").toggleClass("is-active");
 		$(".navbar-menu").toggleClass("is-active");
-
+		$("nav.user-and-lang").slideToggle();
 	});
 
 	var playlistLoadTrack = function(name, url, image, artist="", album="") {
         //loadTrack(name, url, image=null, artist="", album="")
         if(artist == "") artist="playlist";
         if(album == "") album="Playlist PHOI";
-		parent.loadTrack(name, url, image, artist, album);
-		parent.playTrack();
+		parent.parent.loadTrack(name, url, image, artist, album);
+		parent.parent.playTrack();
 	}
 
 	$(".navbar-burger").click(function() {

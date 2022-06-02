@@ -35,6 +35,7 @@ $vn_pdf_enabled = 		$this->getVar("pdfEnabled");
 $vn_id =				$t_object->get('ca_objects.object_id');
 $type =                 strtolower($t_object->getTypeCode());
 
+
 ?>
 <!-- ca_objects_collectage_audio_html.php -->
 <!--

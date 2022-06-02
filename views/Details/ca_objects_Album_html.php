@@ -26,6 +26,7 @@
  * ----------------------------------------------------------------------
  */
 
+
     $t_object = $this->getVar('item');
     //$t_object = new ca_objects(130);
     $va_comments = $this->getVar('comments');
@@ -35,29 +36,55 @@
     $vn_pdf_enabled = $this->getVar('pdfEnabled');
     $vn_id = $t_object->get('ca_objects.object_id');
     $type = $t_object->getTypeCode();
-	$vb_isadmin = $this->request->user->hasGroupRole("admin");
+	$vb_isadmin = $this->request->user->hasRole("admin");
+	$vb_iscontrib = $this->request->user->hasRole("1") || $this->request->user->hasRole("2") || $this->request->user->hasRole("3") || $this->request->user->hasRole("4") || $this->request->user->hasRole("5");
 
 	require_once(__CA_THEME_DIR__."/helpers/mediaHelpers.php");
 
 	error_reporting(E_ERROR);
+
+	MetaTagManager::addMetaProperty("og:url", "https://www.phoi.io/index.php/Detail/objects/".$vn_id);
+	MetaTagManager::addMetaProperty("og:type", "website");
+	$description = $t_object->get("ca_objects.notes");
+	if(!str_replace(";","",$description)) {
+		$description = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' restrictToTypes='Enregistrement' delimiter=' ; '>^ca_objects.preferred_labels</unit>");
+	}
+	MetaTagManager::addMetaProperty("og:description", $description);
+	$title = str_replace("\n"," ",$t_object->get("ca_objects.preferred_labels"));
+	MetaTagManager::setWindowTitle($title);
+	MetaTagManager::addMetaProperty("og:title", $title);
+	MetaTagManager::addMetaProperty("og:image:alt", $title);
+	MetaTagManager::addMetaProperty("og:image", $t_object->get("ca_object_representations.media.pagewatermark.url"));
+
+	$default_item = 0;
+	$default_item_idno="";
 ?>
 
 <script src="/viewer.js"></script><!-- Viewer.js is required -->
 <link  href="/viewer.css" rel="stylesheet">
 <script src="/jquery-viewer.js"></script>
-
-<!-- ca_objects_Phonogramme_html.php -->
+<?php
+// sanitize page name for browse tab
+$browser_tab_label = $t_object->get('ca_objects.preferred_labels.name');
+$browser_tab_label = str_replace(["\n","\t"], "", $browser_tab_label);
+$browser_tab_label = str_replace("'", "‘", $browser_tab_label);
+?>
+<script>
+	window.parent.history.pushState('', "<?= $browser_tab_label ?>", 'https://www.phoi.io/index.php/Detail/objects/<?= $vn_id ?>');
+	window.parent.document.title = "<?= $browser_tab_label ?>";
+</script>
+<!-- ca_objects_Album_html.php -->
 <h1 class="titre-phonogramme">{{{^ca_objects.preferred_labels.name}}}</h1>
 <div class="columns">
-  <div class="column is-one-third">
+  <div class="column is-one-quarter">
 	<div class="card infosprincipales">
 	  <header class="card-header">
 	    <p class="card-header-title">
 	      <?php _p('Description'); ?>
 	    </p>
-          <a href="<?php echo __CA_URL_ROOT__; ?>/index.php/Contribuer/Do/EditForm/table/ca_objects/type/<?php echo $type; ?>/id/<?php echo $vn_id; ?>" class="card-header-icon" aria-label="edit" style="/* display: none; */">
+          <a href="<?php echo __CA_URL_ROOT__; ?>/index.php/Contribuer/Do/EditForm/table/ca_objects/type/<?php echo $type; ?>/id/<?php echo $vn_id; ?>" class="card-header-icon" aria-label="edit">
             <span class="icon">
-                <i class="mdi mdi-pencil is-large"></i>
+                <i class="	 mdi-pencil is-large"></i>
             </span>
           </a>
 	  </header>
@@ -84,6 +111,7 @@
 	    <div class="content">
 		    <div class="card-content-item">
 				<p>{{{<unit relativeTo="ca_entities" restrictToRelationshipTypes="label">^ca_entities.preferred_labels</unit>}}}, {{{^ca_objects.num_edition}}}, {{{^ca_objects.date}}}</p>
+<?php if($vb_iscontrib): ?>				
 			    <div class="icon-group">
 				    <a href="#" class="card-content-icon" aria-label="delete">
 					    <span class="icon">
@@ -96,6 +124,7 @@
 						</span>
 				    </a>
 			    </div>
+<?php endif; ?>				
 		    </div>
 	    </div>
 	  </div>
@@ -189,15 +218,31 @@
 		    </ifdef>}}}
 		    <table class='info_pressage_pistes'>
 <?php
-                        $children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit>");
+                        $children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' sort='ca_objects.face;ca_objects.num_piste;ca_objects.preferred_labels.name' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit>");
                         $children = explode(';', $children);
-                        $template1 = "<tr><td style='border:0;'>!!index!!.	^ca_objects.preferred_labels.name</td><td style='border:0;'>^ca_objects.duree</td></tr>";
+                        $template1 = "<tr><td style='border:0;' class='partie_titre'>
+							<div style='display:inline-block;float:left;margin-right:4px;'>
+							<ifdef code='ca_objects.face'><span class='tag is-white face'>Face ^ca_objects.face</span></ifdef>
+							<ifdef code='ca_objects.num_piste'><span class='tag is-light piste'>^ca_objects.num_piste</span></ifdef> 
+							</div>
+							<span class='tag is-white'><l>^ca_objects.preferred_labels.name</l></span>
+						</td>
+						<td style='border:0;'>^ca_objects.duree</td>
+						<td style='border:0'>
+							<a href='/index.php/Contribuer/Do/EditForm/table/ca_objects/type/Enregistrement/id/^ca_objects.object_id' class='card-header-icon' aria-label='edit'>
+								<span class='icon'>
+									<i class='mdi mdi-pencil is-large'></i>
+								</span>
+							</a>
+					  	</td></tr>";
 						$template2 = "<unit relativeTo='ca_entities' delimiter=' ; '><l>^ca_entities.preferred_labels</l>|^relationship_typename</unit>";
                         $i = 0;
                         foreach ($children as $key => $child_id) {
                             ++$i;
                             $vt_object = new ca_objects($child_id);
-                            echo str_replace('!!index!!', $i, $vt_object->getWithTemplate($template1));
+							//$temp = str_replace('!!index!!', $i, $vt_object->getWithTemplate($template1));
+							$temp = $vt_object->getWithTemplate($template1);
+                            echo $temp;
 							$result2 = $vt_object->getWithTemplate($template2);
 							$result2 = explode(" ; ", $result2);
 							$results = [];
@@ -232,41 +277,39 @@
 			<div class="card-content-item">
 			<div>
 <?php
-                        $children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children'>^ca_objects.object_id</unit>");
+                        $children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' >^ca_objects.object_id</unit>");
                         $children = explode(';', $children);
-                        $template1 = "<div style=''><a href='/index.php/Detail/objects/^ca_objects.object_id'>^ca_objects.idno</a></div>";
+                        $template1 = "<div style=''><l>^ca_objects.idno</l> <ifdef code='ca_objects.num_disque'>support ^ca_objects.num_disque</ifdef></div>";
                         $i = 0;
                         foreach ($children as $key => $child_id) {
                             ++$i;
                             $vt_object = new ca_objects($child_id);
-							if($vt_object->get("ca_objects.type_id") == 27) 
-                            echo $vt_object->getWithTemplate($template1);
+							if($vt_object->get("ca_objects.type_id") == 27) {
+								if(!$default_item) {
+									$default_item = $child_id;
+									$default_item_idno = $vt_object->getWithTemplate("^ca_objects.idno");
+									//var_dump($default_item_idno);die();
+								}
+								echo $vt_object->getWithTemplate($template1);
+							}
+
+                            	
 						}
 ?>				
 </div>
-				<div class="icon-group">
-					<a href="#" class="card-content-icon" aria-label="delete">
-						<span class="icon">
-							<i class="mdi mdi-close is-large"></i>
-						</span>
-					</a>
-					<a href="#" class="card-content-icon" aria-label="edit">
-						<span class="icon">
-							<i class="mdi mdi-pencil is-large"></i>
-						</span>
-					</a>
-				</div>
 			</div>
 	    </div>
 	  </div>
 	</div>
   </div>
 
-  <div class="column">
-    <div class="card">
+  <div class="column is-three-fifths">
+	  {{{
+		  <unit relativeTo="ca_objects.children">
+  <div class="card">
 	  <header class="card-header">
 	    <p class="card-header-title">
-	      <?php _p("Informations sur l'item phonogramme"); ?>
+	      <?php _p("Informations sur l'item phonogramme"); ?> ^ca_objects.idno
 	    </p>
           <a href="<?php echo __CA_URL_ROOT__; ?>/index.php/Contribuer/Do/EditForm/table/ca_objects/type/<?php echo $type; ?>/id/<?php echo $vn_id; ?>" class="card-header-icon" aria-label="edit" style="/* display: none; */">
             <span class="icon">
@@ -277,53 +320,67 @@
 	  </header>
 	  <div class="card-content">
 	    <div class="content content-infos-phonogramme">
-		    <p>Langue principale : {{{^ca_objects.locale_main}}}</p>
-			{{{<p>Label : 
-				<unit relativeTo="ca_entities" restrictToRelationshipTypes="label"><l>^ca_entities.preferred_labels</l></unit></p>
-			<p>Auteur : 
-				<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><l>^ca_entities.preferred_labels</l></unit></p>
-			<p>Compositeur : 
-				<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><l>^ca_entities.preferred_labels</l></unit></p>
-			<p>Producteur : 
-				<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><l>^ca_entities.preferred_labels</l></unit></p>}}}
-			<p>Format : {{{^ca_objects.format}}}</p>
-		    {{{<ifdef code="duree"><p>Durée : ^ca_objects.duree</p></ifdef>}}}
-		    {{{<ifdef code="creation_couv"><p>Création maquette : ^ca_objects.creation_couv</p></ifdef>}}}
-			<p>Genre : {{{^ca_objects.genre}}}</p>		    
-		    {{{<ifdef code="auteur_textes"><p>Auteur des textes : ^ca_objects.auteur_textes</p></ifdef>}}}
+			<unit relativeTo="ca_objects.parent"><p>Langue principale : ^ca_objects.locale_main</p>
+				
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><p>Auteur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><p>Compositeur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><p>Producteur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+			<p>Format : ^ca_objects.format</p>
+		    <ifdef code="duree"><p>Durée : ^ca_objects.duree</p></ifdef>
+		    <ifdef code="creation_couv"><p>Création maquette : ^ca_objects.creation_couv</p></ifdef>
+		    <ifdef code="auteur_textes"><p>Auteur des textes : ^ca_objects.auteur_textes</p></ifdef></unit>
+
+			<p>Langue principale : ^ca_objects.locale_main</p>
+				
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><p>Auteur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><p>Compositeur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><p>Producteur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+		    <ifdef code="duree"><p>Durée : ^ca_objects.duree</p></ifdef>
+			<ifdef code="pays_liste"><p>Pays : ^ca_objects.pays_liste</p></ifdef>
+		    <ifdef code="creation_couv"><p>Création maquette : ^ca_objects.creation_couv</p></ifdef>
+			<p>Genre : ^ca_objects.genre</p>		    
+			<p>Fonds : <unit relativeTo="ca_entities" restrictToRelationshipTypes="fonds"><l>^ca_entities.preferred_labels</l></unit></p>		    			    
+			<p>N° support : ^ca_objects.num_disque</p>		    
+			<p>Pressage : ^ca_objects.Pressage</p>		    
+		    <ifdef code="auteur_textes"><p>Auteur des textes : ^ca_objects.auteur_textes</p></ifdef>
 	    </div>
 	  </div>
 	</div>
-
+	</unit>
+	  }}}
 	<div class="card">
 	  <header class="card-header">
 	    <p class="card-header-title">
-	      <?php _p('Tags'); ?>
+	      <?php _p('Tags');?>
 	    </p>
+		<a onClick="$('#iframetags').toggle();$('#ultags').toggle();" class="card-header-icon" aria-label="edit" style="display: none;">
+            <span class="icon">
+                <i class="mdi mdi-pencil is-large"></i>
+            </span>
+		</a>
+
+		
 	  </header>
 	  <div class="card-content" style="">
 	    <div class="content">
-		    <uL>
+		    <uL id='ultags'>
 			    {{{<unit relativeTo='ca_objects.tag' delimiter=' '>
-			    	<li style='display:inline-block;'>
+				<li style='display:inline-block;'>
 			    	<div class="card-content-item">
-					<p class="tag"><a href="/index.php/Thesaurus/View/Index?tag=<?= $t_object->get("ca_objects.tag")?>">^ca_objects.tag</a></p>
-						<div class="icon-group">
-							<a href="#" class="card-content-icon" aria-label="delete">
-								<span class="icon">
-									<i class="mdi mdi-close is-large"></i>
-								</span>
-							</a>
-							<a href="#" class="card-content-icon" aria-label="edit">
-								<span class="icon">
-									<i class="mdi mdi-pencil is-large"></i>
-								</span>
-							</a>
-						</div>
+						<p class="tag"><a href="/index.php/Thesaurus/View/Index?tag=^ca_objects.tag.item_id">^ca_objects.tag</a></p>
 					</div>
 			    </li>
 			    </unit>}}}
 		    </uL>
+
+			<iframe src="/index.php/Contribuer/Tags/Index/id/<?= $vn_id ?>" id="iframetags" style="display:none;min-height:200px;min-width:100%;" ></iframe>
+
 	    </div>
 	  </div>
 	</div>
@@ -333,20 +390,14 @@
 	  	<header class="card-header">
 			<div class="card-header-title">
 				<div class="player-icons">
-					<span class="icon">
-						<i class="mdi mdi-play is-large" onclick="$('#soundplayer')[0].play();"></i>
+					<span class="icon has-tooltip-arrow has-tooltip-right" data-tooltip="lecture">
+						<i class="mdi mdi-play is-large has-text-grey-light" onclick="window.parent.pauseTrack();$('#soundplayer')[0].play();"></i>
 					</span>
-					<span class="icon">
-						<i class="mdi mdi-stop is-large" onclick="$('#soundplayer')[0].pause();$('#soundplayer')[0].currentTime = 0"></i>
+					<span class="icon has-tooltip-arrow has-tooltip-right" data-tooltip="stop">
+						<i class="mdi mdi-stop is-large has-text-grey-light" onclick="window.parent.pauseTrack();$('#soundplayer')[0].pause();$('#soundplayer')[0].currentTime = 0"></i>
 					</span>
-					<span class="icon">
-						<i class="mdi mdi-playlist-plus is-large" onclick="addToPlaylist()"></i>
-					</span>
-					<span class="icon">
-						<i class="mdi mdi-skip-previous is-large has-text-grey-light"></i>
-					</span>
-					<span class="icon">
-						<i class="mdi mdi-skip-next is-large has-text-grey-light"></i>
+					<span class="icon has-tooltip-arrow has-tooltip-right" data-tooltip="ajouter à la playlist">
+						<i class="mdi mdi-playlist-plus is-large has-text-grey-light" onclick="addToPlaylist()"></i>
 					</span>
 				</div>
 				<div class="column is-three-quarters is-centered">
@@ -368,7 +419,7 @@ function upload_file(e, id) {
     e.preventDefault();
     fileobj = e.dataTransfer.files[0];
     ajax_file_upload(fileobj, id);
-	alert("File uploaded");
+	$("body").append('<div class="modal is-active"><div class="modal-background"></div><div class="modal-content" style="z-index:5000;background-color:white;padding:70px;position:absolute;top:240px;width:400px;text-align:center;margin:auto;">Uploading... please wait</div></div>');
 }
  
 function ajax_file_upload(file_obj, id) {
@@ -395,9 +446,9 @@ function ajax_file_upload(file_obj, id) {
 					<button class="button is-primary is-small is-info is-light" onclick="playlistLoad()"><i class="mdi mdi-chevron-double-down is-large"></i> Ecouter tout ensuite</button>
 					<button class="button is-primary is-small is-info is-light" onclick="addEndOfPlaylistAndPlay()"><i class="mdi mdi-playlist-plus is-large"></i> Ajouter à ma playlist</button>
 					
-					<ol type="1">
+					<ul style="padding:8px 0;">
                         <?php
-                        $children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit>");
+                        $children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' sort='ca_objects.face;ca_objects.num_piste;ca_objects.preferred_labels.name' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit>");
                         $num_media = sizeof($children);
                         $children = explode(';', $children);
                         $template =
@@ -406,14 +457,22 @@ function ajax_file_upload(file_obj, id) {
 	<ifnotdef code='ca_object_representations.media.mp3.url'><div class='disabled'></ifnotdef>
 	<div class='card-content-item 
 		<ifnotdef code=\"ca_object_representations.media.mp3.url\">track-card-content-item</ifnotdef> 
-		<ifdef code=\"ca_object_representations.media.mp3.url\">alreadytrack-card-content-item</ifdef>
+		<ifdef code=\"ca_object_representations.media.mp3.url\">alreadytrack-card-content-item has-mp3</ifdef>
 		'
 		ondrop='<ifnotdef code=\"ca_object_representations.media.mp3.url\">upload_file(event, ^ca_objects.object_id)</ifnotdef> '
 		ondragover='return false'>
-		<p class='trackname' data-filename='^ca_object_representations.preferred_labels' data-representation='^ca_object_representations.representation_id' onclick='loadTrack(\"^ca_objects.preferred_labels.name\",\"^ca_object_representations.media.mp3.url \");'><ifdef code='face'><span class=\"tag is-light\">^ca_objects.face</span></ifdef> ^ca_objects.preferred_labels.name !!SAMPLE_BUTTON!!</p>
-		<div class='icon-group'>
+		<p class='trackname' data-mp3='^ca_object_representations.media.mp3.url' 
+			data-filename='^ca_object_representations.preferred_labels' 
+			data-object='^ca_objects.object_id' 
+			data-representation='^ca_object_representations.representation_id' 
+			onclick='loadTrack(\"!!TITLE!!\",\"^ca_object_representations.media.mp3.url \", \"^ca_object_representations.representation_id\");'>
+			<ifdef code='face'><span class=\"tag is-light\">^ca_objects.face</span></ifdef>
+			<ifdef code='ca_objects.num_piste'><span class='tag is-white piste'>^ca_objects.num_piste</span></ifdef> 
+				^ca_objects.preferred_labels.name
+		</p>
+		<div class='icon-group'> 
 			^ca_objects.duree
-			<a href='#' class='card-content-icon' aria-label='info'>
+			<a href='#' class='card-content-icon card-content-icon-info-track' aria-label='info'>
 				<span class='icon'>
 					<i class='trackname-info mdi mdi-information is-large'></i>
 				</span>
@@ -422,20 +481,53 @@ function ajax_file_upload(file_obj, id) {
 	</div>	
 	<ifnotdef code='ca_object_representations.media.mp3.url'></div></ifnotdef>	
 </li>";
-						if($vb_isadmin) {
-							$template = str_replace("!!SAMPLE_BUTTON!!", "<a href='".__CA_URL_ROOT__."/index.php/AudioSample/Object/Clone/id/^ca_objects.object_id' class='keep-sample'>EXTRAIT 30s</a>", $template);
-						} else {
-							$template = str_replace("!!SAMPLE_BUTTON!!", "", $template);
-						}
+
                         foreach ($children as $key => $child_id) {
                             $vt_object = new ca_objects($child_id);
-                            echo $vt_object->getWithTemplate($template);
+							$titre =  $vt_object->getWithTemplate("^ca_objects.preferred_labels.name");
+							$titre = trim(str_replace(["\n", "\t", "  "], " ", $titre));
+							$titre = str_replace(['"',"'"], "´", $titre);
+
+                            echo $vt_object->getWithTemplate(str_replace("!!TITLE!!", $titre, $template));
                         }
                         ?>
 
 					</ol>
 <script>
+	$(document).ready(function() {
+		if($(".has-mp3").length > 0) {
+			$(".player-list button").show();
+		}
+	});
+
 	function playlistLoadAndPlay() {
+		console.log("playlistLoadAndPlay");
+        parent.loadPlaylist([
+            <?php
+			$children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit>");
+			$num_media = sizeof($children);
+			$children = explode(';', $children);
+			$children = array_reverse($children, true);
+			$vt_parent = $t_object;
+            foreach ($children as $key => $child_id) {
+				$vt_object = new ca_objects($child_id);
+				//echo $vt_object->getWithTemplate($template);
+				$media_url = $vt_object->getWithTemplate("^ca_object_representations.media.mp3.url");
+				if(!$media_url) continue;
+				$album = addslashes($vt_parent->getWithTemplate("<l>^ca_objects.preferred_labels.name</l>"));
+				$album = str_replace("\n", " ", $album);
+				print "{name:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_object_representations'><l>^ca_objects.preferred_labels.name</l></unit>"))."\",".
+					"url:\"".addslashes($media_url)."\",".
+					"image:\"".addslashes($t_object->getWithTemplate("^ca_object_representations.media.large.url"))."\",".
+					"artist:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_entities' restrictToRelationshipTypes='interprete'><l>^ca_entities.preferred_labels</l></unit>"))."\",".
+					"album:\"".$album."\"},";
+			}
+            ?>
+        ]);
+		parent.playTrack();
+    }
+
+	function playlistLoad() {
 		console.log("playlistLoad");
         parent.loadPlaylist([
             <?php
@@ -443,16 +535,22 @@ function ajax_file_upload(file_obj, id) {
 			$num_media = sizeof($children);
 			$children = explode(';', $children);
 			$children = array_reverse($children, true);
+			$vt_parent = $t_object;
             foreach ($children as $key => $child_id) {
 				$vt_object = new ca_objects($child_id);
 				//echo $vt_object->getWithTemplate($template);
 				$media_url = $vt_object->getWithTemplate("^ca_object_representations.media.mp3.url");
 				if(!$media_url) continue;
-				print "{name:\"".$vt_object->getWithTemplate("^ca_objects.preferred_labels.name")."\",url:\"".addslashes($media_url)."\",image:\"".$t_object->getWithTemplate("^ca_object_representations.media.large.url")."\",artist:\"".$vt_object->getWithTemplate("<unit relativeTo='ca_entities' restrictToRelationshipTypes='interprete'>^ca_entities.preferred_labels</unit>")."\", album:\"{{{^ca_objects.preferred_labels.name}}}\"},\n";
+				$album = addslashes($vt_parent->getWithTemplate("<l>^ca_objects.preferred_labels.name</l>"));
+				$album = str_replace("\n", " ", $album);
+				print "{name:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_object_representations'><l>^ca_objects.preferred_labels.name</l></unit>"))."\",".
+					"url:\"".addslashes($media_url)."\",".
+					"image:\"".addslashes($t_object->getWithTemplate("^ca_object_representations.media.large.url"))."\",".
+					"artist:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_entities' restrictToRelationshipTypes='interprete'><l>^ca_entities.preferred_labels</l></unit>"))."\",".
+					"album:\"".$album."\"},";
 			}
             ?>
         ]);
-		parent.playTrack();
     }
 
 	function addEndOfPlaylistAndPlay() {
@@ -462,17 +560,25 @@ function ajax_file_upload(file_obj, id) {
 			$children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit>");
 			$num_media = sizeof($children);
 			$children = explode(';', $children);
+			$vt_parent = $t_object;
+			$album = addslashes($vt_parent->getWithTemplate("<l>^ca_objects.preferred_labels.name</l>"));
+			$album = str_replace("\n", " ", $album);
+
 			//$children = array_reverse($children, true);
             foreach ($children as $key => $child_id) {
 				$vt_object = new ca_objects($child_id);
 				//echo $vt_object->getWithTemplate($template);
 				$media_url = $vt_object->getWithTemplate("^ca_object_representations.media.mp3.url");
 				if(!$media_url) continue;
-				print "{name:\"".$vt_object->getWithTemplate("^ca_objects.preferred_labels.name")."\",url:\"".addslashes($media_url)."\",image:\"".$t_object->getWithTemplate("^ca_object_representations.media.large.url")."\",artist:\"".$vt_object->getWithTemplate("<unit relativeTo='ca_entities' restrictToRelationshipTypes='interprete'>^ca_entities.preferred_labels</unit>")."\", album:\"{{{^ca_objects.preferred_labels.name}}}\"},\n";
+				print "{name:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_object_representations'><l>^ca_objects.preferred_labels.name</l></unit>"))."\",".
+					"url:\"".addslashes($media_url)."\",".
+					"image:\"".addslashes($t_object->getWithTemplate("^ca_object_representations.media.large.url"))."\",".
+					"artist:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_entities' restrictToRelationshipTypes='interprete'><l>^ca_entities.preferred_labels</l></unit>"))."\",".
+					"album:\"".$album."\"},";
 			}
             ?>
         ]);
-		//parent.playTrack();
+		parent.playTrack();
     }
 	
 </script>
@@ -481,7 +587,9 @@ function ajax_file_upload(file_obj, id) {
 
 				</div>
 				<!-- TODO : afficher uniquement si logué -->
-				<a href="/index.php/Contribuer/Do/Form/table/ca_objects/type/Enregistrement/parent_id/<?= $vn_id ?>"><button class="button is-primary">Ajouter une piste</button></a><span style="line-height:40px;"> ou glisser un fichier audio sur une piste</span>
+				<?php if($this->request->isLoggedIn()): ?>
+					<a href="/index.php/Contribuer/Do/Form/table/ca_objects/type/Enregistrement/parent_id/<?= $vn_id ?>"><button class="button is-primary">Ajouter une piste</button></a><span style="line-height:40px;"> ou glisser un fichier audio sur une piste</span>
+				<?php endif; ?>
 			</div>
 	  	</div>
 	</div>
@@ -495,6 +603,8 @@ function ajax_file_upload(file_obj, id) {
 	  </header>
 	  <div class="card-content">
 	    <div class="content">
+			<?php if($this->request->isLoggedIn()): ?>
+
 			<div id="fileselector">
 				<div class="file is-primary is-small">
 					<label class="file-label">
@@ -510,16 +620,21 @@ function ajax_file_upload(file_obj, id) {
 					</label>
 				</div>
 			</div>
+			<?php endif; ?>
 			<div id="imageviewer">
-				<?php RenderDropzone($t_object); ?>
+				<?php RenderDropzone(new ca_objects($default_item), $vb_isadmin); ?>
 			</div>
 	    </div>
 	  </div>
 	</div>
 
   </div>
+  <div class="column" id="bottomDetail">
+	
+  </div>
 </div>
-<div id="bottomDetail"></div>
+
+<div ></div>
 <script>
 $(function() {
     $.contextMenu({
@@ -527,7 +642,94 @@ $(function() {
 		zIndex: 100,
         callback: function(key, options) {
             let filename = $(this).parent().find('.trackname').data("filename");
+			let mp3 = $(this).parent().find('.trackname').data("mp3");
             let repr_id = $(this).parent().find('.trackname').data("representation");
+			let obj_id = $(this).parent().find('.trackname').data("object");
+			console.log("repr_id "+repr_id);
+
+            var m = "clicked: " + key;
+            if(key == "quit") {
+				return;
+			} else if(key == "apercu") {
+				$("#modal-apercu-audio-content").html("");
+				$.get('https://www.phoi.io/ui-kit/widget-6-waveform.php?u='+mp3, function( data ) {
+					$("#modal-apercu-audio-content").html( data);
+				});
+				$('#modal-apercu-audio').addClass('is-active');
+			} else if(key == "protocole") {
+				$('#protocol-filename').html(filename.replace(/(PNAP_[0-9](\.[0-9])?)/,"<b>$1</b>"));
+                  let protocol = filename.replace(/.*(PNAP_[0-9](\.[0-9])?).*/,"$1");
+                  $('#protocol-link a').attr('href', '/phoi-protocoles/'+protocol+'.pdf');
+                  $('#modal-protocol').addClass('is-active');
+			} else if(key == "details") {
+				$.get('https://<?= __CA_SITE_HOSTNAME__; ?>/<?= __CA_URL_ROOT__; ?>index.php/Phoi/Media/DetailAudioInfos/id/'+repr_id+'/name/'+filename, function( data ) {
+					$("#details-content").html( data);
+				});
+				$('#modal-details').addClass('is-active');
+			} else if(key == "extrait30s") {
+				let url = "https://www.phoi.io/index.php/AudioSample/Object/Clone/id/"+obj_id;
+				//console.log("url", url);
+				window.location = url;
+			} else if(key == "signaler un abus") {
+			} else if(key == "Télécharger") {
+			} else if(key == "principal") {
+			} else if(key == "publier") {
+			} else if(key == "lien") {
+                  $('#shareable-link').val('https://<?= __CA_SITE_HOSTNAME__ ?>/<?= __CA_URL_ROOT__ ?>index.php/Detail/representations/'+repr_id);
+                  $('#modal-shareable-link').addClass('is-active');
+			} else if(key == "source") {
+                  $('#source').val('https://<?= __CA_SITE_HOSTNAME__ ?>/gestion/backup_audio/'+repr_id);
+                  $('#modal-source').addClass('is-active');
+			} else {
+        	    window.console && console.log(m) || alert(m);     
+			}
+        },
+        items: {
+            "apercu": {name: "Aperçu", icon: "fas fa-search"},
+            "lien": {name: "Obtenir le lien partageable", icon: "fas fa-link"},
+            "details": {name: "Afficher les détails", icon: "fas fa-info"},
+            "protocole": {name: "Protocole de numérisation", icon: "fas fa-barcode"},
+<?php if($vb_isadmin): ?>		
+			"source": {name: "Chemin fichier source", icon: "fas fa-link"},
+			//"principal": {name: "Définir comme image principale.", icon: "fas fa-medal"},
+			"extrait30s": {name: "Créer un extrait de 30s", icon: "fas fa-cut"},
+            "publier": {name: "Public", icon: "fas fa-eye"},
+            "Télécharger": {name: "Télécharger", icon: "fas fa-download"},
+<?php endif; ?>			
+            "signaler un abus": {name: "Signaler un abus", icon: "fas fa-angry"},
+<?php if($vb_isadmin): ?>			
+            "Supprimer": {name: "Supprimer", icon: "fas fa-trash"},
+<?php endif; ?>			
+            "sep1": "---------",
+            "quit": {name: "Fermer", icon: "fas fa-times"}
+        }
+    });
+
+	$.contextMenu({
+        selector: '.trackname-info', 
+        trigger: 'left',
+		zIndex: 100,
+		events: {
+			show : function(options){
+				console.log($(this));
+				let that=$(this).parent().parent();
+				setTimeout(function() {
+					that.fadeIn();
+				}, 100);
+			},
+       		hide : function(options){
+				console.log($(this));
+				let that=$(this).parent().parent();
+				setTimeout(function() {
+					that.fadeOut();
+				}, 100);
+			},      
+		},
+        callback: function(key, options) {
+            let filename = $(this).parent().parent().parent().parent().find('.trackname').data("filename");
+            let repr_id = $(this).parent().parent().parent().parent().find('.trackname').data("representation");
+			let obj_id = $(this).parent().parent().parent().parent().find('.trackname').data("object");
+			console.log("repr_id "+repr_id);
 
             var m = "clicked: " + key;
             if(key == "quit") {
@@ -543,11 +745,17 @@ $(function() {
 					$("#details-content").html( data);
 				});
 				$('#modal-details').addClass('is-active');
+			} else if(key == "extrait30s") {
+				let url = "https://www.phoi.io/index.php/AudioSample/Object/Clone/id/"+obj_id;
+				//console.log("url", url);
+				window.location = url;
 			} else if(key == "signaler un abus") {
 			} else if(key == "Télécharger") {
 			} else if(key == "principal") {
 			} else if(key == "publier") {
 			} else if(key == "lien") {
+                  $('#shareable-link').val('https://<?= __CA_SITE_HOSTNAME__ ?>/<?= __CA_URL_ROOT__ ?>index.php/Detail/representations/'+repr_id);
+                  $('#modal-shareable-link').addClass('is-active');
 			} else {
         	    window.console && console.log(m) || alert(m);     
 			}
@@ -557,64 +765,29 @@ $(function() {
             "lien": {name: "Obtenir le lien partageable", icon: "fas fa-link"},
             "details": {name: "Afficher les détails", icon: "fas fa-info"},
             "protocole": {name: "Protocole de numérisation", icon: "fas fa-barcode"},
-            "principal": {name: "Définir comme image principale", icon: "fas fa-medal"},
+<?php if($vb_isadmin): ?>		
+			//"principal": {name: "Définir comme image principale", icon: "fas fa-medal"},
+			"extrait30s": {name: "Créer un extrait de 30s", icon: "fas fa-cut"},
             "publier": {name: "Public", icon: "fas fa-eye"},
             "Télécharger": {name: "Télécharger", icon: "fas fa-download"},
+<?php endif; ?>			
             "signaler un abus": {name: "Signaler un abus", icon: "fas fa-angry"},
+<?php if($vb_isadmin): ?>			
             "Supprimer": {name: "Supprimer", icon: "fas fa-trash"},
+<?php endif; ?>			
             "sep1": "---------",
             "quit": {name: "Fermer", icon: "fas fa-times"}
         }
     });
 
-	// the "i" icon
-	$.contextMenu({
-        selector: '.trackname-info', 
-        trigger: 'left',
-        callback: function(key, options) {
-            let filename = $(this).find('.dz-filename span').text();
-            let path = $(this).find('.dz-image img').attr('src');
-            let repr = path.split(/[\\/]/).pop();
-            repr = repr.replace(/_pagewatermark\.jpg/,'');
-            repr_id = repr.split(/_/).pop();
-
-            var m = "clicked: " + key;
-            if(key == "quit") {
-				return;
-			} else if(key == "apercu") {
-			} else if(key == "protocole") {
-				$('#protocol-filename').html(filename.replace(/(PNIP_[0-9](\.[0-9])?)/,"<b>$1</b>"));
-				let protocol = filename.replace(/.*(PNIP_[0-9](\.[0-9])?).*/,"$1");
-				$('#protocol-link a').attr('href', '/phoi-protocoles/'+protocol+'.pdf');
-				$('#modal-protocol').addClass('is-active');
-			} else if(key == "details") {
-			} else if(key == "signaler un abus") {
-			} else if(key == "Télécharger") {
-			} else if(key == "publier") {
-			} else if(key == "lien") {
-			} else {
-        	    window.console && console.log(m) || alert(m);     
-			}
-        },
-        items: {
-            "apercu": {name: "Aperçu", icon: "fas fa-search"},
-            "lien": {name: "Obtenir le lien partageable", icon: "fas fa-link"},
-            "details": {name: "Afficher les détails", icon: "fas fa-info"},
-            "protocole": {name: "Protocole de numérisation", icon: "fas fa-barcode"},
-            "publier": {name: "Public", icon: "fas fa-eye"},
-            "Télécharger": {name: "Télécharger", icon: "fas fa-download"},
-            "signaler un abus": {name: "Signaler un abus", icon: "fas fa-angry"},
-            "Supprimer": {name: "Supprimer", icon: "fas fa-trash"},
-            "sep1": "---------",
-            "quit": {name: "Fermer", icon: "fas fa-times"}
-        }
-    });
 });
-    function loadTrack(name,url) {
+    function loadTrack(name,url, idrepr) {
 
         console.log("\""+url+"\"");
         if(url && url != " ") {
+			$(".player-icons i").removeClass("has-text-grey-light");
 	        $('#titremorceau').text(name);
+			$('#titremorceau').data("idrepr",idrepr);
             $('#soundplayer').attr("src", url.trim());
         } else {
 	        $('#titremorceau').html("<i>Non disponible pour l'écoute</i>");
@@ -666,6 +839,7 @@ $(function() {
 		$('.alreadytrack-card-content-item').on("dragleave", function() {
 			$(this).removeClass('nodraging');
 		})
+
     });
 	var playlistLoadTrack = function(name, url, image, artist="", album="") {
         //loadTrack(name, url, image=null, artist="", album="")
@@ -677,10 +851,18 @@ $(function() {
 	function addToPlaylist() {
 		console.log("addToPlaylist");
 		let titre = $('#titremorceau').text();	
+		let idrepr = $('#titremorceau').data("idrepr");	
 		console.log(titre);
 		let url = $('#soundplayer').attr("src");
 		console.log(url);
-		parent.loadTrack(titre, url, "{{{^ca_object_representations.media.large.url}}}", "{{{<unit relativeTo='ca_entities'>^ca_entities.preferred_labels.displayname</unit>}}}", "{{{^ca_objects.preferred_labels}}}");
+<?php
+$entites = $t_object->getWithTemplate("<unit relativeTo='ca_entities'><l>^ca_entities.preferred_labels.displayname</l></unit>");
+$entites = str_replace("\n"," ",$entites);
+$entites = str_replace('"','',$entites);
+$titre_album = $t_object->getWithTemplate("^ca_objects.preferred_labels");
+$titre_album = str_replace(["\n","\t" ], "", $titre_album);
+?>		
+		parent.loadTrack(titre, url, "{{{^ca_object_representations.media.preview170.url}}}", "<?= $entites ?>", "<?= $titre_album ?>", 0, "https://www.phoi.io/index.php/Detail/representations/"+idrepr, "https://www.phoi.io/index.php/Detail/objects/<?= $vn_id; ?>", linkArtist="", "https://www.phoi.io/index.php/Detail/objects/<?= $vn_id; ?>");
 	}
 </script>
 
@@ -702,7 +884,6 @@ $(function() {
 		z-index: 99;
 
 	}
-  	/***** FIN MODIFS RACHEL *****/
   	h1.titre-phonogramme {
 		text-align: center;
 		font-weight: 100;
@@ -769,17 +950,6 @@ $(function() {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
-	}
-
-	.tab {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		line-height: 1.5rem;
-		padding : 2rem;
-		height: 2em;
-		color: #EFEFEF;
-		text-transform: uppercase;
 	}
 
 	.tag:link {
@@ -850,6 +1020,9 @@ $(function() {
 	.player-list .piste-non-numerisee .card-content-item {
 		cursor:not-allowed;
 	}
+	.player-list button {
+		display:none;
+	}
 	
 	.infosprincipales {
 		max-height: 600px;
@@ -881,4 +1054,42 @@ $(function() {
 	.content table.info_pressage_pistes th {
 		padding:0.08em;
 	}
+	.info_pressage_pistes a.card-header-icon {
+		/*display:block !important;*/
+		padding:0;
+	}
+	span[data-tooltip] {
+		border-bottom: none;
+	}
+
+	.info_pressage_pistes  td.partie_titre a {
+		color:black;
+		text-decoration: underline;
+	}
+
+	.dropzone .dz-preview:hover {
+		z-index:20;
+	}
+	.partie_titre .tag:not(body) {
+		white-space: normal;
+	}
+
+	span.tabitems {
+		cursor:pointer;
+	}
+<?php if(!$vb_iscontrib): ?>	
+	.icon-group {
+		display: none !important;
+	}
+	.mediaplayer .icon-group {
+		display: block !important;
+	}
+	.info_pressage_pistes .face {
+		padding:0 4px 0 0;
+	}
+	.info_pressage_pistes .piste {
+		padding:0 4px 0 4px;
+	}
+<?php endif; ?>
+
 </style>

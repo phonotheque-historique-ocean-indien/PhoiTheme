@@ -22,6 +22,7 @@
 	}
 ?>
 <div class="row"><div class="col-sm-12">
+<h2>Contact</h2>
 <?php
 	if(is_array($va_errors["display_errors"]) && sizeof($va_errors["display_errors"])){
 		print "<div class='alert alert-danger'>".implode("<br/>", $va_errors["display_errors"])."</div>";
@@ -94,3 +95,4 @@
 	</form>
 	
 </div><!-- end col --></div><!-- end row -->
+<div style="height:120px"></div>

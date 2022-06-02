@@ -36,18 +36,39 @@
     $vn_id = $t_object->get('ca_objects.object_id');
     $type = $t_object->getTypeCode();
 	$vb_isadmin = $this->request->user->hasGroupRole("admin");
+	$vb_islogged = $this->request->user->getUserId();
 	require_once(__CA_THEME_DIR__."/helpers/mediaHelpers.php");
 	error_reporting(E_ERROR);
+
+
 ?>
 
 <script src="/viewer.js"></script><!-- Viewer.js is required -->
 <link  href="/viewer.css" rel="stylesheet">
 <script src="/jquery-viewer.js"></script>
-
+<?php
+// sanitize page name for browse tab
+$browser_tab_label = $t_object->get('ca_objects.preferred_labels.name');
+$browser_tab_label = str_replace(["\n","\t"], "", $browser_tab_label);
+$browser_tab_label = str_replace("'", "‘", $browser_tab_label);
+?>
+<script>
+	window.parent.history.pushState('', "<?= $browser_tab_label ?>", 'https://www.phoi.io/index.php/Detail/objects/<?= $vn_id ?>');
+	window.parent.document.title = "<?= $browser_tab_label ?>";
+</script>
 <!-- ca_objects_Phonogramme_html.php -->
-<h1 class="titre-phonogramme">{{{^ca_objects.parent.preferred_labels.name}}}</h1>
+<h1 class="titre-phonogramme">
+	<?php 
+		$parent = $t_object->getWithTemplate("^ca_objects.parent.preferred_labels.name");
+		if($parent) {
+			print $parent;
+		} else {
+			print $t_object->getWithTemplate("^ca_objects.preferred_labels.name");
+		}
+	?>
+</h1>
 <div class="columns">
-  <div class="column is-one-third">
+  <div class="column is-one-fifth">
 	<div class="card infosprincipales">
 	  <header class="card-header">
 	    <p class="card-header-title">
@@ -108,7 +129,7 @@ while($qr_result->nextRow()) {
 	  </div>
 	</div>
 }}}	
-	<div class="card">
+<div class="card">
 		<header class="card-header">
 			<p class="card-header-title">
 			  <?php _p('Informations sur le pressage'); ?>
@@ -132,7 +153,7 @@ while($qr_result->nextRow()) {
 					</div>
 				</div>
 				<div class="card-content-item">
-					<p>Label : {{{<unit relativeTo="ca_entities" restrictToRelationshipTypes="label"><l>^ca_entities.preferred_labels</l></unit>}}}</p>
+					<p>Label : {{{<unit relativeTo="ca_objects.parent"><unit relativeTo="ca_entities" restrictToRelationshipTypes="label"><l>^ca_entities.preferred_labels</l></unit></unit>}}}</p>
 					<div class="icon-group">
 						<a href="#" class="card-content-icon" aria-label="delete">
 							<span class="icon">
@@ -199,18 +220,35 @@ while($qr_result->nextRow()) {
 <?php
                         $children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.parent'><unit relativeTo='ca_objects.children' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit></unit>");
                         $children = explode(';', $children);
-                        $template1 = "<tr><td style='border:0;'>!!index!!.	^ca_objects.preferred_labels.name</td><td style='border:0;'>^ca_objects.duree</td></tr>";
+                        $template1 = "<tr><td style='border:0;' class='partie_titre'>
+							<div style='display:inline-block;float:left;margin-right:4px;'>
+							<ifdef code='ca_objects.face'><span class='tag is-white face'>Face ^ca_objects.face</span></ifdef>
+							<ifdef code='ca_objects.num_piste'><span class='tag is-light piste'>^ca_objects.num_piste</span></ifdef> 
+							</div>
+							<span class='tag is-white'><l>^ca_objects.preferred_labels.name</l></span>
+						</td>
+						<td style='border:0;'>^ca_objects.duree</td>
+						<td style='border:0'>
+							<a href='/index.php/Contribuer/Do/EditForm/table/ca_objects/type/Enregistrement/id/^ca_objects.object_id' class='card-header-icon' aria-label='edit'>
+								<span class='icon'>
+									<i class='mdi mdi-pencil is-large'></i>
+								</span>
+							</a>
+					  	</td></tr>";
 						$template2 = "<unit relativeTo='ca_entities' delimiter=' ; '><l>^ca_entities.preferred_labels</l>|^relationship_typename</unit>";
                         $i = 0;
                         foreach ($children as $key => $child_id) {
                             ++$i;
                             $vt_object = new ca_objects($child_id);
-                            echo str_replace('!!index!!', $i, $vt_object->getWithTemplate($template1));
+							//$temp = str_replace('!!index!!', $i, $vt_object->getWithTemplate($template1));
+							$temp = $vt_object->getWithTemplate($template1);
+                            echo $temp;
 							$result2 = $vt_object->getWithTemplate($template2);
 							$result2 = explode(" ; ", $result2);
 							$results = [];
 							foreach($result2 as $res) {
 								$res2 = explode("|", $res);
+								if(!$res2[0]) continue;
 								if(!is_array($results[$res2[0]])) {
 									$results[$res2[0]] = [];
 								}
@@ -269,41 +307,8 @@ while($qr_result->nextRow()) {
 	</div>
   </div>
 
-  <div class="column">
-    <div class="card">
-	  <header class="card-header">
-	    <p class="card-header-title">
-	      <?php _p("Informations sur l'item phonogramme"); ?>
-	    </p>
-          <a href="<?php echo __CA_URL_ROOT__; ?>/index.php/Contribuer/Do/EditForm/table/ca_objects/type/<?php echo $type; ?>/id/<?php echo $vn_id; ?>" class="card-header-icon" aria-label="edit" style="/* display: none; */">
-            <span class="icon">
-                <i class="mdi mdi-pencil is-large"></i>
-            </span>
-          </a>
-
-	  </header>
-	  <div class="card-content">
-	    <div class="content content-infos-phonogramme">
-			{{{<unit relativeTo="ca_objects.parent"><p>Langue principale : ^ca_objects.locale_main</p>
-			<unit relativeTo="ca_entities" restrictToRelationshipTypes="label"><p>Label : 
-				<unit relativeTo="ca_entities" restrictToRelationshipTypes="label"><l>^ca_entities.preferred_labels</l></unit></p></unit>
-			<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><p>Auteur : 
-				<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
-			<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><p>Compositeur : 
-				<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
-			<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><p>Producteur : 
-				<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
-			<p>Format : ^ca_objects.format</p>
-		    <ifdef code="duree"><p>Durée : ^ca_objects.duree</p></ifdef>
-		    <ifdef code="creation_couv"><p>Création maquette : ^ca_objects.creation_couv</p></ifdef>
-			<p>Genre : ^ca_objects.genre</p>		    
-		    <ifdef code="auteur_textes"><p>Auteur des textes : ^ca_objects.auteur_textes</p></ifdef></unit>
-			}}}
-	    </div>
-	  </div>
-	</div>
-
-	<div class="card">
+  <div class="column is-three-fifths">
+  <div class="card">
 	  <header class="card-header">
 	    <p class="card-header-title">
 	      <?php _p('Tags'); ?>
@@ -337,24 +342,81 @@ while($qr_result->nextRow()) {
 	</div>
 
 
+    <div class="card">
+	  <footer class="card-footer" style="border-bottom:1px solid #eeeeee;">
+	  <?php
+                        $children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.parent'><unit relativeTo='ca_objects.children'>^ca_objects.object_id</unit></unit>");
+                        $children = explode(';', $children);
+                        $template1 = "<a class='card-footer-item' href='/index.php/Detail/objects/^ca_objects.object_id'>^ca_objects.idno</a>";
+                        $i = 0;
+                        foreach ($children as $key => $child_id) {
+                            ++$i;
+                            $vt_object = new ca_objects($child_id);
+							if($vt_object->get("ca_objects.type_id") == 27) 
+                            echo $vt_object->getWithTemplate($template1);
+						}
+?>			  
+  		</footer>
+
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      <?php _p("Informations sur l'item phonogramme"); ?> {{{^ca_objects.idno}}}
+	    </p>
+          <a href="<?php echo __CA_URL_ROOT__; ?>/index.php/Contribuer/Do/EditForm/table/ca_objects/type/<?php echo $type; ?>/id/<?php echo $vn_id; ?>" class="card-header-icon" aria-label="edit" style="/* display: none; */">
+            <span class="icon">
+                <i class="mdi mdi-pencil is-large"></i>
+            </span>
+          </a>
+
+	  </header>
+	  <div class="card-content">
+	    <div class="content content-infos-phonogramme">
+			{{{<unit relativeTo="ca_objects.parent"><p>Langue principale : ^ca_objects.locale_main</p>
+				
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><p>Auteur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><p>Compositeur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><p>Producteur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+			<p>Format : ^ca_objects.format</p>
+		    <ifdef code="duree"><p>Durée : ^ca_objects.duree</p></ifdef>
+		    <ifdef code="creation_couv"><p>Création maquette : ^ca_objects.creation_couv</p></ifdef>
+		    <ifdef code="auteur_textes"><p>Auteur des textes : ^ca_objects.auteur_textes</p></ifdef></unit>
+
+			<p>Langue principale : ^ca_objects.locale_main</p>
+				
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><p>Auteur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="auteur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><p>Compositeur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="compositeur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+			<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><p>Producteur : 
+				<unit relativeTo="ca_entities" restrictToRelationshipTypes="producteur"><l>^ca_entities.preferred_labels</l></unit></p></unit>
+		    <ifdef code="duree"><p>Durée : ^ca_objects.duree</p></ifdef>
+			<ifdef code="pays_liste"><p>Pays : ^ca_objects.pays_liste</p></ifdef>
+		    <ifdef code="creation_couv"><p>Création maquette : ^ca_objects.creation_couv</p></ifdef>
+			<p>Genre : ^ca_objects.genre</p>		    
+			<p>Fonds : <unit relativeTo="ca_entities" restrictToRelationshipTypes="fonds"><l>^ca_entities.preferred_labels</l></unit></p>		    			    
+			<p>N° support : ^ca_objects.num_disque</p>		    
+			<p>Pressage : ^ca_objects.Pressage</p>		    
+		    <ifdef code="auteur_textes"><p>Auteur des textes : ^ca_objects.auteur_textes</p></ifdef>
+			}}}
+	    </div>
+	  </div>
+	</div>
+
 	<div class="card mediaplayer">
 	  	<header class="card-header">
 			<div class="card-header-title">
 				<div class="player-icons">
-					<span class="icon">
-						<i class="mdi mdi-play is-large" onclick="$('#soundplayer')[0].play();"></i>
+					<span class="icon has-tooltip-arrow has-tooltip-right" data-tooltip="lecture">
+						<i class="mdi mdi-play is-large has-text-grey-light" onclick="window.parent.pauseTrack();$('#soundplayer')[0].play();"></i>
 					</span>
-					<span class="icon">
-						<i class="mdi mdi-stop is-large" onclick="$('#soundplayer')[0].pause();$('#soundplayer')[0].currentTime = 0"></i>
+					<span class="icon has-tooltip-arrow has-tooltip-right" data-tooltip="stop">
+						<i class="mdi mdi-stop is-large has-text-grey-light" onclick="window.parent.pauseTrack();$('#soundplayer')[0].pause();$('#soundplayer')[0].currentTime = 0"></i>
 					</span>
-					<span class="icon">
-						<i class="mdi mdi-playlist-plus is-large" onclick="$('#soundplayer')[0].play();"></i>
-					</span>
-					<span class="icon">
-						<i class="mdi mdi-skip-previous is-large has-text-grey-light"></i>
-					</span>
-					<span class="icon">
-						<i class="mdi mdi-skip-next is-large has-text-grey-light"></i>
+					<span class="icon has-tooltip-arrow has-tooltip-right" data-tooltip="ajouter à la playlist">
+						<i class="mdi mdi-playlist-plus is-large has-text-grey-light" onclick="addToPlaylist()"></i>
 					</span>
 				</div>
 				<div class="column is-three-quarters is-centered">
@@ -369,6 +431,9 @@ while($qr_result->nextRow()) {
 	  	</header>
 	  	<div class="card-content">
 			<div class="content">
+<?php
+// FONCTIONS D'UPLOAD EN AJAX DES FICHIERS
+?>				
 <script>
 var fileobj;
 function upload_file(e, id) {
@@ -376,7 +441,8 @@ function upload_file(e, id) {
     e.preventDefault();
     fileobj = e.dataTransfer.files[0];
     ajax_file_upload(fileobj, id);
-	alert("File uploaded");
+	//alert("File uploaded");
+	$("body").append('<div class="modal is-active"><div class="modal-background"></div><div class="modal-content" style="z-index:5000;background-color:white;padding:70px;position:absolute;top:240px;width:300px;margin:auto;">Uploading... please wait</div></div>');
 }
  
 function ajax_file_upload(file_obj, id) {
@@ -399,6 +465,10 @@ function ajax_file_upload(file_obj, id) {
 </script>
 
 				<div class="player-list">
+					<button class="button is-primary is-small is-info is-light" onclick="playlistLoadAndPlay()"><i class="mdi mdi-play is-large"></i> Ecouter tout maintenant</button>
+					<button class="button is-primary is-small is-info is-light" onclick="playlistLoad()"><i class="mdi mdi-chevron-double-down is-large"></i> Ecouter tout ensuite</button>
+					<button class="button is-primary is-small is-info is-light" onclick="addEndOfPlaylistAndPlay()"><i class="mdi mdi-playlist-plus is-large"></i> Ajouter à ma playlist</button>
+					
 					<ol type="1">
                         <?php
                         $children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.parent'><unit relativeTo='ca_objects.children' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit></unit>");
@@ -410,14 +480,20 @@ function ajax_file_upload(file_obj, id) {
 	<ifnotdef code='ca_object_representations.media.mp3.url'><div class='disabled'></ifnotdef>
 	<div class='card-content-item 
 		<ifnotdef code=\"ca_object_representations.media.mp3.url\">track-card-content-item</ifnotdef> 
-		<ifdef code=\"ca_object_representations.media.mp3.url\">alreadytrack-card-content-item</ifdef>
+		<ifdef code=\"ca_object_representations.media.mp3.url\">alreadytrack-card-content-item has-mp3</ifdef>
 		'
 		ondrop='<ifnotdef code=\"ca_object_representations.media.mp3.url\">upload_file(event, ^ca_objects.object_id)</ifnotdef> '
 		ondragover='return false'>
-		<p class='trackname' data-filename='^ca_object_representations.preferred_labels' data-representation='^ca_object_representations.representation_id' onclick='loadTrack(\"^ca_objects.preferred_labels.name\",\"^ca_object_representations.media.mp3.url \");'><ifdef code='face'><span class=\"tag is-light\">^ca_objects.face</span></ifdef> ^ca_objects.preferred_labels.name !!SAMPLE_BUTTON!!</p>
-		<div class='icon-group'>
+		<p class='trackname' data-mp3='^ca_object_representations.media.mp3.url' 
+			data-filename='^ca_object_representations.preferred_labels' 
+			data-representation='^ca_object_representations.representation_id' 
+			onclick='loadTrack(\"!!TITLE!!\",\"^ca_object_representations.media.mp3.url \", \"^ca_object_representations.representation_id\");'>
+			<ifdef code='face'><span class=\"tag is-light\">^ca_objects.face</span></ifdef>
+				^ca_objects.preferred_labels.name !!SAMPLE_BUTTON!!
+		</p>
+		<div class='icon-group'> 
 			^ca_objects.duree
-			<a href='#' class='card-content-icon' aria-label='info'>
+			<a href='#' class='card-content-icon card-content-icon-info-track' aria-label='info'>
 				<span class='icon'>
 					<i class='trackname-info mdi mdi-information is-large'></i>
 				</span>
@@ -433,17 +509,117 @@ function ajax_file_upload(file_obj, id) {
 						}
                         foreach ($children as $key => $child_id) {
                             $vt_object = new ca_objects($child_id);
-                            echo $vt_object->getWithTemplate($template);
+							$titre =  $vt_object->getWithTemplate("^ca_objects.preferred_labels.name");
+							$titre = trim(str_replace(["\n", "\t", "  "], " ", $titre));
+							$titre = str_replace(['"',"'"], "´", $titre);
+
+                            echo $vt_object->getWithTemplate(str_replace("!!TITLE!!", $titre, $template));
                         }
                         ?>
 
 					</ol>
+<script>
+	$(document).ready(function() {
+		if($(".has-mp3").length > 0) {
+			$(".player-list button").show();
+		}
+	});
+
+	function playlistLoadAndPlay() {
+		console.log("playlistLoadAndPlay");
+        parent.loadPlaylist([
+            <?php
+			$children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit>");
+			$num_media = sizeof($children);
+			$children = explode(';', $children);
+			$children = array_reverse($children, true);
+			$vt_parent = $t_object;
+            foreach ($children as $key => $child_id) {
+				$vt_object = new ca_objects($child_id);
+				//echo $vt_object->getWithTemplate($template);
+				$media_url = $vt_object->getWithTemplate("^ca_object_representations.media.mp3.url");
+				if(!$media_url) continue;
+				$album = addslashes($vt_parent->getWithTemplate("<l>^ca_objects.preferred_labels.name</l>"));
+				$album = str_replace("\n", " ", $album);
+				print "{name:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_object_representations'><l>^ca_objects.preferred_labels.name</l></unit>"))."\",".
+					"url:\"".addslashes($media_url)."\",".
+					"image:\"".addslashes($t_object->getWithTemplate("^ca_object_representations.media.large.url"))."\",".
+					"artist:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_entities' restrictToRelationshipTypes='interprete'><l>^ca_entities.preferred_labels</l></unit>"))."\",".
+					"album:\"".$album."\"},";
+			}
+            ?>
+        ]);
+		parent.playTrack();
+    }
+
+	function playlistLoad() {
+		console.log("playlistLoad");
+        parent.loadPlaylist([
+            <?php
+			$children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit>");
+			$num_media = sizeof($children);
+			$children = explode(';', $children);
+			$children = array_reverse($children, true);
+			$vt_parent = $t_object;
+            foreach ($children as $key => $child_id) {
+				$vt_object = new ca_objects($child_id);
+				//echo $vt_object->getWithTemplate($template);
+				$media_url = $vt_object->getWithTemplate("^ca_object_representations.media.mp3.url");
+				if(!$media_url) continue;
+				$album = addslashes($vt_parent->getWithTemplate("<l>^ca_objects.preferred_labels.name</l>"));
+				$album = str_replace("\n", " ", $album);
+				print "{name:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_object_representations'><l>^ca_objects.preferred_labels.name</l></unit>"))."\",".
+					"url:\"".addslashes($media_url)."\",".
+					"image:\"".addslashes($t_object->getWithTemplate("^ca_object_representations.media.large.url"))."\",".
+					"artist:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_entities' restrictToRelationshipTypes='interprete'><l>^ca_entities.preferred_labels</l></unit>"))."\",".
+					"album:\"".$album."\"},";
+			}
+            ?>
+        ]);
+    }
+
+	function addEndOfPlaylistAndPlay() {
+		console.log("playlistLoad");
+        parent.addEndOfPlaylist([
+            <?php
+			$children = $t_object->getWithTemplate("<unit relativeTo='ca_objects.children' restrictToTypes='Enregistrement'>^ca_objects.object_id</unit>");
+			$num_media = sizeof($children);
+			$children = explode(';', $children);
+			$vt_parent = $t_object;
+			$album = addslashes($vt_parent->getWithTemplate("<l>^ca_objects.preferred_labels.name</l>"));
+			$album = str_replace("\n", " ", $album);
+
+			//$children = array_reverse($children, true);
+            foreach ($children as $key => $child_id) {
+				$vt_object = new ca_objects($child_id);
+				//echo $vt_object->getWithTemplate($template);
+				$media_url = $vt_object->getWithTemplate("^ca_object_representations.media.mp3.url");
+				if(!$media_url) continue;
+				print "{name:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_object_representations'><l>^ca_objects.preferred_labels.name</l></unit>"))."\",".
+					"url:\"".addslashes($media_url)."\",".
+					"image:\"".addslashes($t_object->getWithTemplate("^ca_object_representations.media.large.url"))."\",".
+					"artist:\"".addslashes($vt_object->getWithTemplate("<unit relativeTo='ca_entities' restrictToRelationshipTypes='interprete'><l>^ca_entities.preferred_labels</l></unit>"))."\",".
+					"album:\"".$album."\"},";
+			}
+            ?>
+        ]);
+		parent.playTrack();
+    }
+	
+</script>
+
+
+
 				</div>
 				<!-- TODO : afficher uniquement si logué -->
-				<a href="/index.php/Contribuer/Do/Form/table/ca_objects/type/Enregistrement/parent_id/<?= $vn_id ?>"><button class="button is-primary">Ajouter une piste</button></a><span style="line-height:40px;"> ou glisser un fichier audio sur une piste</span>
+				<?php if($this->request->isLoggedIn()): ?>
+					<a href="/index.php/Contribuer/Do/Form/table/ca_objects/type/Enregistrement/parent_id/<?= $vn_id ?>"><button class="button is-primary">Ajouter une piste</button></a><span style="line-height:40px;"> ou glisser un fichier audio sur une piste</span>
+				<?php endif; ?>
 			</div>
 	  	</div>
 	</div>
+
+	
 	<div class="card medias">
 	  <header class="card-header">
 	    <p class="card-header-title">
@@ -477,8 +653,11 @@ function ajax_file_upload(file_obj, id) {
 	</div>
 
   </div>
+  	<div class="column">
+  		<div id="bottomDetail"></div>
+	</div>
 </div>
-<div id="bottomDetail"></div>
+
 <script>
 $(function() {
     $.contextMenu({
@@ -514,6 +693,7 @@ $(function() {
         items: {
             "apercu": {name: "Aperçu", icon: "fas fa-search"},
             "lien": {name: "Obtenir le lien partageable", icon: "fas fa-link"},
+            "source": {name: "Chemin vers le fichier source", icon: "fas fa-link"},
             "details": {name: "Afficher les détails", icon: "fas fa-info"},
             "protocole": {name: "Protocole de numérisation", icon: "fas fa-barcode"},
             "principal": {name: "Définir comme image principale", icon: "fas fa-medal"},
@@ -824,5 +1004,9 @@ $(function() {
 	.content table.info_pressage_pistes td, 
 	.content table.info_pressage_pistes th {
 		padding:0.08em;
+	}
+	.info_pressage_pistes td.partie_titre a {
+		color:black;
+		text-decoration: underline;
 	}
 </style>

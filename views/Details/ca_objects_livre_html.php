@@ -35,6 +35,8 @@
 	$vn_pdf_enabled = 		$this->getVar("pdfEnabled");
 	$vn_id =				$t_object->get('ca_objects.object_id');
     $type =                 $t_object->getTypeCode();
+
+
 ?>
 
 <!-- ca_objects_livre_html.php -->
@@ -174,9 +176,10 @@
 	</div>
 
   </div>
+  <div class="column is-one-fifth">
+	<div id="bottomDetail"></div>
+  </div>
 </div>
-
-<div id="bottomDetail"></div>
 
 <script>
 

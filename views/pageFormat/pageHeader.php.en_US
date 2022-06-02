@@ -26,18 +26,42 @@
  * ----------------------------------------------------------------------
  */
 	session_start();
-	if(filter_var($_GET["partie"], FILTER_SANITIZE_STRING) == "froide") {
-		$_SESSION["partie"] = "froide";
-	}
-	if(filter_var($_GET["partie"], FILTER_SANITIZE_STRING) == "chaude") {
-		$_SESSION["partie"] = "chaude";
-	}
+
 	if(!isset($_SESSION["partie"])) $_SESSION["partie"]="chaude";
 	$va_lightboxDisplayName = caGetLightboxDisplayName();
 	$vs_lightbox_sectionHeading = ucFirst($va_lightboxDisplayName["section_heading"]);
 	$va_classroomDisplayName = caGetClassroomDisplayName();
 	$vs_classroom_sectionHeading = ucFirst($va_classroomDisplayName["section_heading"]);
 
+	$url = $this->request->getRequestUrl();
+	$urlPart = explode("/", $url)[1];
+	switch($urlPart) {
+		case "Articles":
+			$partie = "chaude";
+			break;
+		case "Phoi" :
+		case "Thesaurus" :
+		case "Detail" :
+			$partie = "froide";
+			break;
+		case "Contribuer":
+			$urlPart2 = explode("/", $url)[2];
+			$urlPart3 = explode("/", $url)[3];
+			if(($urlPart2 == "Do") && ($urlPart3 == "Form")): 
+				$partie = "froide";
+			elseif(($urlPart2 == "Do") && ($urlPart3 == "SendToModeration")): 
+				$partie = "froide";
+			elseif(($urlPart2 == "Do") && ($urlPart3 == "Create")): 
+				$partie = "froide";
+			elseif(($urlPart2 == "Do") && ($urlPart3 == "Moderate")): 
+				$partie = "froide";
+			else : 
+				$partie = "chaude";
+			endif;
+			break;
+		default :
+			$partie = "chaude";
+	}
 	$is_admin = false;$is_logged_in = false;
 	if(isset($this->request) && isset($this->request->user)) {
 	    $is_admin = $this->request->user->hasRole('admin');
@@ -84,25 +108,27 @@
 			jQuery('#browse-menu').on('click mouseover mouseout mousemove mouseenter',function(e) { e.stopPropagation(); });
 		});
 	</script>
-	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.7.95/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.1.95/css/materialdesignicons.min.css">
 	<script src="https://kit.fontawesome.com/03715dce34.js" crossorigin="anonymous"></script>
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">	
 </head>
-<body class="<?php print $_SESSION["partie"]; ?>">
+<body class="<?php print $partie; ?>">
 <div id="phoi-logo-top">
 	<div class="container" id="phoi-logo-container">
-        <?php if($_SESSION["partie"] == "chaude"): ?>
-        <a href="/index.php"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+		<?php if($partie == "chaude"): ?>
+		<a href="/index.php"><img class="logo" src="<?php print ($partie == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
         <?php else : ?>
-        <a href="/index.php/Phoi/Partenaires/Carte?partie=froide"><img class="logo" src="<?php print ($_SESSION["partie"] == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
+        <a href="/index.php/Phoi/Partenaires/Carte?partie=froide"><img class="logo" src="<?php print ($partie == "froide" ? __CA_URL_ROOT__."/logo-white.png" : __CA_URL_ROOT__."/logo.png" ); ?>" /></a>
         <?php endif; ?>
         <nav class="navbar pull-right user-and-lang">
+			<a class="navbar-item au-hasard" ><span class="icon" style="font-size:30px;"><i class="mdi mdi-play-circle-outline is-large"></i></span> Random</a>
+
             <?php if($this->request->isLoggedIn()): ?>
             <a class="navbar-item" href="/index.php/Phoi/MonEspace/Index"><span class="icon" style="font-size:30px;"><i class="mdi mdi-account-box-outline is-large"></i></span> My space</a>
             <a class="navbar-item" href="/index.php/LoginReg/logout"><span class="icon" style="font-size:30px;"><i class="mdi mdi-logout is-large"></i></span> Log out</a>
@@ -151,22 +177,22 @@
         </nav>
 	</div>
 </div>
-<?php if($_SESSION["partie"] == "froide"): ?>
+<?php if($partie == "froide"): ?>
 	<nav class="navbar navbar-froide navbar-main" style="z-index:50 !important;">
 		<div class="container">
 
 			<div id="navbarExampleTransparentExample" class="navbar-menu">
 				<div class="navbar-end">
-					<a class="navbar-item" href="<?php print __CA_URL_ROOT__; ?>/index.php/Phoi/Phonogrammes/Search"><span class="icon" style="font-size:30px;"><i class="mdi mdi-magnify is-large"></i></span></a>
-					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-item" href="https://www.phoi.io/index.php/Phoi/Partenaires/Carte?partie=froide"><span class="icon" style="font-size:30px;"><i class="mdi mdi-map-search-outline is-large"></i></span></a>					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link">Item management</a>
 						<div class="navbar-dropdown is-boxed">
 							<a href="/index.php/Phoi/Phonogrammes/Search" class="navbar-item">Phonogram</a>
 							<a href="/index.php/Phoi/Collectages/Search" class="navbar-item">Collecting</a>
-							<a class="navbar-item">Sheet music</a>
-							<a class="navbar-item">Musical creation</a>
-							<a class="navbar-item">Interpretation</a>
-							<a class="navbar-item">Individual</a>
+							<a href="/index.php/Phoi/Partitions/Search" class="navbar-item">Sheet music</a>
+							<a href="/index.php/Phoi/Creations/Search" class="navbar-item">Musical creation</a>
+							<a href="/index.php/Phoi/Interpretations/Search" class="navbar-item">Interpretation</a>
+							<a href="/index.php/Phoi/Personnes/Search" class="navbar-item">Individual</a>
+							<a href="/index.php/Phoi/Livres/Search" class="navbar-item">Books</a>
 						</div>
 					</div>
 <?php if($is_admin): ?>					
@@ -235,9 +261,10 @@
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a class="navbar-link phonotheque"><?php _p("The Sound Archive"); ?></a>
 						<div class="navbar-dropdown is-boxed">
-							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phoi/Partenaires/Carte">Partners</a>
+							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/Partenaires">Partners</a>
 							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/CadreJuridique">Legal Framework</a>
 							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Phonotheque/RevueDePresse">Press review</a>
+							<a class="navbar-item" href="<?php _p(__CA_URL_ROOT__); ?>/index.php/Contact/Form">Contact</a>
 						</div>
 					</div>
 					<div class="navbar-item">

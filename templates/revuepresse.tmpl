@@ -1,0 +1,35 @@
+<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+  <div class="container">
+    <ul class="ariane">
+      <li><a href="/">Accueil</a></li>
+      <li><a href="./Articles">Articles</a></li>
+      <li class="is-active"><a href="#" aria-current="page">{{{title}}}</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="section" id="article">
+  <div class="container">
+    <div class="article-header level">
+      <div class="level-left">
+        <h1 class="title">{{{title}}}</h1>
+        <h1 class="subtitle">{{{subtitle}}}</h1>
+      </div>
+      <div class="level-right">
+        <p class="published-by">publié par</p>
+        <p class="publisher">{{{source}}}, {{{author}}}</p>
+        <p class="publisher">{{{lien}}}</p>
+
+        <p class="date">{{{date}}}</p>
+      </div>
+    </div>
+    <div>
+      <img src="{{{image}}}" alt="image {{{title}}} {{{subtitle}}}">
+    </div>
+    <!-- {{{date_from}}} {{{date_to}}}-->
+    <article class="article-content">
+      {{{blocs}}}
+    </article>
+
+
+</section>

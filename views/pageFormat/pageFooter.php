@@ -35,12 +35,16 @@
 		<div class="columns">
 			<div class="column is-two-thirds">
 				<img src="/logo-footer.png">
+				<h1 style="font-weight:bold;font-size:1.4em;color:#9bacad">La Phonothèque Historique de l'Océan Indien</h1>
+			<p><i>Collecter, numériser et valoriser les musiques de 8 îles de l'océan Indien</i></p>
+<p style="max-width:680px;text-align:justify;">La PHOI est un outil en ligne permettant de consulter et partager gratuitement les archives musicales de l'océan Indien à partir de collections de vinyles, cassettes, partitions, photographies, affiches, CDs issues de La Réunion, Maurice, Rodrigues, Madagascar, Mayotte, Zanzibar, Les Seychelles et Les Comores.</p>
+<p style="height:100px"></p>
 			</div>
 			<div class="column">
 				<img src="<?php echo __CA_URL_ROOT__; ?>/themes/phoi/assets/pawtucket/graphics/logo_prma.png" style="height:80px;" /><br/>
                 Pôle Régional de Musiques Actuelles de la Réunion<br/>
-				53 chaussée royale BP 18 <br/>
-                97 861 Saint-Paul CEDEX<br/>
+				53 chaussée royale<br/>
+                97460 Saint-Paul<br/>
 				<br/>
 				T. 0262 90 94 60<br/>
 				<br/>
@@ -226,6 +230,50 @@
         </footer>
       </div>
     </div>
+
+
+    <div id="modal-source" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Chemin vers la source</p>
+          <button class='modal-header-close'  onClick="$('#modal-source').removeClass('is-active');">x</button>
+        </header>
+        <section class="modal-card-body">
+          <div class="content">
+            <div class="field has-addons">
+              <div class="control" style='width:80%;'>
+                <input class="input" type="text" id='source' placeholder="...">
+              </div>
+              <div class="control" style='width:20%;'>
+                <a onClick="copySourceLink()" class="button is-info">
+                  Copier
+                </a>
+              </div>
+            </div>
+          
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+        </footer>
+      </div>
+    </div>
+
+	<div id="modal-apercu-audio" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Aperçu audio</p>
+          <button class='modal-header-close'  onClick="$('#modal-apercu-audio').removeClass('is-active');">x</button>
+        </header>
+        <section class="modal-card-body">
+          <div class="content" id="modal-apercu-audio-content">
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+        </footer>
+      </div>
+    </div>
 <?php
     //
     // Output HTML for debug bar
@@ -241,6 +289,15 @@
 			
 			</div>
 		</div>
+<?php
+
+function _bot_detected() {
+	return (
+		isset($_SERVER['HTTP_USER_AGENT'])
+		&& preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT'])
+	);
+}
+?>
 		<script type="text/javascript">
 			/*
 				Set up the "caMediaPanel" panel that will be triggered by links in object detail
@@ -248,6 +305,16 @@
 			*/
 			var caMediaPanel;
 			jQuery(document).ready(function() {
+				if(typeof parent.pauseTrack == "undefined") {
+					// similar behavior as an HTTP redirect
+					let href = window.location.href;
+					let isBot = <?= (_bot_detected() ? 1 : 0) ?>;
+					if(isBot != 1) {
+						console.log("redirection");
+						//window.location.replace(href.replace("index.php", "index.html"));
+					}
+				}
+
 				if (caUI.initPanel) {
 					caMediaPanel = caUI.initPanel({ 
 						panelID: 'caMediaPanel',										/* DOM ID of the <div> enclosing the panel */
@@ -310,6 +377,9 @@
 						case "Personnes":
 							window.location = "/index.php/Phoi/Personnes/Search";
 							break;
+						case "Groupes":
+							window.location = "/index.php/Phoi/Groupes/Search";
+							break;
 						case "Livres":
 							window.location = "/index.php/Phoi/Livres/Search";
 							break;
@@ -324,6 +394,7 @@
 			/*(function(e,d,b){var a=0;var f=null;var c={x:0,y:0};e("[data-toggle]").closest("li").on("mouseenter",function(g){if(f){f.removeClass("open")}d.clearTimeout(a);f=e(this);a=d.setTimeout(function(){f.addClass("open")},b)}).on("mousemove",function(g){if(Math.abs(c.x-g.ScreenX)>4||Math.abs(c.y-g.ScreenY)>4){c.x=g.ScreenX;c.y=g.ScreenY;return}if(f.hasClass("open")){return}d.clearTimeout(a);a=d.setTimeout(function(){f.addClass("open")},b)}).on("mouseleave",function(g){d.clearTimeout(a);f=e(this);a=d.setTimeout(function(){f.removeClass("open")},b)})})(jQuery,window,200);*/
 		</script>
 
+<?php if($_SERVER['SERVER_ADDR'] != "127.0.0.1"): ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165049450-1"></script>
 <script>
@@ -333,6 +404,7 @@
 
     gtag('config', 'UA-165049450-1');
 </script>
+<?php endif; ?>
 <style>
 	.phoi-gray-footer a {
 		color:white;
@@ -345,6 +417,13 @@
 	.anonymous i.mdi-pencil,
 	.anonymous i.mdi-delete {
 		display:none !important;
+	}
+
+	textarea.alpaca-control {
+		min-height: 0 !important;
+	}
+	.navbar-dropdown.is-boxed i.mdi {
+		margin-right:4px;
 	}
 	</style>
 	</body>

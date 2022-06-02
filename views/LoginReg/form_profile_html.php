@@ -51,9 +51,10 @@
 		$va_profile_settings = $this->getVar("profile_settings");
 		if(is_array($va_profile_settings) and sizeof($va_profile_settings)){
 			foreach($va_profile_settings as $vs_field => $va_profile_element){
-				print $vs_field;
 				if($vs_field == "user_profile_confiance") continue;
 				if($vs_field == "user_profile_image") continue;
+				if($vs_field == "user_profile_refus_contri") continue;
+
 				if($va_errors[$vs_field]){
 					print "<div class='alert alert-danger'>".$va_errors[$vs_field]."</div>";
 				}
@@ -78,7 +79,7 @@
 -->		
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-7">
-				<button type="submit" class="btn btn-default">Save</button>
+				<button type="submit" class="button btn-default">Enregistrer</button>
 			</div><!-- end col-sm-7 -->
 		</div><!-- end form-group -->
 		<input type="hidden" name="sum" value="<?php print $vn_sum; ?>">
@@ -105,3 +106,23 @@
 <?php
 	}
 ?>
+
+
+<style>.form-control {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }</style>

@@ -5,7 +5,7 @@
 <?php
 	}
 ?>
-			<H1><?php print _t("Reset Your Password"); ?></H1>
+			<H2>Reset du mot de passe</H2>
 <?php
 	if($this->getVar("message")){
 		print "<div class='alert alert-danger'>".$this->getVar("message")."</div>";
@@ -14,10 +14,10 @@
 				case 'send':
 ?>
 					<p>
-						<?php print _t("Instructions have been sent to the e-mail address you provided."); ?>
+						Des informations vous ont été envoyées à l'adresse email saisie.
 					</p>
 					<p>
-						<?php print _t("You should receive the instructions within the hour. If you do not, contact us for assistance at "); ?>
+						Vous devriez recevoir ces informations en moins de 15 minutes. Si ce n'était pas le cas, merci de nous contacter :
 						 <a href="mailto:<?php print $this->getVar("email"); ?>"><?php print $this->getVar("email"); ?></a>.
 					</p>
 		<?php
@@ -111,3 +111,5 @@
 </script>
 <?php
 	}
+?>
+<div style="height:120px;"></div>

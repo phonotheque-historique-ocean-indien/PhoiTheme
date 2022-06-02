@@ -36,6 +36,7 @@
     $type =                 strtolower($t_object->getTypeCode());
 
 	require_once(__CA_THEME_DIR__."/helpers/mediaHelpers.php");
+
 ?>
 <!--
 

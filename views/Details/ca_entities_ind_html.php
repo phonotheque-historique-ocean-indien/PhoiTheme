@@ -26,18 +26,35 @@
  * ----------------------------------------------------------------------
  */
  
+	$t_entity = 			$this->getVar("item");
 	$t_object = 			$this->getVar("item");
 	$va_comments = 			$this->getVar("comments");
 	$va_tags = 				$this->getVar("tags_array");
 	$vn_comments_enabled = 	$this->getVar("commentsEnabled");
 	$vn_share_enabled = 	$this->getVar("shareEnabled");
 	$vn_pdf_enabled = 		$this->getVar("pdfEnabled");
-	$vn_id =				$t_object->get('ca_objects.object_id');
+	$vn_id =				$t_entity->get('ca_entities.entity_id');
+
+	MetaTagManager::addMetaProperty("og:url", "https://www.phoi.io/index.php/Detail/entities/".$vn_id);
+	MetaTagManager::addMetaProperty("og:type", "website");
+	$description = "Phonothèque Historique de l'Océan Indien - phoi.io";
+	MetaTagManager::addMetaProperty("og:description", $description);
+	$title = "👤 ".str_replace("\n"," ",$t_object->get("ca_entities.preferred_labels"));
+	MetaTagManager::setWindowTitle($title);
+	MetaTagManager::addMetaProperty("og:title", $title);
+	MetaTagManager::addMetaProperty("og:image:alt", $title);
+	MetaTagManager::addMetaProperty("og:image", "https://www.phoi.io/img_article_phoi.png");
+
 ?>
 <!-- ca_entities_ind_html.php -->
 
+<script>
+	window.parent.history.pushState('', "<?= $browser_tab_label ?>", 'https://www.phoi.io/index.php/Detail/entities/<?= $vn_id ?>');
+	window.parent.document.title = "<?= $browser_tab_label ?>";
+</script>
 
 <h1 class="titre-auteur">{{{^ca_entity_labels.displayname}}}</h1>
+<h2 class="alias-auteur">{{{<unit relativeTo="ca_entities.related" restrictToRelationshipTypes="alias" delimiter=", ">^ca_entities.preferred_labels}}}</h1>
 
 <div class="columns">
 	<div class="column is-one-third">
@@ -80,11 +97,32 @@
 				<p class="card-header-title">Liste des œuvres arrangées</p>
 			</header>
 		</div>
-		<div class="card">
-			<header class="card-header">
-				<p class="card-header-title">Liste des interprétations :</p>
-			</header>
-		</div>
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title"><?php _p("Liste des interprétations"); ?> :</p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+					{{{<unit relativeTo='ca_objects' excludeRelationshipTypes="fonds" delimiter=' '>
+						<p><l>^ca_objects.preferred_labels</l></p>
+						<div class="card-content-item">
+                        <div class="icon-group">
+                            <a href="#" class="card-content-icon" aria-label="delete">
+                                <span class="icon">
+                                    <i class="mdi mdi-close is-large"></i>
+                                </span>
+                            </a>
+                            <a href="#" class="card-content-icon" aria-label="edit">
+                                <span class="icon">
+                                    <i class="mdi mdi-pencil is-large"></i>
+                                </span>
+                            </a>
+                        </div>
+						</unit>
+					}}}
+                </div>
+            </div>
+        </div>
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Liste des groupes :</p>
@@ -107,7 +145,9 @@
 				<p class="card-header-title">Relations</p>
 			</header> <!-- menu déroulant à ajouter pour titre et iswc-->
 			<div style="padding:20px;">
-				<p><b>Relations</b> : {{{<unit relativeTo="ca_objects" restrictToTypes="Phonogramme"><l>^ca_objects.preferred_labels (^ca_objects.type_id)</l></unit>}}}</p>
+			{{{<unit relativeTo="ca_entities.related" restrictToRelationshipTypes="famille" delimiter=" "><b>Famille</b> : <l>^ca_entities.preferred_labels</l><br/></unit>}}}
+			{{{<unit relativeTo="ca_entities.related" restrictToRelationshipTypes="parenté" delimiter=" "><b>Père/Mère</b> : <l>^ca_entities.preferred_labels</l><br/></unit>}}}
+			{{{<unit relativeTo="ca_entities.related" restrictToRelationshipTypes="related" delimiter=" "><b>Voir aussi</b> : <l>^ca_entities.preferred_labels</l><br/></unit>}}}
 			</div>
 		</div>
 		<div class="card">
@@ -120,19 +160,130 @@
 		</div>
 		<div class="card">
 			<header class="card-header">
-				<p class="card-header-title">Liste des alias de "personnes" :</p>
-			</header> <!-- menu déroulant à ajouter pour titre et iswc-->
-		</div>
-		<div class="card">
-			<header class="card-header">
 				<p class="card-header-title">Liste des enquêtes :</p>
 			</header>
 		</div>
+
 		<div class="card">
-			<header class="card-header">
-				<p class="card-header-title">Liste des albums en tant que musicien :</p>
-			</header>
-		</div>
+            <header class="card-header">
+                <p class="card-header-title"><?php _p("Liste des albums en tant que musicien :"); ?></p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+				<?php
+$album_ids = explode(";", $t_entity->getWithTemplate("<unit relativeTo='ca_objects' excludeRelationshipTypes='fonds'>^ca_objects.parent.object_id</unit>"));
+if($album_ids[0]>0):
+	//$album_ids = $vt_linked_ent->get("ca_objects.parent.object_id");
+	$albums = [];
+	foreach($album_ids as $album_id) {
+		$vt_album = new ca_objects($album_id);
+		$albums[$album_id] = ["titre" => $vt_album->get("ca_objects.preferred_labels"), "icone"=>$vt_album->get("ca_object_representations.media.icon.url")];
+	}
+	
+	print "Sous le nom ".$t_entity->get("ca_entities.preferred_labels")."<br/>";
+	foreach($albums as $key=>$album) {
+		print '<div class="card-content-item">
+			<p><a href="/index.php/Detail/objects/'.$key.'"><img src="'.$album["icone"].'" style="height:32px;vertical-align:absmiddle" />'.$album["titre"].'</a></p>
+		</div>';
+	}
+endif;
+//print "-->";
+?>
+
+<?php
+$linked_ids = explode(";", $t_entity->get("ca_entities.related.entity_id"));
+//print "<!-- linked_ids";
+//var_dump($linked_ids);
+foreach($linked_ids as $linked_id) {
+	//var_dump($linked_id);
+	$vt_linked_ent = new ca_entities($linked_id);
+	$album_ids = explode(";", $t_entity->getWithTemplate("<unit relativeTo='ca_objects' excludeRelationshipTypes='fonds'>^ca_objects.parent.object_id</unit>"));
+	//$album_ids = $vt_linked_ent->get("ca_objects.parent.object_id");
+	$albums = [];
+	foreach($album_ids as $album_id) {
+		$vt_album = new ca_objects($album_id);
+		$albums[$album_id] = ["titre" => $vt_album->get("ca_objects.preferred_labels"), "icone"=>$vt_album->get("ca_object_representations.media.icon.url")];
+	}
+	$other_name = $vt_linked_ent->get("ca_entities.preferred_labels");
+	if($other_name) {
+	print "Sous le nom ".$other_name."<br/>";
+		foreach($albums as $key=>$album) {
+			print '<div class="card-content-item">
+				<p><a href="/index.php/Detail/objects/'.$key.'"><img src="'.$album["icone"].'" style="height:32px;vertical-align:absmiddle" />'.$album["titre"].'</a></p>
+			</div>';
+		}
+	}
+
+	
+}
+//print "-->";
+?>
+				</div>
+            </div>
+        </div>
+		<div class="card">
+            <header class="card-header">
+                <p class="card-header-title"><?php _p("Liste des albums de son fonds :"); ?></p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+				<?php
+$album_ids = explode(";", $t_entity->getWithTemplate("<unit relativeTo='ca_objects' sort='ca_objects.preferred_labels.name' sortDirection='ASC' restrictToRelationshipTypes='fonds'>^ca_objects.object_id</unit>"));
+if($album_ids[0]>0):
+	//$album_ids = $vt_linked_ent->get("ca_objects.parent.object_id");
+	$albums = [];
+	foreach($album_ids as $album_id) {
+		$album_id = trim($album_id);
+		$vt_album = new ca_objects($album_id);
+		$albums[$vt_album->getWithTemplate("^ca_objects.parent.object_id")] = ["id"=>$vt_album->getWithTemplate("^ca_objects.parent.object_id"), "titre" => $vt_album->getWithTemplate("^ca_objects.parent.preferred_labels"), "icone"=>$vt_album->getWithTemplate("<unit relativeTo='ca_objects'>^ca_object_representations.media.icon.url</unit>")];
+	}
+ 	//usort($albums, 'sortByTitre');
+	 $array = $albums;
+	 array_multisort(array_map(function($element) {
+		return $element['titre'];
+	}, $array), SORT_ASC, $array);
+  
+	$albums = $array;
+	foreach($albums as $album) {
+		print '<div class="card-content-item">
+			<p><a href="/index.php/Detail/objects/'.$album["id"].'"><img src="'.$album["icone"].'" style="height:32px;vertical-align:absmiddle" />'.$album["titre"].' </a></p>
+		</div>';
+	}
+endif;
+//print "-->";
+?>
+
+<?php
+$linked_ids = explode(";", $t_entity->get("ca_entities.related.entity_id"));
+//print "<!-- linked_ids";
+//var_dump($linked_ids);
+foreach($linked_ids as $linked_id) {
+	//var_dump($linked_id);
+	$vt_linked_ent = new ca_entities($linked_id);
+	$album_ids = explode(";", $t_entity->getWithTemplate("<unit relativeTo='ca_objects' restrictToRelationshipTypes='fonds'>^ca_objects.parent.object_id</unit>"));
+	//$album_ids = $vt_linked_ent->get("ca_objects.parent.object_id");
+	$albums = [];
+	foreach($album_ids as $album_id) {
+		$album_id = trim($album_id);
+		$vt_album = new ca_objects($album_id);
+		$albums[$album_id] = ["titre" => $vt_album->get("ca_objects.preferred_labels"), "icone"=>$vt_album->get("ca_object_representations.media.icon.url")];
+	}
+	$other_name = $vt_linked_ent->get("ca_entities.preferred_labels");
+	if($other_name) {
+		foreach($albums as $key=>$album) {
+			print '<div class="card-content-item">
+				<p><a href="/index.php/Detail/objects/'.$key.'"><img src="'.$album["icone"].'" style="height:32px;vertical-align:absmiddle" />'.$album["titre"].'</a></p>
+			</div>';
+		}
+	}
+
+	
+}
+//print "-->";
+?>
+				</div>
+            </div>
+        </div>
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Liste des enregistrements produits :</p>
@@ -143,17 +294,17 @@
 				<p class="card-header-title">Structure représentées :</p>
 			</header>
 		</div>		
-	</div><!-- second column column ends here-->
-	<div class="column">
 		<div class="card">
 			<header class="card-header">
 				<p class="card-header-title">Tags</p>
 			</header>
 		</div>
-	</div><!-- third column column ends here-->
+	</div><!-- second column column ends here-->
+	<div class="column" id="bottomDetail">
+	</div>
 </div>
 
-<div id="bottomDetail"></div>
+<div></div>
 
 
 <style>
@@ -249,6 +400,12 @@
     padding-bottom: 0.5em;
 	}
 
-
+	h2.alias-auteur {
+		text-align: center;
+		font-weight: 100;
+		font-size: 1.1em;
+		padding-top: 0;
+		padding-bottom: 1em;		
+	}
 
 </style>

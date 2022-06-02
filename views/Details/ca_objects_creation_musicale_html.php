@@ -41,56 +41,23 @@ $browser_tab_label = $t_object->get('ca_objects.preferred_labels.name');
 $browser_tab_label = str_replace(["\n","\t"], "", $browser_tab_label);
 $browser_tab_label = str_replace("'", "‘", $browser_tab_label);
 
-$is_admin = false;
-$is_moderator = false;
-foreach($this->request->getUser()->getUserGroups() as $group) {
-	if($group["code"] == "moderator") {
-		$is_moderator = true;
-	}
-	if($group["code"] == "admin") {
-		$is_admin = true;
-	} 
-}
 
 ?>
 <script>
 	window.parent.history.pushState('', "<?= $browser_tab_label ?>", 'https://www.phoi.io/index.php/Detail/objects/<?= $vn_id ?>');
 	window.parent.document.title = "<?= $browser_tab_label ?>";
 </script>
-<!-- ca_objects_Enregistrement_html.php -->
-<h1 class="titre-interpretation">{{{^ca_objects.preferred_labels.name}}}</h1>
-<?php if($t_object->get("ca_objects.related.object_id")) : ?>
-
-<h2 class="creation-musicale">{{{<unit relativeTo="ca_objects.related" delimiter=", "><l>
-	<span class="tag is-work">
+<!-- ca_objects_creation_musicale_html.php -->
+<h1 class="titre-interpretation">	<span class="tag is-work">
 		<i class="mdi mdi-music-clef-treble is-large"></i>
-	</span>
-^ca_objects.preferred_labels</l>}}}</h2>
-<?php else: ?>
-	<h2 class="creation-musicale">
-		<a href="/index.php/Contribuer/Do/Form/table/ca_objects/type/Création musicale/titre/{{{^ca_objects.preferred_labels}}}">
-		<button class="button is-light">
-			<i class="mdi mdi-music-clef-treble is-large"></i>
-			Ajouter une création musicale
-		</button>
-		</a>
-		<?php if($is_admin): ?>
-		<a href="/index.php/Contribuer/Tags/addCreation/origin/<?= $vn_id ?>/titre/{{{^ca_objects.preferred_labels}}}" >
-		<button class="button is-warning" >
-			<i class="mdi mdi-music-clef-treble is-large"></i>
-			Création musicale (création auto admin)
-		</button>
-		</a>
-		<?php endif; ?>
-	</h2>
-<?php endif; ?>
+	</span> {{{^ca_objects.preferred_labels.name}}}</h1>
 
-<div class="columns">
-  <div class="column is-three-quarters">
+	<div class="columns">
+  <div class="column is-half">
     <div class="card">
 	  <header class="card-header">
 	    <p class="card-header-title">
-	      Informations sur l'interprétation
+	      Informations sur la création musicale
 	    </p>
 	    <a href="#" class="card-header-icon" aria-label="edit">
 		    <span class="icon">
@@ -121,9 +88,16 @@ $template2 = "<unit relativeTo='ca_entities' delimiter=' ; '><l>^ca_entities.pre
 	foreach($results as $auteur=>$fonctions) {
 		print $auteur." (".implode(", ", $fonctions).")<br/>";
 	} 
-	print "<br/>\n";
+	//print "<br/>\n";
 ?>
-
+{{{
+	<unit relativeTo='ca_objects.description' delimiter=' '>
+						^ca_objects.description
+</unit>
+<unit relativeTo='ca_objects.notes' delimiter=' '>
+						^ca_objects.notes
+</unit>
+}}}
 
 	    </div>
 	  </div>
@@ -132,35 +106,7 @@ $template2 = "<unit relativeTo='ca_entities' delimiter=' ; '><l>^ca_entities.pre
 	<div class="card">
 	  <header class="card-header">
 	    <p class="card-header-title">
-	      <?php _p('Tags (interprétation)');?>
-	    </p>
-		<a onClick="$('#iframetags').toggle();$('#ultags').toggle();" class="card-header-icon" aria-label="edit" style="display: none;">
-            <span class="icon">
-                <i class="mdi mdi-pencil is-large"></i>
-            </span>
-		</a>
-	  </header>
-	  <div class="card-content" style="">
-	    <div class="content">
-		    <uL id='ultags' class='ultags'>
-			    {{{<unit relativeTo='ca_objects.tag' delimiter=' '>
-			    	<li style='display:inline-block;'>
-			    	<div class="card-content-item">
-					<p class="tag"><a href="/index.php/Thesaurus/View/Index?tag=<?= $t_object->get("ca_objects.tag")?>">^ca_objects.tag</a></p>
-					</div>
-			    </li>
-			    </unit>}}}
-		    </uL>
-
-			<iframe src="/index.php/Contribuer/Tags/Index/id/<?= $vn_id ?>" id="iframetags" style="display:none;min-height:200px;min-width:100%;" ></iframe>
-
-	    </div>
-	  </div>
-	</div>
-	<div class="card">
-	  <header class="card-header">
-	    <p class="card-header-title">
-	      <?php _p('Tags (création musicale)');?>
+	      <?php _p('Tags');?>
 	    </p>
 		<a onClick="$('#iframetags2').toggle();$('#ultags2').toggle();" class="card-header-icon" aria-label="edit" style="display: none;">
             <span class="icon">
@@ -171,40 +117,45 @@ $template2 = "<unit relativeTo='ca_entities' delimiter=' ; '><l>^ca_entities.pre
 	  <div class="card-content" style="">
 	    <div class="content">
 		    <uL id='ultags2' class='ultags'>
-				{{{<unit relativeTo='ca_objects.related' delimiter=' '>
+				{{{
 					<unit relativeTo='ca_objects.tag' delimiter=' '>
+						<ifdef code='ca_objects.tag.item_id'>
 				<li style='display:inline-block;'>
 			    	<div class="card-content-item">
 						<p class="tag"><a href="/index.php/Thesaurus/View/Index?tag=^ca_objects.tag.item_id">^ca_objects.tag</a></p>
 					</div>
 			    </li>
-			    </unit>
+						</ifdef>
 			    </unit>}}}
 		    </uL>
-			<?php if($t_object->get("ca_objects.related.object_id")) : ?>
-			<iframe src="/index.php/Contribuer/Tags/Index/id/<?= $t_object->get('ca_objects.related.object_id') ?>/redirect/<?= $t_object->get('ca_objects.object_id') ?>" id="iframetags2" class="iframetags" style="display:none;min-height:200px;min-width:100%;" ></iframe>
-			<?php else : ?>
-				<p id="iframetags2" style="display:none;">
-				<a href="/index.php/Contribuer/Do/Form/table/ca_objects/type/Création musicale/titre/{{{^ca_objects.preferred_labels}}}">
-		<button class="button is-light">
-			<i class="mdi mdi-music-clef-treble is-large"></i>
-			Ajouter une création musicale
-		</button>
-		</a><span style="line-height:40px;">
-				liée pour y ajouter des tags.</span></p>
-			<?php endif; ?>
-
+			<iframe src="/index.php/Contribuer/Tags/Index/id/<?= $t_object->get('ca_objects.object_id') ?>/redirect/<?= $t_object->get('ca_objects.object_id') ?>" id="iframetags2" class="iframetags" style="display:none;min-height:200px;min-width:100%;" ></iframe>
 	    </div>
 	  </div>
 	</div>
 
+	{{{<unit relativeTo='ca_objects.related' restrictToTypes="Partition" delimiter=' '>
+	<div class="card">
+	  <header class="card-header">
+	    <p class="card-header-title">
+	      <?php _p('Partitions');?>
+	    </p>
+		
+	  </header>
+	  <div class="card-content" style="">
+	    <div class="content">
+		    <l>^ca_object_representations.media.preview170 <br/>
+			^ca_objects.preferred_labels</l>
+	    </div>
+	  </div>
+	</div>
+	</unit>}}}
 	
   </div>
-  <div class="column">
+  <div class="column ">
   <div class="card">
 	  <header class="card-header">
 	    <p class="card-header-title">
-	      Enregistrements
+	      Interprétations
 	    </p>
 	    <a href="#" class="card-header-icon" aria-label="edit">
 		    <span class="icon">
@@ -215,21 +166,20 @@ $template2 = "<unit relativeTo='ca_entities' delimiter=' ; '><l>^ca_entities.pre
 	  <div class="card-content">
 	    <div class="content">
 			{{{
-				<unit relativeTo='ca_objects.parent'><l>^ca_object_representations.media.preview170<br/>
-				^ca_objects.preferred_labels.name</l></unit><br/>
-				<ifdef code='ca_objects.face'><span class='tag is-white face'>Face ^ca_objects.face</span></ifdef>
-				<ifdef code='ca_objects.num_piste'><span class='tag is-light piste'>^ca_objects.num_piste</span></ifdef> 
-				
-				<span class='tag is-white'>^ca_objects.preferred_labels.name</span>
+				<unit relativeTo='ca_objects.related' restrictToTypes="Enregistrement,Interprétation" delimiter="<br/>">
+				<unit relativeTo='ca_objects.parent'>
+					<small style="display:block;margin-top:10px;line-height:1em;"><img src='^ca_object_representations.media.icon.url' style='height:40px;float:left;padding-right:3px;'/> ^ca_objects.preferred_labels</small>
+				</unit>
+				<l>^ca_objects.preferred_labels.name</l></unit><br/>
 			}}}
 			</div>
 	  </div>
 	</div>		
-    	
   </div>
+	<div class="column is-one-fifth">
+		<div id="bottomDetail"></div>
+	</div>
 </div>
-<div id="bottomDetail"></div>
-
 <script>
   $('img[data-enlargable]').addClass('img-enlargable').click(function(){
     var src = $(this).attr('src');

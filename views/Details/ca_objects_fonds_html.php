@@ -33,6 +33,7 @@
 	$vn_share_enabled = 	$this->getVar("shareEnabled");
 	$vn_pdf_enabled = 		$this->getVar("pdfEnabled");
 	$vn_id =				$t_object->get('ca_objects.object_id');
+
 ?>
 <!-- ca_objects_fonds_html.php ICI -->
 <form method="get" action="<?php print __CA_URL_ROOT__; ?>/index.php/Search/objects" id="search">

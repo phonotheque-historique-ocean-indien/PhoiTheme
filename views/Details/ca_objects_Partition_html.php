@@ -35,12 +35,22 @@
 	$vn_pdf_enabled = 		$this->getVar("pdfEnabled");
 	$vn_id =				$t_object->get('ca_objects.object_id');
     $type =                 $t_object->getTypeCode();
+
+	
+	// sanitize page name for browse tab
+$browser_tab_label = $t_object->get('ca_objects.preferred_labels.name');
+$browser_tab_label = str_replace(["\n","\t"], "", $browser_tab_label);
+$browser_tab_label = str_replace("'", "‘", $browser_tab_label);
 ?>
+<script>
+	window.parent.history.pushState('', "<?= $browser_tab_label ?>", 'https://www.phoi.io/index.php/Detail/objects/<?= $vn_id ?>');
+	window.parent.document.title = "<?= $browser_tab_label ?>";
+</script>
 
 <!-- ca_objects_Partition_html.php -->
 <h1 class="titre-phonogramme">{{{^ca_objects.preferred_labels.name}}}</h1>
 <div class="columns">
-  <div class="column is-one-third">
+  <div class="column is-one-fifth">
 	<div class="card infosprincipales">
 	  <header class="card-header">
 	    <p class="card-header-title">
@@ -68,7 +78,7 @@
 	
   </div>
 
-  <div class="column">
+  <div class="column is-three-fifths">
     <div class="card">
 	  <header class="card-header">
 	    <p class="card-header-title">
@@ -152,23 +162,18 @@
               </a>
           </div>
 	  </header>
-	  <div class="card-content">
-	    <div class="content" id="imageviewer">
-			<?php
-            $representations = $t_object->getRepresentations(["preview170","large"]);
-            //print $representation["tags"]["preview170"];
-            foreach($representations as $key=>$representation) {
-                print "<img data-enlargable style=\"height:140px\" style=\"cursor: zoom-in\"  src='".$representation["urls"]["large"]."' >";
-            }
-			?>
-	    </div>
-	  </div>
+		<div id="imageviewer">
+			<?php RenderDropzone($t_object, $vb_isadmin); ?>
+		</div>
 	</div>
 
   </div>
+  <div class="column">
+  	<div id="bottomDetail"></div>
+	</div>
 </div>
 
-<div id="bottomDetail"></div>
+
 
 <script>
 
@@ -254,9 +259,6 @@
 </script>
 
 <style>
-	h1.titre-phonogramme {
-
-	}
 	.card {
 		border:1px solid #e0e0e0;
 		margin-bottom:10px;
@@ -380,13 +382,9 @@
 	}
 
     .medias .card-content .content {
-        overflow-x: scroll;
-        overflow-y: hidden;
-        white-space: nowrap;
         padding-bottom:15px;
     }
     .medias .card-content .content img {
-        padding-right:15px;
     }
 
 	/****** FIN MODIFS RACHEL ****/
@@ -427,4 +425,35 @@
 		cursor:not-allowed;
 	}
 	
+	.infosprincipales {
+		max-height: 600px;
+	}
+	.keep-sample {
+		background-color: #7dafca;
+		color: white;
+		padding: 2px 5px;
+		font-size: 0.6em;
+		border-radius: 2px;
+	}
+	#fileselector {
+		margin-bottom:10px;
+	}
+	#fileselector .file {
+		justify-content: flex-end;
+	}
+	.track-card-content-item.draging {
+		border-radius:4px;
+		background-color:rgba(4, 209, 178, 1.00);
+		color:white;
+	}
+	.alreadytrack-card-content-item.nodraging {
+		border-radius:4px;
+		background-color:rgba(229, 103, 95, 1.00);
+		color:white;
+	}
+	.content table.info_pressage_pistes td, 
+	.content table.info_pressage_pistes th {
+		padding:0.08em;
+	}
+
 </style>
